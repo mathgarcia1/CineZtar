@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BJZGk0LRLXsO5JPvFizDjTOu6gjXC/K1vXABNslGHsE8rm8608ZExkZ7OYcDrRM21zrw1LyGhp7PhSe2gCtDQg==",
+  "dgSpecHash": "5TuOZPWGutJ2Dgk2gyD10vVxJQRKDRkguNLkU4vZtqIWB5tA52st8Q+iTdKnwSH/6alSGNLC5anF/sl1tAZ+Bw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
+  "projectFilePath": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mathe\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

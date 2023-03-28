@@ -338,3 +338,4 @@ C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\refint\
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.pdb
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.genruntimeconfig.cache
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\ref\Cine.dll
+C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Idioma\Listar.cshtml.g.cs
