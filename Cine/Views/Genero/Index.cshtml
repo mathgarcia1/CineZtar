@@ -1,0 +1,29 @@
+﻿@model Cine.Models.GeneroModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cadastro de Gênero de filmes</h1>
+<form asp-controller="Genero" asp-action="Salvar" method="post">
+    <div class="form-group">
+        <input class="form-control" type="number" asp-for="IdGenero" hidden />
+        <span asp-validation-for="IdGenero" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input class="form-control" type="text" asp-for="Nome" />
+        <span asp-validation-for="Nome" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Descricao"></label>
+        <input class="form-control" type="text" asp-for="Descricao" />
+        <span asp-validation-for="Descricao" class="validacao"></span>
+    </div>
+
+    <div class="form-group">
+        <span>@ViewBag.mensagem</span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" >Salvar</button>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<dynamic>
+
+<table>
+    <thead>
+        <tr>
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                <th>@property.DisplayName</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @foreach (var property in ViewData.ModelMetadata.Properties)
+                {
+                    <td>@property.PropertyGetter.Invoke(item)</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
