@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RU/JbRmasXs0tPbUw7LL+S04VIr1KWr8Kaw2Yxpm5Tvwpm7spmOhcKMcnWT8gU9z1PnDTsRyiwVlpOe5vKVe+Q==",
+  "dgSpecHash": "EMUJmmCuziUvXojFvC8nelDquAgags0a7+tCsipPyqlv0XlV04W8bmujIU3QWGNor5JEzf2cel8HB2clXdm8rg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj",
+  "projectFilePath": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mathe\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
