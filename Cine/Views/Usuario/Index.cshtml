@@ -1,0 +1,38 @@
+﻿@model Cine.Models.UsuarioModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cadastro de Usuarios</h1>
+<form asp-controller="Usuario" asp-action="Salvar" method="post">
+    <div class="form-group">
+        <input class="form-control" type="number" asp-for="IdUsuario" hidden />
+        <span asp-validation-for="IdUsuario" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" type="text" asp-for="Email" />
+        <span asp-validation-for="Email" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Senha"></label>
+        <input class="form-control" type="password" asp-for="Senha" />
+        <span asp-validation-for="Senha" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input class="form-control" type="text" asp-for="Nome" />
+        <span asp-validation-for="Nome" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IdTipousuario" class="control-label"></label>
+        <select asp-for="IdTipousuario" class="form-control" asp-items="@(Model.TiposUsuario ?? Enumerable.Empty<SelectListItem>())"></select>
+    </div>
+
+    <div class="form-group">
+        <span>@ViewBag.Dados</span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+</form>

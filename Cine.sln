@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cine", "Cine\Cine.csproj", "{22DC148D-6CB1-4D2B-A198-4DD6CB5C1FEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio", "Repositorio\Repositorio.csproj", "{CF45248F-7ED1-41FE-AA1A-7020906972E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22DC148D-6CB1-4D2B-A198-4DD6CB5C1FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22DC148D-6CB1-4D2B-A198-4DD6CB5C1FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22DC148D-6CB1-4D2B-A198-4DD6CB5C1FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22DC148D-6CB1-4D2B-A198-4DD6CB5C1FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF45248F-7ED1-41FE-AA1A-7020906972E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF45248F-7ED1-41FE-AA1A-7020906972E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF45248F-7ED1-41FE-AA1A-7020906972E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF45248F-7ED1-41FE-AA1A-7020906972E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EC0E549-AC2F-4DF0-AF82-D3D4AF86200A}
+	EndGlobalSection
+EndGlobal

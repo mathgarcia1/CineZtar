@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Cine.Models.GeneroModel>
+@{
+    ViewData["Title"] = "listar";
+}
+
+<h1>Lista de Generos</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.IdGenero)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Descricao)</th>
+            <th scope="col">Alterar</th>
+            <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.IdGenero</th>
+                <td>@item.Nome</td>
+                <td>@item.Descricao</td>
+                <td><a asp-controller="Genero" asp-action="Index" asp-route-id="@item.IdGenero">Alterar</a></td>
+                <td><a asp-controller="Genero" asp-action="Excluir" asp-route-id="@item.IdGenero">Excluir</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
