@@ -1,40 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj": {}
+    "d:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj": {
+    "d:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj",
+        "projectUniqueName": "d:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
         "projectName": "Cine",
-        "projectPath": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj",
+        "projectPath": "d:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
         "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\obj\\",
+        "outputPath": "d:\\Documents\\GitHub\\CineZtar\\Cine\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
-                "projectPath": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj"
+              "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
+                "projectPath": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj"
               }
             }
           }
@@ -87,33 +80,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
+    "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
+        "projectUniqueName": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
         "projectName": "Repositorio",
-        "projectPath": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
+        "projectPath": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
         "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\obj\\",
+        "outputPath": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -175,7 +161,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

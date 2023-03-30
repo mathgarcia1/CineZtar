@@ -17,7 +17,8 @@ namespace Cine.Models
         [Display(Name = "Código Tipo Ingresso")]
         public int? IdTipoIngresso { get; set; }
 
-        [Display(Name = "Código Tipo Ingresso")]
+//falta index disso
+        [Display(Name = "Código Sala")]
         public int? IdSala { get; set; }
     }
 }
