@@ -9,6 +9,7 @@
         <tr>
             <th scope="col">@Html.DisplayNameFor(model => model.IdCinema)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.TotalSalaCinema)</th>
             <th scope="col">Alterar</th>
             <th scope="col">Excluir</th>
         </tr>
@@ -19,6 +20,7 @@
             <tr>
                 <th scope="row">@item.IdCinema</th>
                 <td>@item.Nome</td>
+                <td>@item.TotalSalaCinema</td>
                 <td><a asp-controller="Cinema" asp-action="Index" asp-route-id="@item.IdCinema">Alterar</a></td>
                 <td><a asp-controller="Cinema" asp-action="Excluir" asp-route-id="@item.IdCinema">Excluir</a></td>
             </tr>

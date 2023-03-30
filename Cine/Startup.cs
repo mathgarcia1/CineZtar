@@ -36,6 +36,7 @@ namespace Cine
             services.AddScoped<IBaseRepository<Cinema>, CinemaRepositorio>();
             services.AddScoped<IBaseRepository<Filme>, FilmeRepositorio>();
             services.AddScoped<IBaseRepository<Idioma>, IdiomaRepositorio>();
+            services.AddScoped<IBaseRepository<Sala>, SalaRepositorio>();
             services.AddAutoMapper(typeof(Startup));
 
 
@@ -65,6 +66,9 @@ namespace Cine
 
                 cfg.CreateMap<Idioma, IdiomaModel>();
                 cfg.CreateMap<IdiomaModel, Idioma>();
+                
+                cfg.CreateMap<Sala, SalaModel>();
+                cfg.CreateMap<SalaModel, Sala>();
 
 
             });

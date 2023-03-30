@@ -1,0 +1,31 @@
+@model Cine.Models.SalaModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Cadastro de Salas de Cinema</h1>
+<form asp-controller="Sala" asp-action="Salvar" method="post">
+    <div class="form-group">
+        <input class="form-control" type="number" asp-for="IdSala" hidden />
+        <span asp-validation-for="IdSala" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input class="form-control" type="text" asp-for="Nome" />
+        <span asp-validation-for="Nome" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TotalAssento"></label>
+        <input class="form-control" type="number" asp-for="TotalAssento" />
+        <span asp-validation-for="TotalAssento" class="validacao"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IdCinema"></label>
+        <select asp-for="IdCinema" class="form-control" asp-items="@(Model.Cinema ?? Enumerable.Empty<SelectListItem>())"></select>
+    </div>
+    <div class="form-group">
+        <span>@ViewBag.mensagem</span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" >Salvar</button>
+    </div>
+</form>

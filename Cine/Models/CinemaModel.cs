@@ -14,6 +14,8 @@ namespace Cine.Models
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string Nome { get; set; }
 
+        public int? TotalSalaCinema { get; set; }
+
         
     }
 }
