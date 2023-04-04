@@ -14,10 +14,7 @@ namespace Repositorio.Repositorios
         private readonly DbContext _context;
 
 
-        public Usuario GetByEmailAndSenha(String email, String senha)
-        {
-            return _context.Set<Usuario>().SingleOrDefault(u => u.Email == email && u.Senha == senha);
-        }
+        
         
     }
 }

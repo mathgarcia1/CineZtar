@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {}
+    "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {}
   },
   "projects": {
-    "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
+    "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
+        "projectUniqueName": "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
         "projectName": "Repositorio",
-        "projectPath": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
-        "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-        "outputPath": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\obj\\",
+        "projectPath": "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
+        "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Matheus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

@@ -356,7 +356,7 @@ namespace Repositorio.Models
                     .HasColumnName("nome");
 
                 entity.Property(e => e.Senha)
-                    .HasMaxLength(50)
+                    .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasColumnName("senha");
 

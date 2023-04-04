@@ -171,3 +171,6 @@ D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\refint\Cine.dll
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.pdb
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.genruntimeconfig.cache
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\ref\Cine.dll
+D:\Documents\GitHub\CineZtar\Cine\bin\Debug\net5.0\Controllers\obj\Controllers.csproj.nuget.dgspec.json
+D:\Documents\GitHub\CineZtar\Cine\bin\Debug\net5.0\Controllers\obj\project.assets.json
+D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Usuario\Login.cshtml.g.cs
