@@ -1,24 +1,47 @@
 @model Cine.Models.UsuarioModel
-<h2>Login</h2>
-
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger" role="alert">
-        Email ou senha inválidos
-    </div>
+@{
+    Layout = null;
 }
-<form method="post" asp-controller="Usuario" asp-action="Authenticate">
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" class="form-control" asp-for="Email" id="email" name="Email" required>
-    </div>
-    <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" class="form-control" asp-for="Senha" id="senha" name="Senha" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
-    
-    
 
-</form>
-<a asp-controller="Usuario" asp-action="Index" ><button class="btn btn-primary">Cadastrar</button></a>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+
+<body>
+    <div class="formulario ">
+        <form method="post" asp-controller="Usuario" asp-action="Authenticate">
+            <h2>Login</h2>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" role="alert">
+                    Email ou senha inválidos
+                </div>
+            }
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="Senha" required>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 d-flex justify-content-between">
+                    <button type="submit" class="mr-3">Entrar</button>
+                    <a class="btnlink" asp-controller="Usuario" asp-action="Index">Cadastrar</a>
+                </div>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

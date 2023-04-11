@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #aaaaaa;
+    background-color: #222;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.formulario {
+    background-color: #333;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"],
+input[type="file"]
+ {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #444;
+    color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+button {
+    border: none;
+    background-color: #da4453;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #f64747;
+}
+
+a {
+    color: #da4453;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.btnlink {
+    border: none;
+    background-color: #da4453;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btnlink:hover {
+    background-color: #f64747;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.options{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #444;
+    color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
