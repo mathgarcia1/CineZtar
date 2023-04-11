@@ -1,48 +1,74 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Cine</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/formularios.css" />
+    <link rel="stylesheet" href="~/css/navbar.css" />
+    <link rel="stylesheet" href="~/css/listar.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cine</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+<body id="body-pd">
+
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header_img"> <img src="" alt=""> </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+                        class="nav_logo-name">CineZtar</span> </a>
+                <div class="nav_list">
+                    <a asp-controller="Home" asp-action="Index" class="nav_link active">
+                        <i class='bx bx-grid-alt nav_icon'></i>
+                        <span class="nav_name">Inicio</span>
+                    </a>
+                    <a asp-controller="Usuario" asp-action="Listar" class="nav_link">
+                        <i class='bx bx-user nav_icon'></i>
+                        <span class="nav_name">Usuarios</span>
+                    </a>
+                    <a asp-controller="Cinema" asp-action="Listar" class="nav_link">
+                        <i class='bx bx-message-square-detail nav_icon'></i>
+                        <span class="nav_name">Cinemas</span>
+                    </a>
+                    <a asp-controller="Filme" asp-action="Listar" class="nav_link">
+                        <i class='bx bx-bookmark nav_icon'></i>
+                        <span class="nav_name">Filmes</span>
+                    </a>
+                    <a asp-controller="Sala" asp-action="Listar" class="nav_link">
+                        <i class='bx bx-folder nav_icon'></i>
+                        <span class="nav_name">Salas</span>
+                    </a>
+                    <a href="#" class="nav_link">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">Stats</span>
+                    </a>
                 </div>
             </div>
+            <a href="#" class="nav_link">
+                <i class='bx bx-log-out nav_icon'></i>
+                <span class="nav_name">SignOut</span> </a>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    </div>
+    <!--Container Main start-->
+    <div class="height-100">
+        <main role="main" class="mx-auto">
+
             @RenderBody()
+
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Cine - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/navbar.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

@@ -9298,40 +9298,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mathe\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Matheus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj",
+      "projectUniqueName": "D:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
       "projectName": "Cine",
-      "projectPath": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\Cine.csproj",
-      "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Cine\\obj\\",
+      "projectPath": "D:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
+      "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\GitHub\\CineZtar\\Cine\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Matheus\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
-              "projectPath": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj"
+            "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
+              "projectPath": "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj"
             }
           }
         }
@@ -9388,7 +9380,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

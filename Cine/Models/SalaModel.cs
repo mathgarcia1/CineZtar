@@ -20,7 +20,7 @@ namespace Cine.Models
         [Display(Name = "Total de assentos")]
         public int? TotalAssento { get; set; }
 
-        [Display(Name = "Código do Cinema")]
+        [Display(Name = "Cinema")]
         public int? IdCinema { get; set; }
 
         public List<SelectListItem> Cinema { get; set; }

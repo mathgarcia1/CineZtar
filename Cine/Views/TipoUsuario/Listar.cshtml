@@ -3,25 +3,30 @@
     ViewData["Title"] = "listar";
 }
 
-<h1>Tipos de Usuario</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">@Html.DisplayNameFor(model => model.IdTipousuario)</th>
-            <th scope="col">@Html.DisplayNameFor(model => model.Descricao)</th>
-            <th scope="col">Alterar</th>
-            <th scope="col">Excluir</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="tabela">
+    <a class="btnlink" asp-controller="TipoUsuario" asp-action="Index">Novo</a>
+    <br/>
+    <br/>
+    <h1>Tipos de Usuario</h1>
+    <table class="table table-dark lista">
+        <thead>
             <tr>
-                <th scope="row">@item.IdTipousuario</th>
-                <td>@item.Descricao</td>
-                <td><a asp-controller="TipoUsuario" asp-action="Index" asp-route-id="@item.IdTipousuario">Alterar</a></td>
-                <td><a asp-controller="TipoUsuario" asp-action="Excluir" asp-route-id="@item.IdTipousuario">Excluir</a></td>
+                <th scope="col">@Html.DisplayNameFor(model => model.IdTipousuario)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Descricao)</th>
+                <th scope="col">Alterar</th>
+                <th scope="col">Excluir</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.IdTipousuario</th>
+                    <td>@item.Descricao</td>
+                    <td><a asp-controller="TipoUsuario" asp-action="Index" asp-route-id="@item.IdTipousuario">Alterar</a></td>
+                    <td><a asp-controller="TipoUsuario" asp-action="Excluir" asp-route-id="@item.IdTipousuario">Excluir</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
