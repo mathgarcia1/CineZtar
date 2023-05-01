@@ -10,7 +10,6 @@ namespace Repositorio.Models
         public Filme()
         {
             FilmeGeneros = new HashSet<FilmeGenero>();
-            Sessaos = new HashSet<Sessao>();
         }
 
         public int IdFilme { get; set; }
@@ -23,6 +22,5 @@ namespace Repositorio.Models
 
         public virtual Idioma IdIdiomaNavigation { get; set; }
         public virtual ICollection<FilmeGenero> FilmeGeneros { get; set; }
-        public virtual ICollection<Sessao> Sessaos { get; set; }
     }
 }

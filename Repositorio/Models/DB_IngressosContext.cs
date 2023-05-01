@@ -25,8 +25,6 @@ namespace Repositorio.Models
         public virtual DbSet<Idioma> Idiomas { get; set; }
         public virtual DbSet<Ingresso> Ingressos { get; set; }
         public virtual DbSet<Sala> Salas { get; set; }
-        public virtual DbSet<Sessao> Sessaos { get; set; }
-        public virtual DbSet<SessaoIngresso> SessaoIngressos { get; set; }
         public virtual DbSet<TipoIngresso> TipoIngressos { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -56,16 +54,9 @@ namespace Repositorio.Models
                     .HasColumnType("datetime")
                     .HasColumnName("data");
 
-                entity.Property(e => e.IdSessao).HasColumnName("id_sessao");
-
                 entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
                 entity.Property(e => e.QtdIngressos).HasColumnName("qtd_ingressos");
-
-                entity.HasOne(d => d.IdSessaoNavigation)
-                    .WithMany(p => p.Carrinhos)
-                    .HasForeignKey(d => d.IdSessao)
-                    .HasConstraintName("FK_Carrinho_Sessao");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Carrinhos)
@@ -226,80 +217,6 @@ namespace Repositorio.Models
                     .WithMany(p => p.Salas)
                     .HasForeignKey(d => d.IdCinema)
                     .HasConstraintName("FK_Sala_Cinema");
-            });
-
-            modelBuilder.Entity<Sessao>(entity =>
-            {
-                entity.HasKey(e => e.IdSessao);
-
-                entity.ToTable("Sessao");
-
-                entity.Property(e => e.IdSessao).HasColumnName("id_sessao");
-
-                entity.Property(e => e.Data)
-                    .HasColumnType("datetime")
-                    .HasColumnName("data");
-
-                entity.Property(e => e.DataFim)
-                    .HasColumnType("datetime")
-                    .HasColumnName("data_fim");
-
-                entity.Property(e => e.DataInicio)
-                    .HasColumnType("datetime")
-                    .HasColumnName("data_inicio");
-
-                entity.Property(e => e.IdFilme).HasColumnName("id_filme");
-
-                entity.Property(e => e.IdSala).HasColumnName("id_sala");
-
-                entity.HasOne(d => d.IdFilmeNavigation)
-                    .WithMany(p => p.Sessaos)
-                    .HasForeignKey(d => d.IdFilme)
-                    .HasConstraintName("FK_Sessao_Filme");
-
-                entity.HasOne(d => d.IdSalaNavigation)
-                    .WithMany(p => p.Sessaos)
-                    .HasForeignKey(d => d.IdSala)
-                    .HasConstraintName("FK_Sessao_Sala");
-            });
-
-            modelBuilder.Entity<SessaoIngresso>(entity =>
-            {
-                entity.HasKey(e => e.IdSessaoIngresso);
-
-                entity.ToTable("Sessao_Ingresso");
-
-                entity.Property(e => e.IdSessaoIngresso).HasColumnName("id_sessao_ingresso");
-
-                entity.Property(e => e.IdCarrinho).HasColumnName("id_carrinho");
-
-                entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
-
-                entity.Property(e => e.IdSessao).HasColumnName("id_sessao");
-
-                entity.Property(e => e.Preco)
-                    .HasColumnType("decimal(8, 2)")
-                    .HasColumnName("preco");
-
-                entity.Property(e => e.Status)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("status");
-
-                entity.HasOne(d => d.IdCarrinhoNavigation)
-                    .WithMany(p => p.SessaoIngressos)
-                    .HasForeignKey(d => d.IdCarrinho)
-                    .HasConstraintName("FK_Sessao_Ingresso_Carrinho");
-
-                entity.HasOne(d => d.IdIngressoNavigation)
-                    .WithMany(p => p.SessaoIngressos)
-                    .HasForeignKey(d => d.IdIngresso)
-                    .HasConstraintName("FK_Sessao_Ingresso_Ingresso");
-
-                entity.HasOne(d => d.IdSessaoNavigation)
-                    .WithMany(p => p.SessaoIngressos)
-                    .HasForeignKey(d => d.IdSessao)
-                    .HasConstraintName("FK_Sessao_Ingresso_Sessao");
             });
 
             modelBuilder.Entity<TipoIngresso>(entity =>

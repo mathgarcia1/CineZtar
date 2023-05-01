@@ -9,7 +9,6 @@ namespace Repositorio.Models
     {
         public Ingresso()
         {
-            SessaoIngressos = new HashSet<SessaoIngresso>();
         }
 
         public int IdIngresso { get; set; }
@@ -19,6 +18,5 @@ namespace Repositorio.Models
 
         public virtual Sala IdSalaNavigation { get; set; }
         public virtual TipoIngresso IdTipoIngressoNavigation { get; set; }
-        public virtual ICollection<SessaoIngresso> SessaoIngressos { get; set; }
     }
 }

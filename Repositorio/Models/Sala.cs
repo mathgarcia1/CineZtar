@@ -10,7 +10,6 @@ namespace Repositorio.Models
         public Sala()
         {
             Ingressos = new HashSet<Ingresso>();
-            Sessaos = new HashSet<Sessao>();
         }
 
         public int IdSala { get; set; }
@@ -20,6 +19,5 @@ namespace Repositorio.Models
 
         public virtual Cinema IdCinemaNavigation { get; set; }
         public virtual ICollection<Ingresso> Ingressos { get; set; }
-        public virtual ICollection<Sessao> Sessaos { get; set; }
     }
 }
