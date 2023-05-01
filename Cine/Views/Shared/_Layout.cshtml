@@ -24,7 +24,7 @@
             <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
                         class="nav_logo-name">CineZtar</span> </a>
                 <div class="nav_list">
-                    <a asp-controller="Home" asp-action="Index" class="nav_link active">
+                    <a asp-controller="Home" asp-action="Index" class="nav_link"><!--fazer active-->
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Inicio</span>
                     </a>
@@ -58,9 +58,11 @@
     <!--Container Main start-->
     <div class="height-100">
         <main role="main" class="mx-auto">
-
+            <br/>
+            <br/>
             @RenderBody()
-
+            <br/>
+            <br/>
         </main>
     </div>
 
