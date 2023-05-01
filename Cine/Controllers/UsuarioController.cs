@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Cine.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repositorio.Models;
@@ -9,12 +7,7 @@ using Repositorio.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
 
 namespace Cine.Controllers
@@ -158,6 +151,8 @@ namespace Cine.Controllers
                 var usuario = _repository.getAll().FirstOrDefault(u => u.Email == email && u.Senha == senha);
                 if (usuario != null)
                 {
+                    HttpContext.Session.SetInt32("IdUsuario", usuario.IdUsuario);
+                    HttpContext.Session.SetString("Nome", usuario.Nome);
                     return RedirectToAction("Index", "Cinema");
                 }
                 else
@@ -171,6 +166,12 @@ namespace Cine.Controllers
                 ModelState.AddModelError("", "Erro ao autenticar usuário: " + ex.Message);
                 return View("Login");
             }
+        }
+        public IActionResult Logout(){
+            HttpContext.Session.Remove("IdUsuario");
+            HttpContext.Session.Remove("Nome");
+            HttpContext.Session.Clear();
+            return View("Login");
         }
 
     }
