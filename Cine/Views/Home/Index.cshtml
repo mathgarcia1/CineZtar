@@ -1,7 +1,11 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor _httpContext
+
+@{
     ViewData["Title"] = "Home Page";
+    var userName = _httpContext.HttpContext.Session.GetString("Nome");
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bem-vindo</h1>
+    <h1 class="display-4">Bem-vindo @userName</h1>
     </div>

@@ -216,7 +216,7 @@ namespace Repositorio.Models
                 entity.HasOne(d => d.IdCinemaNavigation)
                     .WithMany(p => p.Salas)
                     .HasForeignKey(d => d.IdCinema)
-                    .HasConstraintName("FK_Sala_Cinema");
+                    .HasConstraintName("FK_Sala_Cinema").OnDelete(DeleteBehavior.Cascade);//cascade delete
             });
 
             modelBuilder.Entity<TipoIngresso>(entity =>

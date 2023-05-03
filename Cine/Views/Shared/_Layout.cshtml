@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+@*@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor _httpContext @{
+    var userName = _httpContext.HttpContext.Session.GetString("Nome");
+} *@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
