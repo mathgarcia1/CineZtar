@@ -16,8 +16,10 @@ namespace Repositorio.Models
         public string Nome { get; set; }
         public int? TotalAssento { get; set; }
         public int? IdCinema { get; set; }
+        public int? IdFilme { get; set; }
 
         public virtual Cinema IdCinemaNavigation { get; set; }
+        public virtual Filme IdFilmeNavigation { get; set; }
         public virtual ICollection<Ingresso> Ingressos { get; set; }
     }
 }

@@ -54,9 +54,16 @@ namespace Repositorio.Models
                     .HasColumnType("datetime")
                     .HasColumnName("data");
 
+                entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
+
                 entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
                 entity.Property(e => e.QtdIngressos).HasColumnName("qtd_ingressos");
+
+                entity.HasOne(d => d.IdIngressoNavigation)
+                    .WithMany(p => p.Carrinhos)
+                    .HasForeignKey(d => d.IdIngresso)
+                    .HasConstraintName("FK_Carrinho_Ingresso");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Carrinhos)
@@ -206,6 +213,8 @@ namespace Repositorio.Models
 
                 entity.Property(e => e.IdCinema).HasColumnName("id_cinema");
 
+                entity.Property(e => e.IdFilme).HasColumnName("id_filme");
+
                 entity.Property(e => e.Nome)
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -216,7 +225,13 @@ namespace Repositorio.Models
                 entity.HasOne(d => d.IdCinemaNavigation)
                     .WithMany(p => p.Salas)
                     .HasForeignKey(d => d.IdCinema)
-                    .HasConstraintName("FK_Sala_Cinema").OnDelete(DeleteBehavior.Cascade);//cascade delete
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Sala_Cinema");
+
+                entity.HasOne(d => d.IdFilmeNavigation)
+                    .WithMany(p => p.Salas)
+                    .HasForeignKey(d => d.IdFilme)
+                    .HasConstraintName("FK_Sala_Filme");
             });
 
             modelBuilder.Entity<TipoIngresso>(entity =>
@@ -236,6 +251,10 @@ namespace Repositorio.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("nome");
+
+                entity.Property(e => e.Preco)
+                    .HasColumnType("decimal(8, 2)")
+                    .HasColumnName("preco");
             });
 
             modelBuilder.Entity<TipoUsuario>(entity =>
