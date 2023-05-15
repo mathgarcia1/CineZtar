@@ -24,6 +24,10 @@
             <select asp-for="IdCinema" class="options" asp-items="@(Model.Cinema ?? Enumerable.Empty<SelectListItem>())"></select>
         </div>
         <div class="form-group">
+            <label asp-for="IdFilme"></label>
+            <select asp-for="IdFilme" class="options" asp-items="@(Model.Filme ?? Enumerable.Empty<SelectListItem>())"></select>
+        </div>
+        <div class="form-group">
             <span>@ViewBag.mensagem</span>
         </div>
         <div class="form-group">

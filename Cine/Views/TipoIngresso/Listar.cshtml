@@ -14,6 +14,7 @@
                 <th scope="col">@Html.DisplayNameFor(model => model.IdTipoIngresso)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
                 <th scope="col">@Html.DisplayNameFor(model => model.Descricao)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Preco)</th>
                 <th scope="col">Alterar</th>
                 <th scope="col">Excluir</th>
             </tr>
@@ -25,6 +26,7 @@
                     <th scope="row">@item.IdTipoIngresso</th>
                     <td>@item.Nome</td>
                     <td>@item.Descricao</td>
+                    <td>@item.Preco</td>
                     <td><a asp-controller="TipoIngresso" asp-action="Index" asp-route-id="@item.IdTipoIngresso">Alterar</a></td>
                     <td><a asp-controller="TipoIngresso" asp-action="Excluir" asp-route-id="@item.IdTipoIngresso">Excluir</a></td>
                 </tr>

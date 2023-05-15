@@ -15,9 +15,11 @@ namespace Cine.Controllers
     public class SalaController : BaseController<Sala, SalaModel>
     {
         private readonly IBaseRepository<Cinema> _cinemaRepository;
-        public SalaController(IBaseRepository<Sala> repository, IBaseRepository<Cinema> cinemaRepository, IMapper mapper) : base(repository, mapper)
+        private readonly IBaseRepository<Filme> _filmeRepository;
+        public SalaController(IBaseRepository<Sala> repository, IBaseRepository<Cinema> cinemaRepository, IBaseRepository<Filme> filmeRepository, IMapper mapper) : base(repository, mapper)
         {
             _cinemaRepository = cinemaRepository;
+            _filmeRepository = filmeRepository;
         }
 
         protected override int GetId(Sala entity)
@@ -35,13 +37,18 @@ namespace Cine.Controllers
                     Value = cinema.IdCinema.ToString(),
                     Text = cinema.Nome
                 }).ToList();
-
+            var filmes = _filmeRepository.getAll()
+                .Select(filme => new SelectListItem{
+                    Value = filme.IdFilme.ToString(),
+                    Text = filme.Nome
+                }).ToList();
             if (id.HasValue)
             {
                 var entity = _repository.get(id.Value);
                 model = _mapper.Map<SalaModel>(entity);
             }
             model.Cinema = cinemas;
+            model.Filme = filmes;
             return View(model);
         }
 
@@ -53,10 +60,11 @@ namespace Cine.Controllers
                 {
                     var sala = _mapper.Map<Sala>(model);
                     sala.IdCinema = model.IdCinema;
-
+                    sala.IdFilme = model.IdFilme;
                     if (GetId(sala) == 0)
                     {
                         var cinema = _cinemaRepository.get(sala.IdCinema.Value);
+                        var filme = _filmeRepository.get(sala.IdFilme.Value);
                         cinema.TotalSalaCinema++;
                         _cinemaRepository.edit(cinema);
                         _repository.add(sala); ;

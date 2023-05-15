@@ -23,6 +23,10 @@ namespace Cine.Models
         [Display(Name = "Cinema")]
         public int? IdCinema { get; set; }
 
+        [Display(Name = "Filme")]
+        public int? IdFilme { get; set; }
+
         public List<SelectListItem> Cinema { get; set; }
+        public List<SelectListItem> Filme { get; set; }
     }
 }

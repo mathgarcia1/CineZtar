@@ -18,5 +18,8 @@ namespace Cine.Models
         [Display(Name = "Descrição")]
         [StringLength(maximumLength: 50, ErrorMessage = "Máximo 50 Caracteres")]
         public string Descricao { get; set; }
+
+        [Display(Name = "Preço")]
+        public decimal? Preco { get; set; }
     }
 }
