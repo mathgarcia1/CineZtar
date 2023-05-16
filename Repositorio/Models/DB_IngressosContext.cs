@@ -17,15 +17,14 @@ namespace Repositorio.Models
         {
         }
 
-        public virtual DbSet<Carrinho> Carrinhos { get; set; }
-        public virtual DbSet<Cinema> Cinemas { get; set; }
+        public virtual DbSet<Compra> Compras { get; set; }
+        public virtual DbSet<CompraIngresso> CompraIngressos { get; set; }
         public virtual DbSet<Filme> Filmes { get; set; }
         public virtual DbSet<FilmeGenero> FilmeGeneros { get; set; }
         public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Idioma> Idiomas { get; set; }
         public virtual DbSet<Ingresso> Ingressos { get; set; }
-        public virtual DbSet<Sala> Salas { get; set; }
-        public virtual DbSet<TipoIngresso> TipoIngressos { get; set; }
+        public virtual DbSet<StatusCompra> StatusCompras { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -42,13 +41,14 @@ namespace Repositorio.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
-            modelBuilder.Entity<Carrinho>(entity =>
+            modelBuilder.Entity<Compra>(entity =>
             {
-                entity.HasKey(e => e.IdCarrinho);
+                entity.HasKey(e => e.IdCompra)
+                    .HasName("PK_Carrinho");
 
-                entity.ToTable("Carrinho");
+                entity.ToTable("Compra");
 
-                entity.Property(e => e.IdCarrinho).HasColumnName("id_carrinho");
+                entity.Property(e => e.IdCompra).HasColumnName("id_compra");
 
                 entity.Property(e => e.Data)
                     .HasColumnType("datetime")
@@ -56,35 +56,46 @@ namespace Repositorio.Models
 
                 entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
 
+                entity.Property(e => e.IdStatus).HasColumnName("id_status");
+
                 entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
                 entity.Property(e => e.QtdIngressos).HasColumnName("qtd_ingressos");
 
+                entity.Property(e => e.Valor)
+                    .HasColumnType("decimal(8, 2)")
+                    .HasColumnName("valor");
+
                 entity.HasOne(d => d.IdIngressoNavigation)
-                    .WithMany(p => p.Carrinhos)
+                    .WithMany(p => p.Compras)
                     .HasForeignKey(d => d.IdIngresso)
                     .HasConstraintName("FK_Carrinho_Ingresso");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.Carrinhos)
+                    .WithMany(p => p.Compras)
                     .HasForeignKey(d => d.IdUsuario)
                     .HasConstraintName("FK_Carrinho_Usuario");
             });
 
-            modelBuilder.Entity<Cinema>(entity =>
+            modelBuilder.Entity<CompraIngresso>(entity =>
             {
-                entity.HasKey(e => e.IdCinema);
+                entity.HasKey(e => e.IdCompraIngresso);
 
-                entity.ToTable("Cinema");
+                entity.ToTable("Compra_Ingresso");
 
-                entity.Property(e => e.IdCinema).HasColumnName("id_cinema");
+                entity.Property(e => e.IdCompraIngresso)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id_compra_ingresso");
 
-                entity.Property(e => e.Nome)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("nome");
+                entity.Property(e => e.IdCompra).HasColumnName("id_compra");
 
-                entity.Property(e => e.TotalSalaCinema).HasColumnName("total_sala_cinema");
+                entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
+
+                entity.Property(e => e.Quantidade).HasColumnName("quantidade");
+
+                entity.Property(e => e.Valor)
+                    .HasColumnType("decimal(8, 2)")
+                    .HasColumnName("valor");
             });
 
             modelBuilder.Entity<Filme>(entity =>
@@ -186,75 +197,33 @@ namespace Repositorio.Models
 
                 entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
 
-                entity.Property(e => e.IdSala).HasColumnName("id_sala");
-
-                entity.Property(e => e.IdTipoIngresso).HasColumnName("id_tipo_ingresso");
+                entity.Property(e => e.IdFilme).HasColumnName("id_filme");
 
                 entity.Property(e => e.Numero).HasColumnName("numero");
 
-                entity.HasOne(d => d.IdSalaNavigation)
-                    .WithMany(p => p.Ingressos)
-                    .HasForeignKey(d => d.IdSala)
-                    .HasConstraintName("FK_Ingresso_Sala");
-
-                entity.HasOne(d => d.IdTipoIngressoNavigation)
-                    .WithMany(p => p.Ingressos)
-                    .HasForeignKey(d => d.IdTipoIngresso)
-                    .HasConstraintName("FK_Ingresso_Tipo_Ingresso");
-            });
-
-            modelBuilder.Entity<Sala>(entity =>
-            {
-                entity.HasKey(e => e.IdSala);
-
-                entity.ToTable("Sala");
-
-                entity.Property(e => e.IdSala).HasColumnName("id_sala");
-
-                entity.Property(e => e.IdCinema).HasColumnName("id_cinema");
-
-                entity.Property(e => e.IdFilme).HasColumnName("id_filme");
-
-                entity.Property(e => e.Nome)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("nome");
-
-                entity.Property(e => e.TotalAssento).HasColumnName("total_assento");
-
-                entity.HasOne(d => d.IdCinemaNavigation)
-                    .WithMany(p => p.Salas)
-                    .HasForeignKey(d => d.IdCinema)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Sala_Cinema");
+                entity.Property(e => e.Valor)
+                    .HasColumnType("decimal(8, 2)")
+                    .HasColumnName("valor");
 
                 entity.HasOne(d => d.IdFilmeNavigation)
-                    .WithMany(p => p.Salas)
+                    .WithMany(p => p.Ingressos)
                     .HasForeignKey(d => d.IdFilme)
-                    .HasConstraintName("FK_Sala_Filme");
+                    .HasConstraintName("FK_Ingresso_Filme");
             });
 
-            modelBuilder.Entity<TipoIngresso>(entity =>
+            modelBuilder.Entity<StatusCompra>(entity =>
             {
-                entity.HasKey(e => e.IdTipoIngresso);
+                entity.HasKey(e => e.IdStatus);
 
-                entity.ToTable("Tipo_Ingresso");
+                entity.ToTable("Status_Compra");
 
-                entity.Property(e => e.IdTipoIngresso).HasColumnName("id_tipo_ingresso");
+                entity.Property(e => e.IdStatus)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id_status");
 
                 entity.Property(e => e.Descricao)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
+                    .HasMaxLength(150)
                     .HasColumnName("descricao");
-
-                entity.Property(e => e.Nome)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("nome");
-
-                entity.Property(e => e.Preco)
-                    .HasColumnType("decimal(8, 2)")
-                    .HasColumnName("preco");
             });
 
             modelBuilder.Entity<TipoUsuario>(entity =>

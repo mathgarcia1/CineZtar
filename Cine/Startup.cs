@@ -27,16 +27,22 @@ namespace Cine
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DB_IngressosContext>();
+            services.AddScoped<IngressoModel>();
+
+            
 
             services.AddScoped<IBaseRepository<TipoUsuario>, TipoUsuarioRepositorio>();
-            services.AddScoped<IBaseRepository<TipoIngresso>, TipoIngressoRepositorio>();
             services.AddScoped<IBaseRepository<Genero>, GeneroRepositorio>();
             services.AddScoped<IBaseRepository<Ingresso>, IngressoRepositorio>();
             services.AddScoped<IBaseRepository<Usuario>, UsuarioRepositorio>();
-            services.AddScoped<IBaseRepository<Cinema>, CinemaRepositorio>();
             services.AddScoped<IBaseRepository<Filme>, FilmeRepositorio>();
             services.AddScoped<IBaseRepository<Idioma>, IdiomaRepositorio>();
-            services.AddScoped<IBaseRepository<Sala>, SalaRepositorio>();
+
+            services.AddScoped<IBaseRepository<Compra>, CompraRepositorio>();
+            services.AddScoped<IBaseRepository<CompraIngresso>, CompraIngressoRepositorio>();
+
+
             services.AddAutoMapper(typeof(Startup));
 
 
@@ -49,8 +55,7 @@ namespace Cine
                 cfg.CreateMap<Genero, GeneroModel>();
                 cfg.CreateMap<GeneroModel, Genero>();
 
-                cfg.CreateMap<TipoIngresso, TipoIngressoModel>();
-                cfg.CreateMap<TipoIngressoModel, TipoIngresso>();
+               
 
                 cfg.CreateMap<Ingresso, IngressoModel>();
                 cfg.CreateMap<IngressoModel, Ingresso>();
@@ -58,20 +63,23 @@ namespace Cine
                 cfg.CreateMap<Usuario, UsuarioModel>();
                 cfg.CreateMap<UsuarioModel, Usuario>();
 
-                cfg.CreateMap<Cinema, CinemaModel>();
-                cfg.CreateMap<CinemaModel, Cinema>();
 
                 cfg.CreateMap<Filme, FilmeModel>();
                 cfg.CreateMap<FilmeModel, Filme>();
 
                 cfg.CreateMap<Idioma, IdiomaModel>();
                 cfg.CreateMap<IdiomaModel, Idioma>();
+
+                cfg.CreateMap<Compra, CompraModel>();
+                cfg.CreateMap<CompraModel, Compra>();
+
+                cfg.CreateMap<CompraIngresso, CompraIngressoModel>();
+                cfg.CreateMap<CompraIngressoModel, CompraIngresso>();
                 
-                cfg.CreateMap<Sala, SalaModel>();
-                cfg.CreateMap<SalaModel, Sala>();
 
 
             });
+            
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
@@ -82,6 +90,7 @@ namespace Cine
             services.AddSession();
 
             services.AddHttpContextAccessor();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

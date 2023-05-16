@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Repositorios
 {
-    public class SalaRepositorio : BaseRepository<Sala>
+    public class CompraIngressoRepositorio : BaseRepository<CompraIngresso>
     {
+        public CompraIngressoRepositorio(DB_IngressosContext contexto)
+        {
+        }
     }
 }

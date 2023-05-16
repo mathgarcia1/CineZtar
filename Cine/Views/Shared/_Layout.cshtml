@@ -37,21 +37,21 @@
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">Usuarios</span>
                     </a>
-                    <a asp-controller="Cinema" asp-action="Listar" class="nav_link">
+                    @* <a asp-controller="Cinema" asp-action="Listar" class="nav_link">
                         <i class='bx bx-message-square-detail nav_icon'></i>
                         <span class="nav_name">Cinemas</span>
-                    </a>
+                    </a> *@
                     <a asp-controller="Filme" asp-action="Listar" class="nav_link">
                         <i class='bx bx-bookmark nav_icon'></i>
                         <span class="nav_name">Filmes</span>
                     </a>
-                    <a asp-controller="Sala" asp-action="Listar" class="nav_link">
+                    @* <a asp-controller="Sala" asp-action="Listar" class="nav_link">
                         <i class='bx bx-folder nav_icon'></i>
                         <span class="nav_name">Salas</span>
-                    </a>
-                    <a href="#" class="nav_link">
+                    </a> *@
+                    <a asp-controller="Ingresso" asp-action="Index" class="nav_link">
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-                        <span class="nav_name">Stats</span>
+                        <span class="nav_name">Ingresso</span>
                     </a>
                 </div>
             </div>

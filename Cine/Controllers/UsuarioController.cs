@@ -153,7 +153,7 @@ namespace Cine.Controllers
                 {
                     HttpContext.Session.SetInt32("IdUsuario", usuario.IdUsuario);
                     HttpContext.Session.SetString("Nome", usuario.Nome);
-                    return RedirectToAction("Index", "Cinema");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

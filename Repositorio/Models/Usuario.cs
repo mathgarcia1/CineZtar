@@ -9,7 +9,7 @@ namespace Repositorio.Models
     {
         public Usuario()
         {
-            Carrinhos = new HashSet<Carrinho>();
+            Compras = new HashSet<Compra>();
         }
 
         public int IdUsuario { get; set; }
@@ -19,6 +19,6 @@ namespace Repositorio.Models
         public int IdTipousuario { get; set; }
 
         public virtual TipoUsuario IdTipousuarioNavigation { get; set; }
-        public virtual ICollection<Carrinho> Carrinhos { get; set; }
+        public virtual ICollection<Compra> Compras { get; set; }
     }
 }
