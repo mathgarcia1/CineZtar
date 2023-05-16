@@ -12,16 +12,14 @@ namespace Cine.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IngressoModel _ingressoModel;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IngressoModel ingressoModel)
         {
-            _logger = logger;
+            _ingressoModel = ingressoModel;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
 
         public IActionResult Privacy()
         {
@@ -32,6 +30,17 @@ namespace Cine.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Index()
+        {
+            return View(_ingressoModel.listar());
+        }
+
+        public IActionResult Detalhes(int id)
+        {
+            IngressoModel ingresso = _ingressoModel.selecionar(id);
+            return View(ingresso);
         }
     }
 }

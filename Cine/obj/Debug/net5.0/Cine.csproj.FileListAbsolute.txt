@@ -138,8 +138,6 @@ D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\staticwebassets\msbuild.build
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.TagHelpers.input.cache
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.TagHelpers.output.cache
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.RazorCoreGenerate.cache
-D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Cinema\Index.cshtml.g.cs
-D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Cinema\Listar.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Filme\Index.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Filme\Listar.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Genero\Index.cshtml.g.cs
@@ -148,14 +146,10 @@ D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Idioma\Index.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Idioma\Listar.cshtml.g.cs
-D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Sala\Index.cshtml.g.cs
-D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Sala\Listar.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Shared\Listar.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\TipoIngresso\Index.cshtml.g.cs
-D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\TipoIngresso\Listar.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\TipoUsuario\Index.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\TipoUsuario\Listar.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Usuario\Index.cshtml.g.cs
@@ -526,3 +520,6 @@ C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\refint\
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.pdb
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Cine.genruntimeconfig.cache
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\ref\Cine.dll
+D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Ingresso\Index.cshtml.g.cs
+D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Compra\Index.cshtml.g.cs
+D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Home\Detalhes.cshtml.g.cs
