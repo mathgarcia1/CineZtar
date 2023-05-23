@@ -13,9 +13,7 @@ namespace Repositorio.Models
         public int? IdCompra { get; set; }
         public int? IdFilme { get; set; }
 
-        //compras
         public virtual Compra IdCompraNavigation { get; set; }
-        //produto
         public virtual Filme IdFilmeNavigation { get; set; }
     }
 }
