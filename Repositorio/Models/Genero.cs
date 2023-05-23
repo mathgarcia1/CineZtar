@@ -9,13 +9,13 @@ namespace Repositorio.Models
     {
         public Genero()
         {
-            FilmeGeneros = new HashSet<FilmeGenero>();
+            Filmes = new HashSet<Filme>();
         }
 
         public int IdGenero { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
 
-        public virtual ICollection<FilmeGenero> FilmeGeneros { get; set; }
+        public virtual ICollection<Filme> Filmes { get; set; }
     }
 }

@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Repositorios
 {
-    public class IdiomaRepositorio : BaseRepository<Idioma>
+    public class IdiomaRepositorio : BaseRepositorio<Idioma>
     {
+        public IdiomaRepositorio(DB_Ingressos2Context contexto) : base(contexto)
+        {
+        }
     }
 }

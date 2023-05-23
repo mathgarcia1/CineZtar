@@ -1,17 +1,17 @@
-﻿@model IEnumerable<CompraIngressoModel>
+﻿@model IEnumerable<CompraFilmeModel>
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Minha Compra</h1>
 <div class="col-12">
-    <table class="table table-striped table-dark lista">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Ingresso</th>
+                <th scope="col">Produto</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
-                <th scope="col">Quantidade</th>
+                <th scope="col">Qtde</th>
                 <th scope="col"></th>
                 <th scope="col">Valor</th>
             </tr>
@@ -20,13 +20,13 @@
             @foreach (var item in Model)
             {
             <tr class="linhas">
-                <td class="codigo">@item.IdCompraIngresso</td>
-                <td>@item.IdIngresso</td>
+                <td class="codigo">@item.IdCompra</td>
+                <td>@item.IdFilme</td>
                 <td>
-                    @item.ingresso.
+                    @item.filme.Descricao
                 </td>
                 <td>
-                    <select class="quantidade">
+                    <select class="qtde">
                         @if (item.Quantidade == 1)
                         {
                             <option value="1" selected>1</option>
@@ -59,7 +59,7 @@
                 </td>
                 <td>
 
-                    <a href="~/Compra/excluirIngresso/@item.IdCompraIngresso">Remover</a>
+                    <a href="~/Compra/excluirFilme/@item.IdCompra">Remover</a>
                 </td>
                 <td class="tdvalor">R$ @item.Valor</td>
                 <td><input type="hidden" class="total" value="@item.Valor"/></td>
@@ -75,13 +75,13 @@
         <div class="card-body">
             <h5 class="card-title">Total</h5>
             <p class="card-text" id="totalGeral">R$ 00,00</p>
-            <a href="#" class="btn btn-primary">Finalizar</a>
+            <a href="~/Compra/Finalizar" class="btn btn-primary">Finalizar</a>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <a href="~/Home/Index" class="btn btn-primary">Continuar comprando</a>
+    <a href="~/HomeSite/Index" class="btn btn-primary">Continuar comprando</a>
 </div>
 @section Scripts{ 
     <script>
@@ -90,30 +90,32 @@
 
             calculaTotal();
 
-            $(".quantidade").change(function () {
+            $(".qtde").change(function () {
                 //$(this) => quem acionou o evento
-                var quantidadeNova = $(this).val();
+                var qtdeNova = $(this).val();
                 //parent()=>retorna para elemento pai
                 var id =
                     $(this).parent().parent().find(".codigo").text();
-               
-                alterarQuantidade(id, quantidadeNova);
+                //console.log("qtde = " + qtdeNova);
+                //console.log("id = " + id);
+                alterarQtde(id, qtdeNova);
             });
 
         });
 
 
 
-        function alterarQuantidade(id, Quantidade) {
+        function alterarQtde(id, qtde) {
 
             $.ajax({
                 type: "GET",
-                url: "/Compra/alterarQuantidade?id=" + id +"&quantidade=" + quantidade,
+                url: "/Compras/alterarQtde?id=" + id +"&qtde=" + qtde,
                 contentType: "application/json; charset=utf-8",
                 data: "{}",
                 dataType: "json",
                 success: function (jsonResult) {
                     console.log(jsonResult);
+                    //percorrer todas as linhas, procurando pelo ID
                     $(".linhas").each(function (index, item) {
                         var codigotab = parseInt( $(item).find(".codigo").text());
                         if (codigotab == jsonResult.id) {

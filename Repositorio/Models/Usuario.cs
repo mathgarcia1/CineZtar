@@ -7,11 +7,6 @@ namespace Repositorio.Models
 {
     public partial class Usuario
     {
-        public Usuario()
-        {
-            Compras = new HashSet<Compra>();
-        }
-
         public int IdUsuario { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
@@ -19,6 +14,5 @@ namespace Repositorio.Models
         public int IdTipousuario { get; set; }
 
         public virtual TipoUsuario IdTipousuarioNavigation { get; set; }
-        public virtual ICollection<Compra> Compras { get; set; }
     }
 }

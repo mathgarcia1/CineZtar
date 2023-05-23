@@ -6,24 +6,22 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Repositorio.Models
 {
-    public partial class DB_IngressosContext : DbContext
+    public partial class DB_Ingressos2Context : DbContext
     {
-        public DB_IngressosContext()
+        public DB_Ingressos2Context()
         {
         }
 
-        public DB_IngressosContext(DbContextOptions<DB_IngressosContext> options)
+        public DB_Ingressos2Context(DbContextOptions<DB_Ingressos2Context> options)
             : base(options)
         {
         }
 
         public virtual DbSet<Compra> Compras { get; set; }
-        public virtual DbSet<CompraIngresso> CompraIngressos { get; set; }
+        public virtual DbSet<CompraFilme> CompraFilmes { get; set; }
         public virtual DbSet<Filme> Filmes { get; set; }
-        public virtual DbSet<FilmeGenero> FilmeGeneros { get; set; }
         public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Idioma> Idiomas { get; set; }
-        public virtual DbSet<Ingresso> Ingressos { get; set; }
         public virtual DbSet<StatusCompra> StatusCompras { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -33,7 +31,7 @@ namespace Repositorio.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=. ; Database=DB_Ingressos; integrated security=true;");
+                optionsBuilder.UseSqlServer("Server=. ; Database=DB_Ingressos2; integrated security=true;");
             }
         }
 
@@ -54,48 +52,43 @@ namespace Repositorio.Models
                     .HasColumnType("datetime")
                     .HasColumnName("data");
 
-                entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
-
                 entity.Property(e => e.IdStatus).HasColumnName("id_status");
-
-                entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
-
-                entity.Property(e => e.QtdIngressos).HasColumnName("qtd_ingressos");
 
                 entity.Property(e => e.Valor)
                     .HasColumnType("decimal(8, 2)")
                     .HasColumnName("valor");
 
-                entity.HasOne(d => d.IdIngressoNavigation)
-                    .WithMany(p => p.Compras)
-                    .HasForeignKey(d => d.IdIngresso)
-                    .HasConstraintName("FK_Carrinho_Ingresso");
-
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.Compras)
-                    .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK_Carrinho_Usuario");
+                entity.Property(e => e.IdPreferencia).HasColumnName("id_preferencia");
+                entity.Property(e => e.Url).HasColumnName("url");
             });
 
-            modelBuilder.Entity<CompraIngresso>(entity =>
+            modelBuilder.Entity<CompraFilme>(entity =>
             {
-                entity.HasKey(e => e.IdCompraIngresso);
+                entity.HasKey(e => e.IdCompraFilme).HasName("PK_Compra_Filme");
 
-                entity.ToTable("Compra_Ingresso");
+                entity.ToTable("Compra_Filme");
 
-                entity.Property(e => e.IdCompraIngresso)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id_compra_ingresso");
+                entity.Property(e => e.IdCompraFilme).HasColumnName("id_compra_filme");
 
                 entity.Property(e => e.IdCompra).HasColumnName("id_compra");
 
-                entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
+                entity.Property(e => e.IdFilme).HasColumnName("id_filme");
 
                 entity.Property(e => e.Quantidade).HasColumnName("quantidade");
 
                 entity.Property(e => e.Valor)
                     .HasColumnType("decimal(8, 2)")
                     .HasColumnName("valor");
+
+                entity.HasOne(d => d.IdCompraNavigation)
+                    .WithMany(p => p.CompraFilmes)
+                    .HasForeignKey(d => d.IdCompra)
+                    .HasConstraintName("FK_CompraFilme_Compra");
+
+                entity.HasOne(d => d.IdFilmeNavigation)
+                    .WithMany(p => p.CompraFilmes)
+                    .HasForeignKey(d => d.IdFilme)
+                    .HasConstraintName("FK_CompraFilme_Filme");
             });
 
             modelBuilder.Entity<Filme>(entity =>
@@ -118,6 +111,8 @@ namespace Repositorio.Models
 
                 entity.Property(e => e.Duracao).HasColumnName("duracao");
 
+                entity.Property(e => e.IdGenero).HasColumnName("id_genero");
+
                 entity.Property(e => e.IdIdioma).HasColumnName("id_idioma");
 
                 entity.Property(e => e.Imagem).HasColumnName("imagem");
@@ -127,33 +122,19 @@ namespace Repositorio.Models
                     .IsUnicode(false)
                     .HasColumnName("nome");
 
+                entity.Property(e => e.Valor)
+                    .HasColumnType("decimal(8, 2)")
+                    .HasColumnName("valor");
+
+                entity.HasOne(d => d.IdGeneroNavigation)
+                    .WithMany(p => p.Filmes)
+                    .HasForeignKey(d => d.IdGenero)
+                    .HasConstraintName("FK_Filme_Genero");
+
                 entity.HasOne(d => d.IdIdiomaNavigation)
                     .WithMany(p => p.Filmes)
                     .HasForeignKey(d => d.IdIdioma)
                     .HasConstraintName("FK_Filme_Idioma");
-            });
-
-            modelBuilder.Entity<FilmeGenero>(entity =>
-            {
-                entity.HasKey(e => e.IdFilmeGenero);
-
-                entity.ToTable("Filme_Genero");
-
-                entity.Property(e => e.IdFilmeGenero).HasColumnName("id_filme_genero");
-
-                entity.Property(e => e.IdFilme).HasColumnName("id_filme");
-
-                entity.Property(e => e.IdGenero).HasColumnName("id_genero");
-
-                entity.HasOne(d => d.IdFilmeNavigation)
-                    .WithMany(p => p.FilmeGeneros)
-                    .HasForeignKey(d => d.IdFilme)
-                    .HasConstraintName("FK_Filme_Genero_Filme");
-
-                entity.HasOne(d => d.IdGeneroNavigation)
-                    .WithMany(p => p.FilmeGeneros)
-                    .HasForeignKey(d => d.IdGenero)
-                    .HasConstraintName("FK_Filme_Genero_Genero");
             });
 
             modelBuilder.Entity<Genero>(entity =>
@@ -187,28 +168,6 @@ namespace Repositorio.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("nome");
-            });
-
-            modelBuilder.Entity<Ingresso>(entity =>
-            {
-                entity.HasKey(e => e.IdIngresso);
-
-                entity.ToTable("Ingresso");
-
-                entity.Property(e => e.IdIngresso).HasColumnName("id_ingresso");
-
-                entity.Property(e => e.IdFilme).HasColumnName("id_filme");
-
-                entity.Property(e => e.Numero).HasColumnName("numero");
-
-                entity.Property(e => e.Valor)
-                    .HasColumnType("decimal(8, 2)")
-                    .HasColumnName("valor");
-
-                entity.HasOne(d => d.IdFilmeNavigation)
-                    .WithMany(p => p.Ingressos)
-                    .HasForeignKey(d => d.IdFilme)
-                    .HasConstraintName("FK_Ingresso_Filme");
             });
 
             modelBuilder.Entity<StatusCompra>(entity =>

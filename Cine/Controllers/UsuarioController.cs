@@ -12,167 +12,124 @@ using Microsoft.AspNetCore.Http;
 
 namespace Cine.Controllers
 {
-    public class UsuarioController : BaseController<Usuario, UsuarioModel>
+    public class UsuarioController : Controller
     {
-        private readonly IBaseRepository<TipoUsuario> _tipoUsuarioRepository;
-        //private readonly IBaseRepository<Usuario> _usuarioRepository;
-        private readonly Microsoft.Extensions.Configuration.IConfiguration _config;
-        private string JwtKey { get; set; }
-
-
-        public UsuarioController(IBaseRepository<Usuario> usuarioRepository, IBaseRepository<TipoUsuario> tipoUsuarioRepository, IMapper mapper, Microsoft.Extensions.Configuration.IConfiguration config)
-            : base(usuarioRepository, mapper)
-        {
-
-            //_usuarioRepository = usuarioRepository;
-            _tipoUsuarioRepository = tipoUsuarioRepository;
-            _config = config;
-            JwtKey = "JwtKey";
-        }
-
-        protected override int GetId(Usuario entity)
-        {
-            return entity.IdUsuario;
-        }
-
-        public override IActionResult Index(int? id)
-        {
-            //ViewBag.TiposUsuario = _tipoUsuarioRepository.getAll().ToList();
-            //return base.Index(id);
-
-            var model = new UsuarioModel();
-            var tiposUsuario = _tipoUsuarioRepository.getAll().
-                Select(tipo => new SelectListItem
-                {
-                    Value = tipo.IdTipousuario.ToString(),
-                    Text = tipo.Descricao
-                }).ToList();
-
-            //model.TiposUsuario = tiposUsuario;
-            if (id.HasValue)
-            {
-                var entity = _repository.get(id.Value);
-                model = _mapper.Map<UsuarioModel>(entity);
-            }
-            model.TiposUsuario = tiposUsuario;
-            return View(model);
-        }
-
-        public override IActionResult Salvar(UsuarioModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var usuario = _mapper.Map<Usuario>(model);
-
-                    usuario.IdTipousuario = model.IdTipousuario;
-
-                    if (GetId(usuario) == 0)
-                    {
-                        _repository.add(usuario);
-                    }
-                    else
-                    {
-                        _repository.edit(usuario);
-                    }
-                    ViewBag.mensagem = "Salvo com sucesso!";
-                }
-                else
-                {
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
-                    ViewBag.mensagem = "Erro ao salvar. Verifique os campos e tente novamente." + string.Join("<br>", errors);
-                }
-            }
-            catch (Exception ex)
-            {
-
-                ViewBag.mensagem = "Ocorreu um erro ao salvar!" + ex.Message + " " + ex.InnerException;
-            }
-            return RedirectToAction("Index");
-        }
-        [HttpGet]
-        public IActionResult Login()
+        public IActionResult Index()
         {
             return View();
         }
-        
-        // [HttpPost]
-        // public async Task<IActionResult> Authenticate(UsuarioModel model)
-        // {
-        //     try
-        //     {
-        //         var usuario = _repository.getAll().FirstOrDefault(u => u.Email == model.Email && u.Senha == model.Senha);
-        //         if (usuario != null)
-        //         {
-        //             var tokenHandler = new JwtSecurityTokenHandler();
-        //             var key = Encoding.ASCII.GetBytes(_config.GetValue<string>("JwtKey"));
-        //             var tokenDescriptor = new SecurityTokenDescriptor
-        //             {
-        //                 Subject = new ClaimsIdentity(new Claim[]
-        //                 {
-        //                 new Claim(ClaimTypes.Name, usuario.IdUsuario.ToString())
-        //                 }),
-        //                 Expires = DateTime.UtcNow.AddDays(7),
-        //                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        //             };
-        //             var token = tokenHandler.CreateToken(tokenDescriptor);
-        //             var tokenString = tokenHandler.WriteToken(token);
 
-        //             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-        //                 new ClaimsPrincipal(new ClaimsIdentity(new[]
-        //                 {
-        //                 new Claim(ClaimTypes.Name, usuario.IdUsuario.ToString()),
-        //                 new Claim("token", tokenString)
-        //                 }, CookieAuthenticationDefaults.AuthenticationScheme)),
-        //                 new AuthenticationProperties
-        //                 {
-        //                 });
+        public IActionResult login() {
 
-        //             return RedirectToAction("Index", "Home");
-        //         }
-        //         else
-        //         {
-        //             ModelState.AddModelError("", "Usuário ou senha inválidos.");
-        //             return View("Login", model);
-        //         }
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         ModelState.AddModelError("", "Erro ao autenticar usuário: " + ex.Message);
-        //         return View("Login", model);
-        //     }
-        // }
+            return View();
+        }
+
         [HttpPost]
-        public IActionResult Authenticate(string email, string senha)
+        public IActionResult logar(String txtemail,
+            String txtsenha) {
+            UsuarioModel model = (new UsuarioModel()).validarLogin(txtemail, txtsenha);
+            if (model == null)
+            {
+                //não encontrou 
+                ViewBag.mensagem = "Dados inválidos";
+                ViewBag.classe = "alert-danger";
+                return View("login");
+            }
+            else {
+                //encontrou
+                //inseriu na sessão
+                HttpContext.Session.SetInt32("IdUsuario", model.IdUsuario);
+                HttpContext.Session.SetString("Nome", model.Nome);
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public IActionResult sair() {
+            //limpar a sessão
+            HttpContext.Session.Remove("Nome");
+            HttpContext.Session.Remove("IdUsuario");
+            HttpContext.Session.Clear();
+
+            //redirecionar para login
+            return RedirectToAction("login", "Usuario");
+        }
+
+        [HttpPost]
+        public IActionResult salvar(UsuarioModel model)
         {
+            if (ModelState.IsValid)
+            {
+
+                try
+                {
+                    UsuarioModel usuarioModel = new UsuarioModel();
+                    usuarioModel.salvar(model);
+                    ViewBag.mensagem = "Dados salvos com sucesso!";
+                    ViewBag.classe = "alert-success";
+                }
+                catch (Exception ex)
+                {
+
+                    ViewBag.mensagem = "ops... Erro ao salvar!" + ex.Message + "/" + ex.InnerException;
+                    ViewBag.classe = "alert-danger";
+                }
+            }
+            else
+            {
+                ViewBag.mensagem = "ops... Erro ao salvar! verifique os campos";
+                ViewBag.classe = "alert-danger";
+
+            }
+
+            List<TipoUsuarioModel> lista = (new TipoUsuarioModel()).listar();
+            ViewBag.listatipos = lista.Select(c => new SelectListItem()
+            {
+                Value = c.IdTipousuario.ToString(),
+                Text = c.Descricao
+            });
+
+            return View("cadastro", model);
+        }
+
+
+        public IActionResult listar()
+        {
+            UsuarioModel usuarioModel = new UsuarioModel();
+            List<UsuarioModel> lista = usuarioModel.listar();
+            return View(lista);//lista por parametro para a view
+        }
+
+
+        public IActionResult prealterar(int id)
+        {
+            UsuarioModel usuarioModel = new UsuarioModel();
+            List<TipoUsuarioModel> lista = (new TipoUsuarioModel()).listar();
+            ViewBag.listatipos = lista.Select(c => new SelectListItem()
+            {
+                Value = c.IdTipousuario.ToString(),
+                Text = c.Descricao
+            });
+            return View("cadastro", usuarioModel.selecionar(id));
+        }
+
+        public IActionResult excluir(int id)
+        {
+            UsuarioModel usuarioModel = new UsuarioModel();
             try
             {
-                var usuario = _repository.getAll().FirstOrDefault(u => u.Email == email && u.Senha == senha);
-                if (usuario != null)
-                {
-                    HttpContext.Session.SetInt32("IdUsuario", usuario.IdUsuario);
-                    HttpContext.Session.SetString("Nome", usuario.Nome);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Usuário ou senha inválidos.");
-                    return View("Login");
-                }
+
+                usuarioModel.excluir(id);
+                ViewBag.mensagem = "Dados excluidos com sucesso!";
+                ViewBag.classe = "alert-success";
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Erro ao autenticar usuário: " + ex.Message);
-                return View("Login");
-            }
-        }
-        public IActionResult Logout(){
-            HttpContext.Session.Remove("IdUsuario");
-            HttpContext.Session.Remove("Nome");
-            HttpContext.Session.Clear();
-            return View("Login");
-        }
 
+                ViewBag.mensagem = "Ops... Não foi possível excluir!" + ex.Message;
+                ViewBag.classe = "alert-danger";
+            }
+
+            return View("listar", usuarioModel.listar());
+        }
     }
 }

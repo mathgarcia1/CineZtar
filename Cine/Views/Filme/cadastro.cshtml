@@ -1,0 +1,71 @@
+﻿@model Cine.Models.FilmeModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="formulario">
+    <h1>Cadastro de Filmes</h1>
+    <form enctype="multipart/form-data" asp-action="salvar" asp-controller="Filme"
+      method="post">
+    <div class="row">
+        <div class="col-12 form-group">
+            <label asp-for="IdFilme"></label>
+            <input readonly type="text" asp-for="IdFilme" class="form-control" />
+            <span asp-validation-for="IdFilme" class="alert-danger"></span>
+        </div>
+        <div class="col-12 form-group">
+            <label asp-for="Nome"></label>
+            <input type="text" asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="alert-danger"></span>
+        </div>
+        <div class="col-12 form-group">
+            <label asp-for="Descricao"></label>
+            <input type="text" asp-for="Descricao" class="form-control" />
+            <span asp-validation-for="Descricao" class="alert-danger"></span>
+        </div>
+
+        <div class="col-12 form-group">
+            <label asp-for="Duracao"></label>
+            <input type="text" asp-for="Duracao" class="form-control" />
+            <span asp-validation-for="Duracao" class="alert-danger"></span>
+        </div>
+
+        <div class="col-12 form-group">
+            <label asp-for="Valor"></label>
+            <input type="text" asp-for="Valor" class="form-control" />
+            <span asp-validation-for="Valor" class="alert-danger"></span>
+        </div>
+
+
+        <div class="col-12 form-group">
+            <label asp-for="IdGenero"></label>
+            <select class="form-control" asp-for="IdGenero" asp-items="@ViewBag.listageneros">
+                <option>Selecione um genero.....</option>
+
+            </select>
+            
+        </div>
+        <div class="col-12 form-group">
+            <label asp-for="IdIdioma"></label>
+            <select class="form-control" asp-for="IdIdioma" asp-items="@ViewBag.listaidiomas">
+                <option>Selecione um idioma.....</option>
+
+            </select>
+            
+        </div>
+
+        <div class="col-12 form-group">
+            <label>Imagem</label>
+            <input id="customFile" type="file" asp-for="ImagemUpload" class="form-control" />
+            <span asp-validation-for="ImagemUpload" class="alert-danger"></span>
+        </div>
+
+        <div class="col-12 form-group">
+            <input type="submit" class="btn btn-primary" value="Salvar" />
+        </div>
+
+        <span class="alert @ViewBag.classe">@ViewBag.mensagem</span>
+
+    </div>
+</form>
+</div>

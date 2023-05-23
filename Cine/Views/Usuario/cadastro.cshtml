@@ -15,7 +15,7 @@
 <body>
     <div class="formulario">
         <h1>Cadastro de Usuarios</h1>
-        <form asp-controller="Usuario" asp-action="Salvar" method="post">
+        <form asp-controller="Usuario" asp-action="salvar" method="post">
             <div class="form-group">
                 <input class="form-control" type="number" asp-for="IdUsuario" hidden />
                 <span asp-validation-for="IdUsuario" class="validacao"></span>
@@ -35,11 +35,14 @@
                 <input class="form-control" type="text" asp-for="Nome" />
                 <span asp-validation-for="Nome" class="validacao"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IdTipousuario" class="control-label"></label>
-                <select asp-for="IdTipousuario" class="tipousuario"
-                    asp-items="@(Model.TiposUsuario ?? Enumerable.Empty<SelectListItem>())"></select>
+            <div class="col-12 form-group">
+            <label asp-for="IdTipousuario"></label>
+            <select class="form-control" asp-for="IdTipousuario" asp-items="@ViewBag.listatipos">
+                <option>Selecione um tipo usuario.....</option>
+
+            </select>
             </div>
+        
 
             <div class="form-group">
                 <span>@ViewBag.Dados</span>
@@ -47,7 +50,7 @@
             <div class="form-group row">
                 <div class="col-sm-6 d-flex justify-content-between">
                     <button type="submit">Salvar</button>
-                    <a class="btnlink" asp-controller="Usuario" asp-action="Login">Login</a>
+                    <a class="btnlink" asp-controller="Usuario" asp-action="login">Login</a>
                 </div>
                 
             </div>

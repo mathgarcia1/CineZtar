@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Repositorios
 {
-    public class GeneroRepositorio : BaseRepository<Genero>
+    public class GeneroRepositorio : BaseRepositorio<Genero>
     {
+        public GeneroRepositorio(DB_Ingressos2Context contexto) : base(contexto)
+        {
+        }
     }
 }
