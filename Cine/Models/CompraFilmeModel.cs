@@ -70,8 +70,7 @@ namespace Cine.Models
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
             {
-                CompraFilmeRepositorio repositorio =
-                    new CompraFilmeRepositorio(contexto);
+                CompraFilmeRepositorio repositorio = new CompraFilmeRepositorio(contexto);
                 List<CompraFilme> lista = repositorio.Listar(c=>c.IdCompra==idcompras);
                 listamodel = mapper.Map<List<CompraFilmeModel>>(lista);
                 foreach (var item in listamodel)

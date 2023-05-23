@@ -113,7 +113,6 @@ namespace Cine.Controllers
         {
             FilmeModel model = new FilmeModel();
             try
-
             {
 
                 model.excluir(id);
