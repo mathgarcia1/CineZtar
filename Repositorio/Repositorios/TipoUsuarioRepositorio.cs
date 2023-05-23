@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Repositorios
 {
-    public class TipoUsuarioRepositorio : BaseRepository<TipoUsuario>
+    public class TipoUsuarioRepositorio : BaseRepositorio<TipoUsuario>
     {
+        public TipoUsuarioRepositorio(DB_Ingressos2Context contexto) : base(contexto)
+        {
+        }
     }
 }

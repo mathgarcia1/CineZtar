@@ -1,39 +1,65 @@
-﻿@model IEnumerable<Cine.Models.FilmeModel>
+﻿@model IEnumerable<FilmeModel>
 @{
     ViewData["Title"] = "listar";
 }
 
-<div class="tabela">
-    <a class="btnlink" asp-controller="Filme" asp-action="Index">Novo</a>
-    <br/>
-    <br/>
-    <h1>Lista de Filmes</h1>
-    <table class="table table-dark lista">
-        <thead>
+<h1>Lista de Filmes</h1>
+
+<span class="alert @ViewBag.classe">@ViewBag.mensagem</span>
+
+<script>
+
+function confirmExclusao(id) {
+   if (confirm("Tem certeza que deseja excluir esse Filme?")) {
+
+       location.href ="/Filme/excluir/" + id;
+
+   }
+}
+</script>
+
+<a href="~/Filme/cadastro" class="btn btn-info">
+    Novo
+</a>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Imagem</th>
+            <th scope="col">Alterar</th>
+            <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th scope="col">@Html.DisplayNameFor(model => model.IdFilme)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
-                <th scope="col">Capa</th>
-                <th scope="col">Alterar</th>
-                <th scope="col">Excluir</th>
+                <th scope="row">@item.IdFilme</th>
+                <td>@item.Nome</td>
+                <td><img src="~/Imagens/@item.Imagem"
+                         class="rounded-circle" height="40" 
+                         width="40" asp-append version="true" />
+                </td>
+                <td>
+                    <a href="~/Filme/prealterar/@item.IdFilme"
+                       class="btn btn-primary">
+                        Alterar
+                    </a>
+                </td>
+                <td>
+                    <a href="#"
+                       class="btn btn-primary" onclick="confirmExclusao(@item.IdFilme)">
+                        Excluir
+                    </a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <th scope="row">@item.IdFilme</th>
-                    <td>@item.Nome</td>
-                    <td>
-                        @if (item.Imagem != null)
-                        {
-                            <img src="@Url.Action("Imagem", "Filme", new { id = item.IdFilme })" alt="Capa do Filme" class="img-thumbnail imgfilme" />
-                        }
-                    </td>
-                    <td><a asp-controller="Filme" asp-action="Index" asp-route-id="@item.IdFilme">Alterar</a></td>
-                    <td><a asp-controller="Filme" asp-action="Excluir" asp-route-id="@item.IdFilme">Excluir</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+        }
+
+
+    </tbody>
+</table>
+
+

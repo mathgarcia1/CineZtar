@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Repositorios
 {
-    public class FilmeRepositorio : BaseRepository<Filme>
+    public class FilmeRepositorio : BaseRepositorio<Filme>
     {
+        public FilmeRepositorio(DB_Ingressos2Context contexto) : base(contexto)
+        {
+        }
     }
 }

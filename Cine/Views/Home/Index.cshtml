@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor _httpContext
-@model IEnumerable<IngressoModel>
+@model IEnumerable<FilmeModel>
 @{
     ViewData["Title"] = "Home Page";
     var userName = _httpContext.HttpContext.Session.GetString("Nome");
@@ -17,16 +17,15 @@
                 <div class="card-body d-flex flex-column align-items-start">
 
                     <h3 class="mb-0">
-                        <a class="text">Nome do Filme </a>
+                        <a class="text">@item.Nome </a>
                     </h3>
                     <div class="mb-1 text-muted">R$ @item.Valor</div>
                     <p class="card-text mb-auto">Descrição</p>
-                    <a href="~/Home/Detalhes/@item.IdIngresso" class="btn btn-primary">
+                    <a href="~/Home/detalhes/@item.IdFilme" class="btn btn-primary">
                         Comprar
                     </a>
                 </div>
-                <img src="@Url.Action("Imagem", "Filme", new { id = item.IdFilme })" alt="Capa do Filme"
-                    class="card-img-right flex-auto d-none d-lg-block" style="width: 200px; height: 250px;" />
+                <img class="card-img-right flex-auto d-none d-lg-block"   style="width: 200px; height: 250px;" src="~/Imagens/@item.Imagem" />
 
             </div>
         </div>

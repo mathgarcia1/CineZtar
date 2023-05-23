@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Repositorios
 {
-    public class CompraRepositorio : BaseRepository<Compra>
+    public class CompraRepositorio : BaseRepositorio<Compra>
     {
-        public CompraRepositorio(DB_IngressosContext contexto)
+        public CompraRepositorio(DB_Ingressos2Context contexto) :base(contexto)
         {
         }
     }

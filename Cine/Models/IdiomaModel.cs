@@ -1,4 +1,8 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper;
+using Repositorio.Models;
+using Repositorio.Repositorios;
 
 namespace Cine.Models
 {
@@ -13,7 +17,62 @@ namespace Cine.Models
         [Display(Name = "Idioma")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string Nome { get; set; }
+        public IdiomaModel salvar(IdiomaModel model) {
 
+            var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
+            Idioma idioma = mapper.Map<Idioma>(model);
+
+            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            {
+                IdiomaRepositorio repositorio = new IdiomaRepositorio(contexto);
+
+                if (model.IdIdioma == 0)
+                    repositorio.Inserir(idioma);
+                else
+                    repositorio.Alterar(idioma);
+
+                contexto.SaveChanges();
+            }
+            model.IdIdioma = idioma.IdIdioma;
+            return model;
+            
         
+        }
+
+        public List<IdiomaModel> listar() {
+            List<IdiomaModel> listamodel = null;
+            var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
+            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            {
+                IdiomaRepositorio repositorio = new IdiomaRepositorio(contexto);
+                List<Idioma> lista = repositorio.ListarTodos();
+                listamodel = mapper.Map<List<IdiomaModel>>(lista);
+            }
+            
+            return listamodel;
+        }
+
+        public IdiomaModel selecionar(int id) {
+            IdiomaModel model = null;
+            var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
+            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            {
+                IdiomaRepositorio repositorio = new IdiomaRepositorio(contexto);
+                Idioma idioma = repositorio.Recuperar(c=>c.IdIdioma==id);
+                model = mapper.Map<IdiomaModel>(idioma);
+            }
+            return model;
+        }
+
+        public void excluir(int id) {
+
+            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            {
+                IdiomaRepositorio repositorio = new IdiomaRepositorio(contexto);
+                Idioma idioma = repositorio.Recuperar(c => c.IdIdioma == id);
+                repositorio.Excluir(idioma);
+                contexto.SaveChanges();
+            }
+        }
     }
 }

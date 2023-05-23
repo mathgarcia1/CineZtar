@@ -9,8 +9,7 @@ namespace Repositorio.Models
     {
         public Filme()
         {
-            FilmeGeneros = new HashSet<FilmeGenero>();
-            Ingressos = new HashSet<Ingresso>();
+            CompraFilmes = new HashSet<CompraFilme>();
         }
 
         public int IdFilme { get; set; }
@@ -18,11 +17,13 @@ namespace Repositorio.Models
         public string Descricao { get; set; }
         public int? Duracao { get; set; }
         public string AnoLancamento { get; set; }
-        public byte[] Imagem { get; set; }
+        public string Imagem { get; set; }
         public int? IdIdioma { get; set; }
+        public decimal? Valor { get; set; }
+        public int? IdGenero { get; set; }
 
+        public virtual Genero IdGeneroNavigation { get; set; }
         public virtual Idioma IdIdiomaNavigation { get; set; }
-        public virtual ICollection<FilmeGenero> FilmeGeneros { get; set; }
-        public virtual ICollection<Ingresso> Ingressos { get; set; }
+        public virtual ICollection<CompraFilme> CompraFilmes { get; set; }
     }
 }

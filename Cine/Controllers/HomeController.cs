@@ -11,36 +11,18 @@ namespace Cine.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IngressoModel _ingressoModel;
-
-        public HomeController(IngressoModel ingressoModel)
-        {
-            _ingressoModel = ingressoModel;
-        }
-
-        
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
         public IActionResult Index()
         {
-            return View(_ingressoModel.listar());
+            FilmeModel model = new FilmeModel();
+            return View(model.listar());
         }
 
-        public IActionResult Detalhes(int id)
+
+        public IActionResult detalhes(int id)
         {
-            IngressoModel ingresso = _ingressoModel.selecionar(id);
-            return View(ingresso);
+            FilmeModel model = new FilmeModel();
+            FilmeModel filme = model.selecionar(id);
+            return View(filme);
         }
     }
 }
