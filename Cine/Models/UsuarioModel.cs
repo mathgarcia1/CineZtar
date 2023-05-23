@@ -42,15 +42,16 @@ namespace Cine.Models
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
             {
                 UsuarioRepositorio repositorio = new UsuarioRepositorio(contexto);
-                 Usuario usu =repositorio.Recuperar
-                    (u=>u.Email==email && u.Senha==senha);
+                Usuario usu = repositorio.Recuperar
+                   (u => u.Email == email && u.Senha == senha);
                 var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
                 model = mapper.Map<UsuarioModel>(usu);
-                }
+            }
             return model;
         }
 
-        public UsuarioModel salvar(UsuarioModel model) {
+        public UsuarioModel salvar(UsuarioModel model)
+        {
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             Usuario usuario = mapper.Map<Usuario>(model);
 
@@ -58,10 +59,14 @@ namespace Cine.Models
             {
                 UsuarioRepositorio repositorio = new UsuarioRepositorio(contexto);
 
-                if (model.IdTipousuario == 0)
-                    repositorio.Inserir(usuario);
+                if (model.IdUsuario == 0)
+                {
+                   repositorio.Inserir(usuario);
+                }
                 else
+                {
                     repositorio.Alterar(usuario);
+                }
 
                 contexto.SaveChanges();
             }
@@ -69,7 +74,8 @@ namespace Cine.Models
             return model;
         }
 
-        public List<UsuarioModel> listar() {
+        public List<UsuarioModel> listar()
+        {
             List<UsuarioModel> listamodel = null;
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
@@ -78,23 +84,25 @@ namespace Cine.Models
                 List<Usuario> lista = repositorio.ListarTodos();
                 listamodel = mapper.Map<List<UsuarioModel>>(lista);
             }
-            
+
             return listamodel;
         }
 
-        public UsuarioModel selecionar(int id) {
+        public UsuarioModel selecionar(int id)
+        {
             UsuarioModel model = null;
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
             {
                 UsuarioRepositorio repositorio = new UsuarioRepositorio(contexto);
-                Usuario usuario = repositorio.Recuperar(c=>c.IdUsuario==id);
+                Usuario usuario = repositorio.Recuperar(c => c.IdUsuario == id);
                 model = mapper.Map<UsuarioModel>(usuario);
             }
             return model;
         }
 
-        public void excluir(int id) {
+        public void excluir(int id)
+        {
 
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
             {

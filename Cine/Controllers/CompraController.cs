@@ -14,14 +14,26 @@ namespace Cine.Controllers
     {
         public IActionResult Index()
         {
-            List<CompraFilmeModel> lista = new List<CompraFilmeModel>();
+            //List<CompraFilmeModel> lista = new List<CompraFilmeModel>();
+            List<CompraFilmeModel> lista = new CompraFilmeModel().listar(1);
             return View(lista);
    
         }
 
         public IActionResult excluirFilme(int id) {
-            (new CompraFilmeModel()).excluir(id);
-            var lista = (new CompraFilmeModel()).listar(HttpContext.Session.GetInt32("IdCompra").Value);
+            CompraFilmeModel model = new CompraFilmeModel();
+            try
+            {
+                model.excluir(id);
+                ViewBag.mensagem = "Dados excluidos com sucesso!";
+                ViewBag.classe = "alert-success";
+            }
+            catch(Exception ex)
+            {
+                ViewBag.mensagem = "Ops... Não foi possível excluir!" + ex.Message;
+                ViewBag.classe = "alert-danger";
+            }
+            var lista = model.listar(HttpContext.Session.GetInt32("IdCompra").Value);
             return View("Index", lista);
         }
 

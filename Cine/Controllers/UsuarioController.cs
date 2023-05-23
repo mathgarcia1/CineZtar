@@ -38,9 +38,9 @@ namespace Cine.Controllers
         }
 
         [HttpPost]
-        public IActionResult logar(String txtemail, String txtsenha) 
+        public IActionResult logar(String Email, String Senha) 
         {
-            UsuarioModel model = (new UsuarioModel()).validarLogin(txtemail, txtsenha);
+            UsuarioModel model = (new UsuarioModel()).validarLogin(Email, Senha);
             if (model == null)
             {
                 ViewBag.mensagem = "Dados inválidos";
@@ -70,6 +70,7 @@ namespace Cine.Controllers
                 try
                 {
                     UsuarioModel usuarioModel = new UsuarioModel();
+                    
                     usuarioModel.salvar(model);
                     ViewBag.mensagem = "Dados salvos com sucesso!";
                     ViewBag.classe = "alert-success";
