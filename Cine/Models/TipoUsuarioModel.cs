@@ -21,10 +21,6 @@ namespace Cine.Models
         public string Descricao { get; set; }
 
         public TipoUsuarioModel salvar(TipoUsuarioModel model) {
-
-            //TipoUsuario cat = new TipoUsuario();
-            //cat.id = model.id;
-            //cat.descricao = model.descricao;
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             TipoUsuario tipoUsuario = mapper.Map<TipoUsuario>(model);
 

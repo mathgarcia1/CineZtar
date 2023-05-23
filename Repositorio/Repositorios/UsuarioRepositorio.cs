@@ -14,5 +14,10 @@ namespace Repositorio.Repositorios
         public UsuarioRepositorio(DB_Ingressos2Context contexto) : base(contexto)
         {
         }
+
+        // public Usuario RecuperarPorId(int IdUsuario)
+        // {
+        //     return _contexto.Usuarios.FirstOrDefault(u => u.IdUsuario == IdUsuario);
+        // }
     }
 }

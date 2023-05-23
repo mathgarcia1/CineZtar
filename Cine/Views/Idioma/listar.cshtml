@@ -1,0 +1,48 @@
+@model IEnumerable<IdiomaModel>
+@{
+    ViewData["Title"] = "listar";
+}
+
+<h1>Lista de Idiomas</h1>
+
+<span class="alert @ViewBag.classe">@ViewBag.mensagem</span>
+
+<script>
+
+function confirmarExclusao(id) {
+   if (confirm("Tem certeza que deseja excluir esse idioma?")) {
+
+       location.href ="/Idioma/excluir/" + id;
+
+   }
+}
+</script>
+
+<a href="~/Idioma/cadastro" class="btnlink">Novo Idioma</a>
+<table class="table table-dark lista">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.IdIdioma)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
+            <th scope="col">Alterar</th>
+            <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.IdIdioma</th>
+                <td>@item.Nome</td>
+                <td>
+                    <a href="~/Filme/prealterar/@item.IdIdioma">Alterar</a>
+                </td>
+                <td>
+                    <a href="#" class="btnlink" onclick="confirmarExclusao(@item.IdIdioma)">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

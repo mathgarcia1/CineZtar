@@ -88,7 +88,7 @@ namespace Cine.Controllers
         {
             FilmeModel filmemodel = new FilmeModel();
             List<FilmeModel> lista = filmemodel.listar();
-            return View(lista);//lista por parametro para a view
+            return View(lista);
         }
 
 

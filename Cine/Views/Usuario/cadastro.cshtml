@@ -38,14 +38,12 @@
             <div class="col-12 form-group">
             <label asp-for="IdTipousuario"></label>
             <select class="form-control" asp-for="IdTipousuario" asp-items="@ViewBag.listatipos">
-                <option>Selecione um tipo usuario.....</option>
+                <option>Selecione um tipo usuario...</option>
 
             </select>
             </div>
-        
-
             <div class="form-group">
-                <span>@ViewBag.Dados</span>
+                <span>@ViewBag.mensagem</span>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6 d-flex justify-content-between">

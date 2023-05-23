@@ -23,21 +23,31 @@ namespace Cine.Controllers
 
             return View();
         }
+        public IActionResult cadastro(int? mostraMensagem) {
+            List<TipoUsuarioModel> lista = (new TipoUsuarioModel()).listar();
+            ViewBag.listatipos = lista.Select(u=>new SelectListItem(){
+                Value = u.IdTipousuario.ToString(),
+                Text = u.Descricao
+                });
+            if (mostraMensagem.HasValue)
+            {
+                ViewBag.mensagem = "Dados salvos com sucesso!";
+                ViewBag.classe = "alert-success";
+            }
+            return View(new UsuarioModel());
+        }
 
         [HttpPost]
-        public IActionResult logar(String txtemail,
-            String txtsenha) {
+        public IActionResult logar(String txtemail, String txtsenha) 
+        {
             UsuarioModel model = (new UsuarioModel()).validarLogin(txtemail, txtsenha);
             if (model == null)
             {
-                //não encontrou 
                 ViewBag.mensagem = "Dados inválidos";
                 ViewBag.classe = "alert-danger";
                 return View("login");
             }
             else {
-                //encontrou
-                //inseriu na sessão
                 HttpContext.Session.SetInt32("IdUsuario", model.IdUsuario);
                 HttpContext.Session.SetString("Nome", model.Nome);
                 return RedirectToAction("Index", "Home");
@@ -45,12 +55,10 @@ namespace Cine.Controllers
         }
 
         public IActionResult sair() {
-            //limpar a sessão
-            HttpContext.Session.Remove("Nome");
             HttpContext.Session.Remove("IdUsuario");
+            HttpContext.Session.Remove("Nome");
             HttpContext.Session.Clear();
 
-            //redirecionar para login
             return RedirectToAction("login", "Usuario");
         }
 
@@ -59,7 +67,6 @@ namespace Cine.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 try
                 {
                     UsuarioModel usuarioModel = new UsuarioModel();
@@ -96,7 +103,7 @@ namespace Cine.Controllers
         {
             UsuarioModel usuarioModel = new UsuarioModel();
             List<UsuarioModel> lista = usuarioModel.listar();
-            return View(lista);//lista por parametro para a view
+            return View(lista);
         }
 
 

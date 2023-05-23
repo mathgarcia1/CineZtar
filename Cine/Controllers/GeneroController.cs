@@ -56,7 +56,7 @@ namespace Cine.Controllers
         {
             GeneroModel genero = new GeneroModel();
             List<GeneroModel> lista = genero.listar();
-            return View(lista);//lista por parametro para a view
+            return View(lista);
         }
 
 

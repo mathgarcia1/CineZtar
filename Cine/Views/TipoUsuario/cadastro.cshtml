@@ -1,0 +1,24 @@
+@model Cine.Models.TipoUsuarioModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="formulario">
+    <h1>Cadastro de Tipos de Usuario</h1>
+    <form asp-controller="TipoUsuario" asp-action="salvar" method="post">
+        <div class="form-group">
+            <input class="form-control" type="number" asp-for="IdTipousuario" hidden />
+            <span asp-validation-for="IdTipousuario" class="validacao"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Descricao"></label>
+            <input class="form-control" type="text" asp-for="Descricao" />
+            <span asp-validation-for="Descricao" class="validacao"></span>
+        </div>
+        <div class="form-group">
+            <span>@ViewBag.mensagem</span>
+        </div>
+        <div class="form-group">
+            <button type="submit" >Salvar</button>
+        </div>
+    </form>
+</div>

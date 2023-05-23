@@ -14,7 +14,7 @@
 
 <body>
     <div class="formulario ">
-        <form method="post" asp-controller="Usuario" asp-action="Authenticate">
+        <form method="post" asp-controller="Usuario" asp-action="logar">
             <h2>Login</h2>
             @if (!ViewData.ModelState.IsValid)
             {
@@ -30,10 +30,11 @@
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="Senha" required>
             </div>
+            <span class="alert @ViewBag.classe">@ViewBag.mensagem</span>
             <div class="form-group row">
                 <div class="col-sm-6 d-flex justify-content-between">
                     <button type="submit" class="mr-3">Entrar</button>
-                    <a class="btnlink" asp-controller="Usuario" asp-action="Index">Cadastrar</a>
+                    <a class="btnlink" asp-controller="Usuario" asp-action="cadastro">Cadastrar</a>
                 </div>
             </div>
 

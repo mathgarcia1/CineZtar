@@ -27,11 +27,12 @@ namespace Cine.Models
         [Display(Name = "Nome")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string Nome { get; set; }
+
         [Required(ErrorMessage = "Descrição do filme é obrigatório!")]
         [Display(Name = "Descrição")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
-        
         public string Descricao { get; set; }
+        
         [Required(ErrorMessage = "Duração do filme é obrigatório!")]
         [Display(Name = "Duração")]
         public int? Duracao { get; set; }
@@ -51,12 +52,7 @@ namespace Cine.Models
         [Display(Name = "Imagem")]
         public IFormFile ImagemUpload{get; set;}
 
-        public FilmeModel salvar(FilmeModel model, IWebHostEnvironment webHostEnvironment)
-        {
-
-            //filmeegoria filme = new filmeegoria();
-            //filme.id = model.id;
-            //filme.descricao = model.descricao;
+        public FilmeModel salvar(FilmeModel model, IWebHostEnvironment webHostEnvironment){
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             Filme filme = mapper.Map<Filme>(model);
 
@@ -101,7 +97,6 @@ namespace Cine.Models
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
             {
                 FilmeRepositorio repositorio = new FilmeRepositorio(contexto);
-                //select * from filmeegoria c where c.id = id
                 Filme filme = repositorio.Recuperar(c => c.IdFilme == id);
                 model = mapper.Map<FilmeModel>(filme);
             }

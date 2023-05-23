@@ -33,31 +33,29 @@
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Inicio</span>
                     </a>
-                    <a asp-controller="Usuario" asp-action="Listar" class="nav_link">
+                    <a asp-controller="Usuario" asp-action="listar" class="nav_link">
                         <i class='bx bx-user nav_icon'></i>
                         <span class="nav_name">Usuarios</span>
                     </a>
-                    @* <a asp-controller="Cinema" asp-action="Listar" class="nav_link">
-                        <i class='bx bx-message-square-detail nav_icon'></i>
-                        <span class="nav_name">Cinemas</span>
-                    </a> *@
-                    <a asp-controller="Filme" asp-action="Listar" class="nav_link">
+                    
+                    <a asp-controller="Filme" asp-action="listar" class="nav_link">
                         <i class='bx bx-bookmark nav_icon'></i>
                         <span class="nav_name">Filmes</span>
                     </a>
-                    @* <a asp-controller="Sala" asp-action="Listar" class="nav_link">
-                        <i class='bx bx-folder nav_icon'></i>
-                        <span class="nav_name">Salas</span>
-                    </a> *@
-                    <a asp-controller="Ingresso" asp-action="Index" class="nav_link">
+                    
+                    <a asp-controller="Genero" asp-action="listar" class="nav_link">
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-                        <span class="nav_name">Ingresso</span>
+                        <span class="nav_name">Genero</span>
+                    </a>
+                    <a asp-controller="Idioma" asp-action="listar" class="nav_link">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">Idioma</span>
                     </a>
                 </div>
             </div>
-            <a class="nav_link" asp-controller="Usuario" asp-action="Logout">
+            <a class="nav_link" asp-controller="Usuario" asp-action="sair">
                 <i class='bx bx-log-out nav_icon'></i>
-                <span class="nav_name">SignOut</span> </a>
+                <span class="nav_name">Sair</span> </a>
         </nav>
     </div>
     <!--Container Main start-->

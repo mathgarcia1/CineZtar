@@ -21,6 +21,7 @@ namespace Cine.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatório")]
+        [StringLength(maximumLength: 50, ErrorMessage = "Máximo 250 Caracteres")]
         [Display(Name = "Senha")]
         public string Senha { get; set; }
 
@@ -47,12 +48,9 @@ namespace Cine.Models
                 model = mapper.Map<UsuarioModel>(usu);
                 }
             return model;
-
         }
 
         public UsuarioModel salvar(UsuarioModel model) {
-
-            
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             Usuario usuario = mapper.Map<Usuario>(model);
 
@@ -69,9 +67,8 @@ namespace Cine.Models
             }
             model.IdUsuario = usuario.IdUsuario;
             return model;
-            
-        
         }
+
         public List<UsuarioModel> listar() {
             List<UsuarioModel> listamodel = null;
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
