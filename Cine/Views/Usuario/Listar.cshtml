@@ -5,7 +5,7 @@
 
 <div class="tabela">
 <h1>Lista de Usuarios</h1>
-<table class="table table-dark lista">
+<table class="table table-dark lista" style="width: 1000px">
     <thead>
         <tr>
             <th scope="col">@Html.DisplayNameFor(model => model.IdUsuario)</th>
@@ -22,8 +22,12 @@
                 <th scope="row">@item.IdUsuario</th>
                 <td>@item.Email</td>
                 <td>@item.IdTipousuario</td>
-                <td><a asp-controller="Usuario" asp-action="Index" asp-route-id="@item.IdUsuario">Alterar</a></td>
-                <td><a asp-controller="Usuario" asp-action="Excluir" asp-route-id="@item.IdUsuario">Excluir</a></td>
+                <td>
+                    <a href="~/Usuario/prealterar/@item.IdUsuario" class="btnlink">Alterar</a>
+                </td>
+                <td>
+                    <a href="#" class="btnlink" onclick="confirmarExclusao(@item.IdUsuario)">Excluir</a>
+                </td>
             </tr>
         }
     </tbody>

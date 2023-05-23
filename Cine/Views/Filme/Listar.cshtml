@@ -9,7 +9,7 @@
 
 <script>
 
-function confirmExclusao(id) {
+function confirmarExclusao(id) {
    if (confirm("Tem certeza que deseja excluir esse Filme?")) {
 
        location.href ="/Filme/excluir/" + id;
@@ -19,9 +19,9 @@ function confirmExclusao(id) {
 </script>
 
 <a href="~/Filme/cadastro" class="btnlink">Novo Filme</a>
-
-
-<table class="table table-dark lista">
+<br/>
+<br/>
+<table class="table table-dark lista" style="width: 1000px">
     <thead>
         <tr>
             <th scope="col">@Html.DisplayNameFor(model => model.IdFilme)</th>
@@ -43,7 +43,7 @@ function confirmExclusao(id) {
                     <a href="~/Filme/prealterar/@item.IdFilme" class="btnlink">Alterar</a>
                 </td>
                 <td>
-                    <a href="#" class="btnlink" onclick="confirmExclusao(@item.IdFilme)">Excluir</a>
+                    <a href="#" class="btnlink" onclick="confirmarExclusao(@item.IdFilme)">Excluir</a>
                 </td>
             </tr>
         }

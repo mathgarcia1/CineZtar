@@ -52,19 +52,20 @@ namespace Repositorio.Models
                     .HasColumnType("datetime")
                     .HasColumnName("data");
 
+                entity.Property(e => e.IdPreferencia).HasColumnName("id_preferencia");
+
                 entity.Property(e => e.IdStatus).HasColumnName("id_status");
+
+                entity.Property(e => e.Url).HasColumnName("url");
 
                 entity.Property(e => e.Valor)
                     .HasColumnType("decimal(8, 2)")
                     .HasColumnName("valor");
-
-                entity.Property(e => e.IdPreferencia).HasColumnName("id_preferencia");
-                entity.Property(e => e.Url).HasColumnName("url");
             });
 
             modelBuilder.Entity<CompraFilme>(entity =>
             {
-                entity.HasKey(e => e.IdCompraFilme).HasName("PK_Compra_Filme");
+                entity.HasKey(e => e.IdCompraFilme);
 
                 entity.ToTable("Compra_Filme");
 

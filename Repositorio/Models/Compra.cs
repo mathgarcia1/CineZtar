@@ -16,8 +16,9 @@ namespace Repositorio.Models
         public DateTime? Data { get; set; }
         public int? IdStatus { get; set; }
         public decimal? Valor { get; set; }
-        public String IdPreferencia { get; set; }
-        public String Url { get; set; }
+        public string IdPreferencia { get; set; }
+        public string Url { get; set; }
+
         public virtual ICollection<CompraFilme> CompraFilmes { get; set; }
     }
 }
