@@ -15,28 +15,20 @@ namespace Cine.Controllers
         public IActionResult Index()
         {
             List<CompraFilmeModel> lista = new List<CompraFilmeModel>();
-           // lista = new ComprasProdutoModel().listar(1);
-            return View(lista);//lista por parametro para a view
+            return View(lista);
    
         }
 
         public IActionResult excluirFilme(int id) {
             (new CompraFilmeModel()).excluir(id);
-            var lista = (new CompraFilmeModel()).listar(HttpContext.Session.GetInt32("idCompra").Value);
+            var lista = (new CompraFilmeModel()).listar(HttpContext.Session.GetInt32("IdCompra").Value);
             return View("Index", lista);
         }
 
         public IActionResult Finalizar() {
-
-            //retornar uma view para login ou cadsatro de cliente
-            //salvar na sessão o idcliente logado ou que fez o cadastro
-            //depois criar outro metodo para finalizar com geração de pagamento
-
-
-            //alterar o status da venda para aguardando pagamento
             int IdCompra = HttpContext.Session.GetInt32("IdCompra").Value;
             CompraModel compras = new CompraModel().selecionar(IdCompra);
-            compras.IdStatus = 3; //aguardando pagamento
+            compras.IdStatus = 3;
             var filmes = (new CompraFilmeModel()).listar(IdCompra);
             decimal total = 0;
             foreach (var item in filmes)
@@ -85,11 +77,10 @@ namespace Cine.Controllers
                 compras.Url = retorno.Result.Url;
             }
             else {
-                compras.IdStatus = 4;//cancelada
+                compras.IdStatus = 4;
             }
                        
             new CompraModel().salvar(compras);
-            //redirecionar o usuario
             return Redirect(retorno.Result.Url);
         }
 
@@ -100,54 +91,38 @@ namespace Cine.Controllers
             compraFilmeModel.Valor = qtde * valorUnitario;
             (new CompraFilmeModel()).salvar(compraFilmeModel);
             return new JsonResult(compraFilmeModel);
-
         }
 
         public IActionResult Finalizacao() {
-
             return View();
         }
 
         [HttpGet]
-        public IActionResult retornoMercadoPago(string collection_id, string collection_status, string payment_id,
-       string status, string external_reference, string payment_type, string merchant_order_id,
-       string preference_id, string site_id, string processing_mode, string merchant_account_id)
+        public IActionResult retornoMercadoPago(string collection_id, string collection_status, string payment_id, string status, string external_reference, string payment_type, string merchant_order_id,
+        string preference_id, string site_id, string processing_mode, string merchant_account_id)
         {
-            //obter o pagamento pelo idPreferencia(preference_id);
-            CompraModel compras = new CompraModel().selecionarIdPreferencia(
-                                                        preference_id);
-            compras.IdStatus = 2;//finalizado
-            //compras.datapagamento = datetime.now;
+            CompraModel compras = new CompraModel().selecionarIdPreferencia(preference_id);
+            compras.IdStatus = 2;
             new CompraModel().salvar(compras);
 
             if (status == "approved")
             {
-                //baixar como pago
-
                 return RedirectToAction("Finalizacao", "Compras");
             }
             else
             {
-
                 return View();
             }
 
         }
 
 
-        //parametro id = id_produto
         public IActionResult comprarFilme(int id) {
-
-            //buscar o valor do produto
             var filme = (new FilmeModel()).selecionar(id);
             var valor = filme.Valor;
 
-            //validar se a compra não iniciou
             if (HttpContext.Session.GetInt32("IdCompra") == null)
             {
-
-                
-                //inserir na tabela de compras
                 var compras = new CompraModel()
                 {
                     Data = DateTime.Now,
@@ -156,14 +131,12 @@ namespace Cine.Controllers
                 };
 
                 (new CompraModel()).salvar(compras);
-                //inserir na sessão
                 HttpContext.Session.SetInt32("IdCompra", compras.IdCompra);
 
             }
-            //inserir na tabela de compras produtos
             var compraFilmeModel = new CompraFilmeModel() {
                 IdCompra = HttpContext.Session.GetInt32("IdCompra").Value,
-                IdFilme = id,//parametro
+                IdFilme = id,
                 Quantidade = 1,
                 Valor = valor
             };

@@ -56,7 +56,7 @@ namespace Cine.Controllers
         {
             IdiomaModel idioma = new IdiomaModel();
             List<IdiomaModel> lista = idioma.listar();
-            return View(lista);//lista por parametro para a view
+            return View(lista);
         }
 
 

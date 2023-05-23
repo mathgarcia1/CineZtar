@@ -29,12 +29,9 @@ namespace Cine.Models
             return model;
         }
 
-
         public virtual FilmeModel filme { get; set; }
 
-
-        public void excluir(int id)
-        {
+        public void excluir(int id){
 
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
             {
@@ -45,8 +42,7 @@ namespace Cine.Models
             }
         }
 
-        public CompraFilmeModel salvar(CompraFilmeModel model)
-        {
+        public CompraFilmeModel salvar(CompraFilmeModel model){
 
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             CompraFilme compraFilme = mapper.Map<CompraFilme>(model);
@@ -69,8 +65,7 @@ namespace Cine.Models
         }
 
 
-        public List<CompraFilmeModel> listar(int idcompras)
-        {
+        public List<CompraFilmeModel> listar(int idcompras){
             List<CompraFilmeModel> listamodel = null;
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
@@ -84,7 +79,6 @@ namespace Cine.Models
                     item.filme = new FilmeModel().selecionar((int)item.IdFilme);
                 }
             }
-
             return listamodel;
         }
     }

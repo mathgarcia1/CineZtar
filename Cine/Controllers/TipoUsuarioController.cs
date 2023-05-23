@@ -56,7 +56,7 @@ namespace Cine.Controllers
         {
             TipoUsuarioModel tipoUsuario = new TipoUsuarioModel();
             List<TipoUsuarioModel> lista = tipoUsuario.listar();
-            return View(lista);//lista por parametro para a view
+            return View(lista);
         }
 
 

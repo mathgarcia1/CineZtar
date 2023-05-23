@@ -1,0 +1,50 @@
+@model IEnumerable<GeneroModel>
+@{
+    ViewData["Title"] = "listar";
+}
+
+<h1>Lista de Generos de Filme</h1>
+
+<span class="alert @ViewBag.classe">@ViewBag.mensagem</span>
+
+<script>
+
+function confirmarExclusao(id) {
+   if (confirm("Tem certeza que deseja excluir esse genero?")) {
+
+       location.href ="/Genero/excluir/" + id;
+
+   }
+}
+</script>
+
+<a href="~/Genero/cadastro" class="btnlink">Novo Genero</a>
+<table class="table table-dark lista">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.IdGenero)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Descricao)</th>
+            <th scope="col">Alterar</th>
+            <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.IdGenero</th>
+                <td>@item.Nome</td>
+                <td>@item.Descricao</td>
+                <td>
+                    <a href="~/Filme/prealterar/@item.IdGenero">Alterar</a>
+                </td>
+                <td>
+                    <a href="#" class="btnlink" onclick="confirmarExclusao(@item.IdGenero)">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

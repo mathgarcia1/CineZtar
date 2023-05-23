@@ -18,17 +18,15 @@ function confirmExclusao(id) {
 }
 </script>
 
-<a href="~/Filme/cadastro" class="btn btn-info">
-    Novo
-</a>
+<a href="~/Filme/cadastro" class="btnlink">Novo Filme</a>
 
 
-<table class="table table-striped">
+<table class="table table-dark lista">
     <thead>
         <tr>
-            <th scope="col">Código</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Imagem</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.IdFilme)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Imagem)</th>
             <th scope="col">Alterar</th>
             <th scope="col">Excluir</th>
         </tr>
@@ -39,26 +37,16 @@ function confirmExclusao(id) {
             <tr>
                 <th scope="row">@item.IdFilme</th>
                 <td>@item.Nome</td>
-                <td><img src="~/Imagens/@item.Imagem"
-                         class="rounded-circle" height="40" 
-                         width="40" asp-append version="true" />
+                <td><img src="~/Imagens/@item.Imagem" class="rounded-circle" height="40" width="40" asp-append version="true" />
                 </td>
                 <td>
-                    <a href="~/Filme/prealterar/@item.IdFilme"
-                       class="btn btn-primary">
-                        Alterar
-                    </a>
+                    <a href="~/Filme/prealterar/@item.IdFilme" class="btnlink">Alterar</a>
                 </td>
                 <td>
-                    <a href="#"
-                       class="btn btn-primary" onclick="confirmExclusao(@item.IdFilme)">
-                        Excluir
-                    </a>
+                    <a href="#" class="btnlink" onclick="confirmExclusao(@item.IdFilme)">Excluir</a>
                 </td>
             </tr>
         }
-
-
     </tbody>
 </table>
 

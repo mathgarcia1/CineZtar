@@ -5,22 +5,25 @@
 
 <h1>@Model.Nome</h1>
 <div class="col-md-6">
-    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+    <div class="card flex-md-row mb-4 shadow-sm h-md-250 tabela">
         <div class="card-body d-flex flex-column align-items-start">
 
             <h3 class="mb-0">
-                <a class="text-dark" href="https://getbootstrap.com.br/docs/4.1/examples/blog/#">@Model.Descricao</a>
+                <a class="text-light" id="abreviado">@Model.Descricao</a>
             </h3>
             <div class="mb-1 text-muted">R$ @Model.Valor</div>
             <p class="card-text mb-auto">Este é um card maior com suporte à texto, em baixo, como uma introdução mais natural ao conteúdo adicional.</p>
-            <a href="~/Compra/comprarFilme/@Model.IdFilme"
-               class="btn btn-primary">
-                Comprar
-            </a>
+            <a href="~/Compra/comprarFilme/@Model.IdFilme" class="btnlink">Comprar</a>
         </div>
-        <img class="card-img-right flex-auto d-none d-lg-block" style="width: 200px; height: 250px;" src="~/Imagens/@Model.Imagem" />
+        <img class="card-img-right flex-auto d-none d-lg-block capa-filme" alt="Capa do Filme"  src="~/Imagens/@Model.Imagem" />
     </div>
 </div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var textoOriginal = document.getElementById("abreviado").textContent;
+    var textoAbreviado = textoOriginal.substring(0, 31) + (textoOriginal.length > 31 ? "..." : "");
+  document.getElementById("abreviado").textContent = textoAbreviado;
+});
+</script>
 
 
