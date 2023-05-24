@@ -14,6 +14,7 @@
 
 <body>
     <div class="formulario">
+
         <h1>Cadastro de Usuarios</h1>
         <form asp-controller="Usuario" asp-action="salvar" method="post">
             <div class="form-group">
@@ -36,11 +37,11 @@
                 <span asp-validation-for="Nome" class="validacao"></span>
             </div>
             <div class="col-12 form-group">
-            <label asp-for="IdTipousuario"></label>
-            <select class="form-control" asp-for="IdTipousuario" asp-items="@ViewBag.listatipos">
-                <option>Selecione um tipo usuario...</option>
+                <label asp-for="IdTipousuario"></label>
+                <select class="form-control tipousuario" asp-for="IdTipousuario" asp-items="@ViewBag.listatipos">
+                    <option>Selecione um tipo usuario...</option>
 
-            </select>
+                </select>
             </div>
             <div class="form-group">
                 <span>@ViewBag.mensagem</span>
@@ -50,7 +51,7 @@
                     <button type="submit">Salvar</button>
                     <a class="btnlink" asp-controller="Usuario" asp-action="login">Login</a>
                 </div>
-                
+
             </div>
         </form>
     </div>
