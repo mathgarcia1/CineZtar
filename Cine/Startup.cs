@@ -35,7 +35,7 @@ namespace Cine
             services.AddSession();
 
             //services.AddHttpContextAccessor();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,8 +62,15 @@ namespace Cine
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "excluirFilme",
+                    pattern: "Compra/excluirFilme/{id}/{IdFilme}",
+                    defaults: new { controller = "Compra", action = "excluirFilme" }
+                );
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             });
         }
     }

@@ -80,5 +80,16 @@ namespace Cine.Models
             }
             return listamodel;
         }
+
+        public void removerFilme(int id, int IdFilme){
+            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            {
+                CompraFilmeRepositorio repositorio = new CompraFilmeRepositorio(contexto);
+                CompraFilme compraFilme = repositorio.Recuperar(c => c.IdCompraFilme == id);
+                compraFilme.IdFilme = 0;
+                repositorio.Alterar(compraFilme);
+                contexto.SaveChanges();
+            }
+        }
     }
 }

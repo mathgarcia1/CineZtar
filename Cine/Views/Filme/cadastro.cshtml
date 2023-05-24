@@ -9,8 +9,7 @@
       method="post">
     <div class="row">
         <div class="col-12 form-group">
-            <label asp-for="IdFilme"></label>
-            <input readonly type="text" asp-for="IdFilme" class="form-control" />
+            <input readonly type="text" asp-for="IdFilme" class="form-control" hidden/>
             <span asp-validation-for="IdFilme" class="alert-danger"></span>
         </div>
         <div class="col-12 form-group">
@@ -39,7 +38,7 @@
 
         <div class="col-12 form-group">
             <label asp-for="IdGenero"></label>
-            <select class="form-control" asp-for="IdGenero" asp-items="@ViewBag.listageneros">
+            <select class="form-control options" asp-for="IdGenero" asp-items="@ViewBag.listageneros">
                 <option>Selecione um genero...</option>
 
             </select>
@@ -47,7 +46,7 @@
         </div>
         <div class="col-12 form-group">
             <label asp-for="IdIdioma"></label>
-            <select class="form-control" asp-for="IdIdioma" asp-items="@ViewBag.listaidiomas">
+            <select class="form-control options" asp-for="IdIdioma" asp-items="@ViewBag.listaidiomas">
                 <option>Selecione um idioma...</option>
 
             </select>

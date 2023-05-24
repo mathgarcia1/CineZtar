@@ -17,28 +17,29 @@ namespace Cine.Controllers
             List<CompraFilmeModel> lista = new List<CompraFilmeModel>();
             //List<CompraFilmeModel> lista = new CompraFilmeModel().listar(1);
             return View(lista);
-   
+
         }
 
-        public IActionResult excluirFilme(int id) {
-            CompraFilmeModel compraFilmeModel = (new CompraFilmeModel()).selecionar(id);
+        public IActionResult excluirFilme(int id, int IdFilme)
+        {
+            var compraFilmeModel = new CompraFilmeModel();
             try
-            {
-                compraFilmeModel.excluir(id);
-                ViewBag.mensagem = "Dados excluidos com sucesso!";
+            {   
+                compraFilmeModel.removerFilme(id, IdFilme);
+                ViewBag.mensagem = "Filme excluído com sucesso!";
                 ViewBag.classe = "alert-success";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ViewBag.mensagem = "Ops... Não foi possível excluir!" + ex.Message;
+                ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
                 ViewBag.classe = "alert-danger";
             }
-            var lista = compraFilmeModel.listar(HttpContext.Session.GetInt32("IdCompra").Value);
-            //return RedirectToAction("Index", lista);
-            return View("Index", lista);
+            return RedirectToAction("Index", new { idcompras = HttpContext.Session.GetInt32("IdCompra").Value });
         }
 
-        public IActionResult Finalizar() {
+
+        public IActionResult Finalizar()
+        {
             int IdCompra = HttpContext.Session.GetInt32("IdCompra").Value;
             CompraModel compras = new CompraModel().selecionar(IdCompra);
             compras.IdStatus = 3;
@@ -50,7 +51,7 @@ namespace Cine.Controllers
             }
             compras.Valor = total;
             //compras.idcliente = HttpContext.Session.GetInt32("idCliente").Value;
-           
+
 
             //gerar o pagamento
             /*   ClienteModel cliente = new ClienteModel().selecionar(HttpContext.Session.GetInt32("idCliente").Value);
@@ -69,35 +70,37 @@ namespace Cine.Controllers
                    valor = total
                });*/
             //como não tenho cliente aqui vou fazer fixo para testar.
-             Task<RetornoMercadoPago> retorno =  new CompraModel().gerarPagamentoMercadoPago(
-                new MercadoPagoModel()
-            {
-                email = "meuamigovet@gmail.com",
-                cidade = "Presidente Prudente",
-                cep = "19025563",
-                estado = "SP",
-                idPagamento = IdCompra,
-                logradouro = "Avenida Brasil",
-                nome = "Cliente teste",
-                nomePlano = "Venda Ingresso Toledo",
-                numero = "20",
-                telefone = "1897865695",
-                valor = total
-            });
+            Task<RetornoMercadoPago> retorno = new CompraModel().gerarPagamentoMercadoPago(
+               new MercadoPagoModel()
+               {
+                   email = "meuamigovet@gmail.com",
+                   cidade = "Presidente Prudente",
+                   cep = "19025563",
+                   estado = "SP",
+                   idPagamento = IdCompra,
+                   logradouro = "Avenida Brasil",
+                   nome = "Cliente teste",
+                   nomePlano = "Venda Ingresso Toledo",
+                   numero = "20",
+                   telefone = "1897865695",
+                   valor = total
+               });
             if (retorno.Result.status == "SUCESSO")
             {
                 compras.IdPreferencia = retorno.Result.IdPreferencia;
                 compras.Url = retorno.Result.Url;
             }
-            else {
+            else
+            {
                 compras.IdStatus = 4;
             }
-                       
+
             new CompraModel().salvar(compras);
             return Redirect(retorno.Result.Url);
         }
 
-        public virtual JsonResult alterarQtde(int id, int qtde) {
+        public virtual JsonResult alterarQtde(int id, int qtde)
+        {
             CompraFilmeModel compraFilmeModel = (new CompraFilmeModel()).selecionar(id);
             compraFilmeModel.Quantidade = qtde;
             decimal valorUnitario = (decimal)new FilmeModel().selecionar((int)compraFilmeModel.IdFilme).Valor;
@@ -106,7 +109,8 @@ namespace Cine.Controllers
             return new JsonResult(compraFilmeModel);
         }
 
-        public IActionResult Finalizacao() {
+        public IActionResult Finalizacao()
+        {
             return View();
         }
 
@@ -130,7 +134,8 @@ namespace Cine.Controllers
         }
 
 
-        public IActionResult comprarFilme(int id) {
+        public IActionResult comprarFilme(int id)
+        {
             var filme = (new FilmeModel()).selecionar(id);
             var valor = filme.Valor;
 
@@ -147,7 +152,8 @@ namespace Cine.Controllers
                 HttpContext.Session.SetInt32("IdCompra", compras.IdCompra);
 
             }
-            var compraFilmeModel = new CompraFilmeModel() {
+            var compraFilmeModel = new CompraFilmeModel()
+            {
                 IdCompra = HttpContext.Session.GetInt32("IdCompra").Value,
                 IdFilme = id,
                 Quantidade = 1,
