@@ -14,17 +14,17 @@ namespace Cine.Controllers
     {
         public IActionResult Index()
         {
-            //List<CompraFilmeModel> lista = new List<CompraFilmeModel>();
-            List<CompraFilmeModel> lista = new CompraFilmeModel().listar(1);
+            List<CompraFilmeModel> lista = new List<CompraFilmeModel>();
+            //List<CompraFilmeModel> lista = new CompraFilmeModel().listar(1);
             return View(lista);
    
         }
 
         public IActionResult excluirFilme(int id) {
-            CompraFilmeModel model = new CompraFilmeModel();
+            CompraFilmeModel compraFilmeModel = (new CompraFilmeModel()).selecionar(id);
             try
             {
-                model.excluir(id);
+                compraFilmeModel.excluir(id);
                 ViewBag.mensagem = "Dados excluidos com sucesso!";
                 ViewBag.classe = "alert-success";
             }
@@ -33,7 +33,8 @@ namespace Cine.Controllers
                 ViewBag.mensagem = "Ops... Não foi possível excluir!" + ex.Message;
                 ViewBag.classe = "alert-danger";
             }
-            var lista = model.listar(HttpContext.Session.GetInt32("IdCompra").Value);
+            var lista = compraFilmeModel.listar(HttpContext.Session.GetInt32("IdCompra").Value);
+            //return RedirectToAction("Index", lista);
             return View("Index", lista);
         }
 
@@ -119,7 +120,7 @@ namespace Cine.Controllers
 
             if (status == "approved")
             {
-                return RedirectToAction("Finalizacao", "Compras");
+                return RedirectToAction("Finalizacao", "Compra");
             }
             else
             {

@@ -12,7 +12,7 @@ body {
 
 .formulario {
     background-color: #333;
-    border-radius: 20px;
+    border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
     display: flex;
@@ -42,7 +42,7 @@ button {
     background-color: #da4453;
     color: #ffffff;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
@@ -65,7 +65,7 @@ a {
     background-color: #da4453;
     color: #ffffff;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
@@ -81,7 +81,7 @@ a {
     color: crimson;
 }
 .tipousuario{
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
     padding: 10px;
     margin: 10px 0;
