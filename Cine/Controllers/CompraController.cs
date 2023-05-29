@@ -22,19 +22,30 @@ namespace Cine.Controllers
 
         public IActionResult excluirFilme(int id, int IdFilme)
         {
-            var compraFilmeModel = new CompraFilmeModel();
-            try
-            {   
-                compraFilmeModel.removerFilme(id, IdFilme);
-                ViewBag.mensagem = "Filme excluído com sucesso!";
-                ViewBag.classe = "alert-success";
-            }
-            catch (Exception ex)
-            {
-                ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
-                ViewBag.classe = "alert-danger";
-            }
-            return RedirectToAction("Index", new { idcompras = HttpContext.Session.GetInt32("IdCompra").Value });
+
+            var compraFilmeModel = new CompraFilmeModel().selecionar(id);
+            // try
+            // {
+            //     compraFilmeModel.IdFilme = null;
+            //     compraFilmeModel.Quantidade = 0;
+            //     compraFilmeModel.Valor = 0;
+
+            //     ViewBag.mensagem = "Filme excluído com sucesso!";
+            //     ViewBag.classe = "alert-success";
+            // }
+            // catch (Exception ex)
+            // {
+            //     ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
+            //     ViewBag.classe = "alert-danger";
+            // }
+            compraFilmeModel.IdFilme = null;
+            compraFilmeModel.Quantidade = 0;
+            compraFilmeModel.Valor = 0;
+
+            ViewBag.mensagem = "Filme excluído com sucesso!";
+            ViewBag.classe = "alert-success";
+            var lista = compraFilmeModel.listar(HttpContext.Session.GetInt32("IdCompra").Value);
+            return View("Index", lista);
         }
 
 
