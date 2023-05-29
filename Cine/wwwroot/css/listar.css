@@ -1,5 +1,5 @@
 .tabela {
-    background-color: #333;
+    background-color: #000;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -15,4 +15,23 @@
     border-radius: 8px;
     width: 200px;
     height: 250px;
+}
+
+
+.table-dark {
+    --bs-table-color: #fff;
+    --bs-table-bg: #030404e0;
+    --bs-table-border-color: #373b3e;
+    --bs-table-striped-bg: #2c3034a6;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #373b3e;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #323539;
+    --bs-table-hover-color: #fff;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+    
+}
+tr{
+    line-height: 30px;
 }

@@ -5,7 +5,7 @@
 <div class="tabela">
 <h1>Minha Compra</h1>
 <div class="col-12">
-    <table class="table table-dark tabela" style="width: 1000px">
+    <table class="table table-dark table-striped" >
         <thead>
             <tr>
                 <th scope="col">Compra</th>
@@ -72,18 +72,18 @@
 <div class="row justify-content-end">
     <div class="card tabela" style="width: 20rem;">
         <div class="card-body">
-            <h5 class="card-title ">Total</h5>
-            <p class="card-text" id="totalGeral">R$ 00,00</p>
-            <a href="~/Compra/Finalizar" class="btnlink">Finalizar</a>
+            <h5 class="text-light display-6">TOTAL:</h5>
+            <p class="texto-colorido display-6" id="totalGeral">R$ 00,00</p>
+            <a href="~/Compra/Finalizar" class="btnlink">FINALIZAR</a>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <a href="~/Home/Index" class="btnlink">Continuar comprando</a>
+<div class="form-group mb-4 mt-3">
+    <a href="~/Home/Index" class="btnlink ">CONTINUAR COMPRANDO</a>
 </div>
 <div class="row">
-    <span class="alert @ViewBag.classe">@ViewBag.mensagem</span>
+    <span class="@ViewBag.classe">@ViewBag.mensagem</span>
 </div>
 
 @section Scripts{ 

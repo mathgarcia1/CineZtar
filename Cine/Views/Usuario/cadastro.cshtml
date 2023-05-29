@@ -17,9 +17,9 @@
 <body>
     <div class="formulario">
 
-        <h1 class="text-center mt-4 font-weight-bold">Cadastro de Usuário</h1>
+        <h1 class="text-center mt-4 fw-bold">Cadastro de Usuário</h1>
         <form asp-controller="Usuario" asp-action="salvar" method="post">
-            <div class="p-4 ">
+            <div class="p-4 d-grid gap-1" >
                 <div class="form-group ">
                     <input class="form-control " type="number" asp-for="IdUsuario" hidden />
                     <span asp-validation-for="IdUsuario" class="validacao"></span>
@@ -42,13 +42,12 @@
 
                     </select>
                 </div>
-                <div class="form-group">
-                    <span>@ViewBag.mensagem</span>
-                </div>
-                <div class="form-group text-center">
-                    <div class="col-xs-12 d-grid gap-2">
-                        <button type="submit" class="w-100">SALVAR</button>
-                        <a class="btnlink btn btn-link w-100" asp-controller="Usuario" asp-action="login">LOGIN</a>
+                </br>
+                
+                <div class="form-group text-center ">
+                    <div class="col-xs-12 d-grid gap-2 ">
+                        <button type="submit" class="w-100 ">SALVAR</button>
+                        <a class="btnlink btn btn-link w-100 " asp-controller="Usuario" asp-action="login">LOGIN</a>
                     </div>
                 </div>
                 @* <div class="form-group row">
@@ -58,6 +57,9 @@
                     </div>
 
                 </div> *@
+                <div class="form-group mt-5">
+                    <span class="@ViewBag.classe"><strong>@ViewBag.mensagem</strong></span>
+                </div>
             </div>
         </form>
     </div>

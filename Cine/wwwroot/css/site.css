@@ -72,8 +72,12 @@ body {
 
 .validacao{
     color: crimson;
+    font-weight: bold;
 }
 .imgfilme{
   width: 200px;
   height: 200px;
+}
+.texto-colorido{
+  color: #da4453;
 }
