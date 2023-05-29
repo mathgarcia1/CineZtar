@@ -17,43 +17,47 @@
 <body>
     <div class="formulario">
 
-        <h1>Cadastro de Usuarios</h1>
+        <h1 class="text-center mt-4 font-weight-bold">Cadastro de Usuário</h1>
         <form asp-controller="Usuario" asp-action="salvar" method="post">
-            <div class="form-group">
-                <input class="form-control" type="number" asp-for="IdUsuario" hidden />
-                <span asp-validation-for="IdUsuario" class="validacao"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input class="form-control" type="text" asp-for="Email" />
-                <span asp-validation-for="Email" class="validacao"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Senha"></label>
-                <input class="form-control" type="password" asp-for="Senha" />
-                <span asp-validation-for="Senha" class="validacao"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nome"></label>
-                <input class="form-control" type="text" asp-for="Nome" />
-                <span asp-validation-for="Nome" class="validacao"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdTipousuario"></label>
-                <select class="form-control tipousuario" asp-for="IdTipousuario" asp-items="@ViewBag.listatipos">
-                    <option>Selecione um tipo usuario...</option>
-
-                </select>
-            </div>
-            <div class="form-group">
-                <span>@ViewBag.mensagem</span>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6 d-flex justify-content-between">
-                    <button type="submit">Salvar</button>
-                    <a class="btnlink" asp-controller="Usuario" asp-action="login">Login</a>
+            <div class="p-4 ">
+                <div class="form-group ">
+                    <input class="form-control " type="number" asp-for="IdUsuario" hidden />
+                    <span asp-validation-for="IdUsuario" class="validacao"></span>
                 </div>
+                <div class="form-group ">
+                    <input class="form-control" type="text" asp-for="Email" />
+                    <span asp-validation-for="Email" class="validacao"></span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" asp-for="Senha" />
+                    <span asp-validation-for="Senha" class="validacao"></span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" asp-for="Nome" />
+                    <span asp-validation-for="Nome" class="validacao"></span>
+                </div>
+                <div class="form-group">
+                    <select class="form-control tipousuario" asp-for="IdTipousuario" asp-items="@ViewBag.listatipos">
+                        <option>Selecione um tipo usuario...</option>
 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>@ViewBag.mensagem</span>
+                </div>
+                <div class="form-group text-center">
+                    <div class="col-xs-12 d-grid gap-2">
+                        <button type="submit" class="w-100">SALVAR</button>
+                        <a class="btnlink btn btn-link w-100" asp-controller="Usuario" asp-action="login">LOGIN</a>
+                    </div>
+                </div>
+                @* <div class="form-group row">
+                    <div class="col-sm-6 d-flex justify-content-between">
+                        <button type="submit">Salvar</button>
+                        <a class="btnlink" asp-controller="Usuario" asp-action="login">Login</a>
+                    </div>
+
+                </div> *@
             </div>
         </form>
     </div>

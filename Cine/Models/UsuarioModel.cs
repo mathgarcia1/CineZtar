@@ -17,20 +17,20 @@ namespace Cine.Models
         public int IdUsuario { get; set; }
 
         [Required(ErrorMessage = "Email é obrigatório")]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", Prompt = "Email")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatório")]
         [StringLength(maximumLength: 50, ErrorMessage = "Máximo 250 Caracteres")]
-        [Display(Name = "Senha")]
+        [Display(Name = "Senha", Prompt = "Senha")]
         public string Senha { get; set; }
 
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome", Prompt = "Nome")]
         [StringLength(maximumLength: 50, ErrorMessage = "Máximo 50 Caracteres")]
         public string Nome { get; set; }
 
 
-        [Display(Name = "Tipo de Usuario")]
+        [Display(Name = "Tipo de Usuario", Prompt = "Selecione Tipo de Usuario")]
         public int IdTipousuario { get; set; }
 
 

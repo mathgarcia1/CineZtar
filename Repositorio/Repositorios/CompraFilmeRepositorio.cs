@@ -9,8 +9,20 @@ namespace Repositorio.Repositorios
 {
     public class CompraFilmeRepositorio : BaseRepositorio<CompraFilme>
     {
-        public CompraFilmeRepositorio(DB_Ingressos2Context contexto) :base(contexto)
-        {
+        public CompraFilmeRepositorio(DB_Ingressos2Context contexto) : base(contexto)
+        {   
+            // _contexto = contexto;
         }
+        
+
+        // public void RemoverFilmeDaCompra(int idCompraFilme, int idFilme)
+        // {
+        //     var compraFilme = _contexto.CompraFilmes.FirstOrDefault(c => c.IdCompraFilme == idCompraFilme && c.IdFilme == idFilme);
+        //     if (compraFilme != null)
+        //     {
+        //         _contexto.CompraFilmes.Remove(compraFilme);
+        //         _contexto.SaveChanges();
+        //     }
+        // }
     }
 }
