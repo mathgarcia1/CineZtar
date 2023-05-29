@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<FilmeModel>
 @{
-    ViewData["Title"] = "listar";
+    ViewData["Title"] = "Lista de Filmes";
 }
 <div class="tabela">
 <h1>Lista de Filmes</h1>
-
-<span class="alert @ViewBag.classe">@ViewBag.mensagem</span>
-
+<div class="form-group mb-4 mt-3" id="divMensagem" >
+    <span class="@ViewBag.classe" id="spanMensagem">@ViewBag.mensagem</span>
+</div>
 <script>
 
 function confirmarExclusao(id) {
@@ -17,11 +17,10 @@ function confirmarExclusao(id) {
    }
 }
 </script>
-
-<a href="~/Filme/cadastro" class="btnlink">Novo Filme</a>
-<br/>
-<br/>
-<table class="table table-dark lista" style="width: 1000px">
+<div class="form-group mb-4 mt-3">
+    <a href="~/Filme/cadastro" class="btnlink">Novo Filme</a>
+</div>
+<table class="table table-dark table-striped" >
     <thead>
         <tr>
             <th scope="col">@Html.DisplayNameFor(model => model.IdFilme)</th>
@@ -50,4 +49,3 @@ function confirmarExclusao(id) {
     </tbody>
 </table>
 </div>
-

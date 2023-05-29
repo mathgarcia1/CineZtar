@@ -50,6 +50,7 @@ button {
     cursor: pointer;
     margin-top: 20px;
     box-shadow: 0px 0px 5px rgb(85, 27, 33);
+    font-weight: bold;
 }
 
 button:hover {
@@ -61,6 +62,7 @@ a {
     text-decoration: none;
     margin-top: 10px;
     font-size: 14px;
+    
 }
 
 .btnlink {
@@ -73,6 +75,8 @@ a {
     cursor: pointer;
     margin-top: 20px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .btnlink:hover {
@@ -82,6 +86,7 @@ a {
 }
 .validacao{
     color: crimson;
+    font-weight: bold;
 }
 .tipousuario{
     border-radius: 10px;
@@ -104,3 +109,29 @@ a {
     margin-bottom: 20px;
     background-color: #000000;
 } */
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #aaaaaa;
+    opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #aaaaaa;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: #aaaaaa;
+}
+.alert-danger{
+    --bs-alert-bg: #2c0b0e;
+    background-color: var(--bs-alert-bg);
+    --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
+    color: #ea868f;
+}
+.alert-success{
+    --bs-alert-bg: #0f5132;
+    background-color: var(--bs-alert-bg);
+    --bs-alert-border: var(--bs-border-width) var(--bs-alert-border-color);
+    color: #75b798;
+}
+  

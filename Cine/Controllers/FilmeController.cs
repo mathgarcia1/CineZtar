@@ -52,20 +52,20 @@ namespace Cine.Controllers
                 {
                     FilmeModel filmemodel = new FilmeModel();
                     filmemodel.salvar(model, webHostEnvironment);
-                    ViewBag.mensagem = "Dados salvos com sucesso!";
-                    ViewBag.classe = "alert-success";
+                    ViewBag.mensagem = "Filme salvo com sucesso!";
+                    ViewBag.classe = "alert alert-success";
                 }
                 catch (Exception ex)
                 {
 
-                    ViewBag.mensagem = "ops... Erro ao salvar!" + ex.Message + "/" + ex.InnerException;
-                    ViewBag.classe = "alert-danger";
+                    ViewBag.mensagem = "Erro ao salvar filme!" + ex.Message + "/" + ex.InnerException;
+                    ViewBag.classe = "alert alert-danger";
                 }
             }
             else
             {
-                ViewBag.mensagem = "ops... Erro ao salvar! verifique os campos";
-                ViewBag.classe = "alert-danger";
+                ViewBag.mensagem = "Erro ao salvar filme! verifique os campos";
+                ViewBag.classe = "alert alert-danger";
 
             }
 
@@ -116,14 +116,14 @@ namespace Cine.Controllers
             {
 
                 model.excluir(id);
-                ViewBag.mensagem = "Dados excluidos com sucesso!";
-                ViewBag.classe = "alert-success";
+                ViewBag.mensagem = "Filme excluído com sucesso!";
+                ViewBag.classe = "alert alert-success";
             }
             catch (Exception ex)
             {
 
-                ViewBag.mensagem = "Ops... Não foi possível excluir!" + ex.Message;
-                ViewBag.classe = "alert-danger";
+                ViewBag.mensagem = "Não foi possível excluir filme!" + ex.Message;
+                ViewBag.classe = "alert alert-danger";
             }
 
             return View("listar", model.listar());

@@ -14,12 +14,12 @@ namespace Cine.Models
         public int IdGenero { get; set; }
 
         [Required(ErrorMessage = "Nome do gênero é obrigatório!")]
-        [Display(Name = "Gênero")]
+        [Display(Name = "Gênero", Prompt = "Gênero")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Descrição do gênero é obrigatório!")]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Descrição", Prompt = "Descrição")]
         [StringLength(maximumLength: 150, ErrorMessage = "Máximo 150 Caractéres")]
         public string Descricao { get; set; }
 

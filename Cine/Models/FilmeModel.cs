@@ -24,26 +24,29 @@ namespace Cine.Models
         public int IdFilme { get; set; }
 
         [Required(ErrorMessage = "Nome do filme é obrigatório!")]
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome", Prompt = "Nome do Filme")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Descrição do filme é obrigatório!")]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Descrição", Prompt = "Descrição")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string Descricao { get; set; }
         
         [Required(ErrorMessage = "Duração do filme é obrigatório!")]
-        [Display(Name = "Duração")]
+        [Display(Name = "Duração", Prompt = "Duração")]
         public int? Duracao { get; set; }
 
        
-        [Display(Name = "Ano de lançamento")]
+        [Display(Name = "Ano de lançamento", Prompt = "Ano de lançamento")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string AnoLancamento { get; set; }
         public string Imagem { get; set; }
+        [Display(Name = "Idioma", Prompt = "Selecione um idioma")]
         public int? IdIdioma { get; set; }
+        [Display(Name = "Valor", Prompt = "Valor")]
         public decimal? Valor { get; set; }
+        [Display(Name = "Gênero", Prompt = "Selecione um Gênero")]
         public int? IdGenero { get; set; }
         
 

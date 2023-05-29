@@ -31,19 +31,19 @@ namespace Cine.Controllers
             //     compraFilmeModel.Valor = 0;
 
             //     ViewBag.mensagem = "Filme excluído com sucesso!";
-            //     ViewBag.classe = "alert-success";
+            //     ViewBag.classe = "alert alert-success";
             // }
             // catch (Exception ex)
             // {
             //     ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
-            //     ViewBag.classe = "alert-danger";
+            //     ViewBag.classe = "alert alert-danger";
             // }
             compraFilmeModel.IdFilme = null;
             compraFilmeModel.Quantidade = 0;
             compraFilmeModel.Valor = 0;
 
             ViewBag.mensagem = "Filme excluído com sucesso!";
-            ViewBag.classe = "alert-success";
+            ViewBag.classe = "alert alert-success";
             var lista = compraFilmeModel.listar(HttpContext.Session.GetInt32("IdCompra").Value);
             return View("Index", lista);
         }

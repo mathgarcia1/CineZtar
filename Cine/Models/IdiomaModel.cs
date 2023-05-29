@@ -14,7 +14,7 @@ namespace Cine.Models
         public int IdIdioma { get; set; }
 
         [Required(ErrorMessage = "Nome do idioma é obrigatório!")]
-        [Display(Name = "Idioma")]
+        [Display(Name = "Idioma", Prompt = "Idioma")]
         [StringLength(maximumLength:50, ErrorMessage = "Máximo 50 Caractéres")]
         public string Nome { get; set; }
         public IdiomaModel salvar(IdiomaModel model) {

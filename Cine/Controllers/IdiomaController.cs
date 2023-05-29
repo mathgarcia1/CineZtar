@@ -18,8 +18,8 @@ namespace Cine.Controllers
         public IActionResult cadastro(int? mostraMensagem) {
             if (mostraMensagem.HasValue)
             {
-                ViewBag.mensagem = "Dados salvos com sucesso!";
-                ViewBag.classe = "alert-success";
+                ViewBag.mensagem = "Idioma salvo com sucesso!";
+                ViewBag.classe = "alert alert-success";
             }
             return View(new IdiomaModel());
         }
@@ -36,15 +36,15 @@ namespace Cine.Controllers
                 catch (Exception ex)
                 {
 
-                    ViewBag.mensagem = "ops... Erro ao salvar!" + ex.Message + "/" + ex.InnerException;
-                    ViewBag.classe = "alert-danger";
+                    ViewBag.mensagem = "Erro ao salvar idioma! " + ex.Message + "/" + ex.InnerException;
+                    ViewBag.classe = "alert alert-danger";
                     return View("cadastro", model);
                 }
             }
             else
             {
-                ViewBag.mensagem = "ops... Erro ao salvar! verifique os campos";
-                ViewBag.classe = "alert-danger";
+                ViewBag.mensagem = "Erro ao salvar idioma! verifique os campos";
+                ViewBag.classe = "alert alert-danger";
                 return View("cadastro", model);
             }
 
@@ -71,14 +71,14 @@ namespace Cine.Controllers
             {
                 
                 model.excluir(id);
-                ViewBag.mensagem = "Dados excluidos com sucesso!";
-                ViewBag.classe = "alert-success";
+                ViewBag.mensagem = "Idioma excluído com sucesso!";
+                ViewBag.classe = "alert alert-success";
             }
             catch (Exception ex)
             {
 
-                ViewBag.mensagem = "Ops... Não foi possível excluir!" + ex.Message;
-                ViewBag.classe = "alert-danger";
+                ViewBag.mensagem = "Não foi possível excluir idioma! " + ex.Message;
+                ViewBag.classe = "alert alert-danger";
             }
 
             return View("listar", model.listar());

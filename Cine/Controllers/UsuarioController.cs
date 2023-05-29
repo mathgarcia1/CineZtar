@@ -44,7 +44,7 @@ namespace Cine.Controllers
             if (model == null)
             {
                 ViewBag.mensagem = "Dados inválidos";
-                ViewBag.classe = "alert-danger";
+                ViewBag.classe = "alert alert-danger";
                 return View("login");
             }
             else {
@@ -72,20 +72,20 @@ namespace Cine.Controllers
                     UsuarioModel usuarioModel = new UsuarioModel();
                     
                     usuarioModel.salvar(model);
-                    ViewBag.mensagem = "Dados salvos com sucesso!";
-                    ViewBag.classe = "alert-success";
+                    ViewBag.mensagem = "Usuário cadastrado com sucesso!";
+                    ViewBag.classe = "alert alert-success";
                 }
                 catch (Exception ex)
                 {
 
-                    ViewBag.mensagem = "ops... Erro ao salvar!" + ex.Message + "/" + ex.InnerException;
-                    ViewBag.classe = "alert-danger";
+                    ViewBag.mensagem = "Erro ao cadastrar usuário! " + ex.Message + "/" + ex.InnerException;
+                    ViewBag.classe = "alert alert-danger";
                 }
             }
             else
             {
-                ViewBag.mensagem = "ops... Erro ao salvar! verifique os campos";
-                ViewBag.classe = "alert-danger";
+                ViewBag.mensagem = "Erro ao cadastrar usuário! verifique os campos";
+                ViewBag.classe = "alert alert-danger";
 
             }
 
@@ -127,14 +127,14 @@ namespace Cine.Controllers
             {
 
                 usuarioModel.excluir(id);
-                ViewBag.mensagem = "Dados excluidos com sucesso!";
-                ViewBag.classe = "alert-success";
+                ViewBag.mensagem = "Usuário excluído com sucesso!";
+                ViewBag.classe = "alert alert-success";
             }
             catch (Exception ex)
             {
 
-                ViewBag.mensagem = "Ops... Não foi possível excluir!" + ex.Message;
-                ViewBag.classe = "alert-danger";
+                ViewBag.mensagem = "Não foi possível excluir usuário! " + ex.Message;
+                ViewBag.classe = "alert alert-danger";
             }
 
             return View("listar", usuarioModel.listar());

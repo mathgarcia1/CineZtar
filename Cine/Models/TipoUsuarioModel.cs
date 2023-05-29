@@ -16,7 +16,7 @@ namespace Cine.Models
         public int IdTipousuario { get; set; }
 
         [Required(ErrorMessage = "Descrição é obrigatória")]
-        [Display(Name = "Descrição")]
+        [Display(Name = "Descrição", Prompt = "Descrição")]
         [StringLength(maximumLength:50, ErrorMessage ="Máximo 50 Caracteres")]
         public string Descricao { get; set; }
 
