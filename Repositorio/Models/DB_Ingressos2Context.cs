@@ -147,7 +147,7 @@ namespace Repositorio.Models
                 entity.Property(e => e.IdGenero).HasColumnName("id_genero");
 
                 entity.Property(e => e.Descricao)
-                    .HasMaxLength(50)
+                    .HasMaxLength(150)
                     .IsUnicode(false)
                     .HasColumnName("descricao");
 
