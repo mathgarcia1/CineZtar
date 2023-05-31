@@ -144,6 +144,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\4ca4cc38-5cc5-40b5-baeb-d5fc7781db35_fluorescent.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\62f26d97-f01e-4be8-b0cc-282f1bf02d4d_Bjorn Andresen.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Cine</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Cine</BasePath>
+      <RelativePath>Imagens\62f26d97-f01e-4be8-b0cc-282f1bf02d4d_Bjorn Andresen.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\62f26d97-f01e-4be8-b0cc-282f1bf02d4d_Bjorn Andresen.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\9e2b9eaf-25d6-438f-8125-07c90b0db0b4_Screenshot_3.png))">
       <SourceType>Package</SourceType>
       <SourceId>Cine</SourceId>

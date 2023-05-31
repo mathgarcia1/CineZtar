@@ -1,83 +1,92 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.WebUtilities;
-using Repositorio.Models;
-using Repositorio.Repositorios;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
+﻿/// <summary>
+/// Description of the class or file.
+/// </summary>
+/// <author>mathgarcia1</author>
+/// <created>2023-05-31 14:03:46</created>
+/// <lastModified>2023-05-31 14:03:46</lastModified>
+/// <copyright>
+/// Copyright (c) 2023 mathgarcia1
+/// </copyright>
 namespace Cine.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using AutoMapper;
+    using Repositorio.Models;
+    using Repositorio.Repositorios;
+
     public class TipoUsuarioModel
     {
-
         [KeyAttribute]
-        [Required(ErrorMessage ="Código é obrigatório")]
-        [Display(Name ="Código")]
+        [Required(ErrorMessage = "Código é obrigatório")]
+        [Display(Name = "Código")]
         public int IdTipousuario { get; set; }
 
         [Required(ErrorMessage = "Descrição é obrigatória")]
         [Display(Name = "Descrição", Prompt = "Descrição")]
-        [StringLength(maximumLength:50, ErrorMessage ="Máximo 50 Caracteres")]
+        [StringLength(maximumLength: 50, ErrorMessage = "Máximo 50 Caracteres")]
         public string Descricao { get; set; }
 
-        public TipoUsuarioModel salvar(TipoUsuarioModel model) {
+        public TipoUsuarioModel Salvar(TipoUsuarioModel model)
+        {
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             TipoUsuario tipoUsuario = mapper.Map<TipoUsuario>(model);
 
-            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            using (DB_Ingressos2Context contexto = new ())
             {
-                TipoUsuarioRepositorio repositorio = new TipoUsuarioRepositorio(contexto);
+                TipoUsuarioRepositorio repositorio = new (contexto);
 
                 if (model.IdTipousuario == 0)
+                {
                     repositorio.Inserir(tipoUsuario);
+                }
                 else
+                {
                     repositorio.Alterar(tipoUsuario);
+                }
 
                 contexto.SaveChanges();
             }
+
             model.IdTipousuario = tipoUsuario.IdTipousuario;
             return model;
-            
-        
         }
-        public List<TipoUsuarioModel> listar() {
+
+        public List<TipoUsuarioModel> Listar()
+        {
             List<TipoUsuarioModel> listamodel = null;
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
-            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            using (DB_Ingressos2Context contexto = new ())
             {
-                TipoUsuarioRepositorio repositorio = new TipoUsuarioRepositorio(contexto);
+                TipoUsuarioRepositorio repositorio = new (contexto);
                 List<TipoUsuario> lista = repositorio.ListarTodos();
                 listamodel = mapper.Map<List<TipoUsuarioModel>>(lista);
             }
-            
+
             return listamodel;
         }
 
-        public TipoUsuarioModel selecionar(int id) {
+        public TipoUsuarioModel Selecionar(int id)
+        {
             TipoUsuarioModel model = null;
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
-            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            using (DB_Ingressos2Context contexto = new ())
             {
-                TipoUsuarioRepositorio repositorio = new TipoUsuarioRepositorio(contexto);
-                TipoUsuario tipo = repositorio.Recuperar(c=>c.IdTipousuario==id);
+                TipoUsuarioRepositorio repositorio = new (contexto);
+                TipoUsuario tipo = repositorio.Recuperar(c => c.IdTipousuario == id);
                 model = mapper.Map<TipoUsuarioModel>(tipo);
             }
+
             return model;
         }
 
-        public void excluir(int id) {
-
-            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
-            {
-                TipoUsuarioRepositorio repositorio = 
-                    new TipoUsuarioRepositorio(contexto);
-                TipoUsuario tipoUsuario = repositorio.Recuperar(c => c.IdTipousuario == id);
-                repositorio.Excluir(tipoUsuario);
-                contexto.SaveChanges();
-            }
+        public void Excluir(int id)
+        {
+            using DB_Ingressos2Context contexto = new ();
+            TipoUsuarioRepositorio repositorio = new (contexto);
+            TipoUsuario tipoUsuario = repositorio.Recuperar(c => c.IdTipousuario == id);
+            repositorio.Excluir(tipoUsuario);
+            contexto.SaveChanges();
         }
-        
-
-
     }
 }

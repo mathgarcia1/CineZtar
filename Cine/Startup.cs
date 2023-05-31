@@ -1,20 +1,11 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Repositorio.Models;
-using Repositorio.Repositorios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Cine.Models;
-
 namespace Cine
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -31,26 +22,26 @@ namespace Cine
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+                options.AddPolicy(
+                    "AllowLocalhost5001",
+                    builder =>
+                    {
+                        builder
+                            .WithOrigins("https://localhost:5001")
                             .AllowAnyMethod()
                             .AllowAnyHeader();
-                });
-                options.AddPolicy("AllowLocalhost5001", builder =>
-                {
-                    builder.WithOrigins("https://localhost:5001")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
+                    }
+                );
             });
             services.AddHttpContextAccessor();
-
 
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
             services.AddSession();
 
             //services.AddHttpContextAccessor();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,9 +75,8 @@ namespace Cine
                 );
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }
