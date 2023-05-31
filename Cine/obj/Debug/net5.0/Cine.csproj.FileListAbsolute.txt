@@ -519,3 +519,4 @@ C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\V
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\TipoUsuario\cadastro.cshtml.g.cs
 C:\Users\mathe\OneDrive\Documentos\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Usuario\cadastro.cshtml.g.cs
 D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\TipoUsuario\listar.cshtml.g.cs
+D:\Documents\GitHub\CineZtar\Cine\obj\Debug\net5.0\Razor\Views\Compra\Falha.cshtml.g.cs

@@ -24,6 +24,17 @@ namespace Cine.Controllers
         {
 
             var compraFilmeModel = new CompraFilmeModel().selecionar(id);
+            try
+            {
+                compraFilmeModel.removerFilme(id, IdFilme);
+                ViewBag.mensagem = "Filme excluído com sucesso!";
+                ViewBag.classe = "alert alert-success";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
+                ViewBag.classe = "alert alert-danger";
+            }
             // try
             // {
             //     compraFilmeModel.IdFilme = null;
@@ -38,12 +49,12 @@ namespace Cine.Controllers
             //     ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
             //     ViewBag.classe = "alert alert-danger";
             // }
-            compraFilmeModel.IdFilme = null;
-            compraFilmeModel.Quantidade = 0;
-            compraFilmeModel.Valor = 0;
+            // compraFilmeModel.IdFilme = null;
+            // compraFilmeModel.Quantidade = 0;
+            // compraFilmeModel.Valor = 0;
 
-            ViewBag.mensagem = "Filme excluído com sucesso!";
-            ViewBag.classe = "alert alert-success";
+            // ViewBag.mensagem = "Filme excluído com sucesso!";
+            // ViewBag.classe = "alert alert-success";
             var lista = compraFilmeModel.listar(HttpContext.Session.GetInt32("IdCompra").Value);
             return View("Index", lista);
         }
@@ -104,10 +115,18 @@ namespace Cine.Controllers
             else
             {
                 compras.IdStatus = 4;
+                compras.Url = null;
             }
 
             new CompraModel().salvar(compras);
-            return Redirect(retorno.Result.Url);
+            if (!string.IsNullOrEmpty(compras.Url))
+            {
+                return Redirect(retorno.Result.Url);
+            }
+            else
+            {
+                return RedirectToAction("Falha", "Compra");
+            }
         }
 
         public virtual JsonResult alterarQtde(int id, int qtde)
@@ -121,6 +140,10 @@ namespace Cine.Controllers
         }
 
         public IActionResult Finalizacao()
+        {
+            return View();
+        }
+        public IActionResult Falha()
         {
             return View();
         }
