@@ -112,6 +112,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\067b933c-ae8b-44a5-ab46-7da68d272457_artworks-HVBetBEhoU0K5qxF-d4jqRQ-t500x500.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\09b9664e-b0e6-48b5-84dc-610cc88e6007_placeholder.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Cine</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Cine</BasePath>
+      <RelativePath>Imagens\09b9664e-b0e6-48b5-84dc-610cc88e6007_placeholder.png</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\09b9664e-b0e6-48b5-84dc-610cc88e6007_placeholder.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Imagens\4ca4cc38-5cc5-40b5-baeb-d5fc7781db35_fluorescent.png))">
       <SourceType>Package</SourceType>
       <SourceId>Cine</SourceId>

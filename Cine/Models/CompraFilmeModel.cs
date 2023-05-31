@@ -119,23 +119,23 @@ namespace Cine.Models
             return listamodel;
         }
 
-        // public void removerFilme(int id, int IdFilme)
-        // {
-        //     using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
-        //     {
-        //         CompraFilmeRepositorio repositorio = new CompraFilmeRepositorio(contexto);
-        //         CompraFilme compraFilme = repositorio.Recuperar(c => c.IdCompraFilme == id);
-        //         if (compraFilme != null)
-        //         {
-        //             compraFilme.IdFilme = null;
-        //             compraFilme.Valor = 0;
-        //             compraFilme.Quantidade = null;
-        //             repositorio.Alterar(compraFilme);
-        //             contexto.SaveChanges();
+        public void removerFilme(int id, int IdFilme)
+        {
+            using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+            {
+                CompraFilmeRepositorio repositorio = new CompraFilmeRepositorio(contexto);
+                CompraFilme compraFilme = repositorio.Recuperar(c => c.IdCompraFilme == id);
+                if (compraFilme != null)
+                {
+                    compraFilme.IdFilme = 16;
+                    compraFilme.Valor = 0;
+                    compraFilme.Quantidade = 0;
+                    repositorio.Alterar(compraFilme);
+                    contexto.SaveChanges();
 
-        //         }
+                }
 
-        //     }
-        // }
+            }
+        }
     }
 }
