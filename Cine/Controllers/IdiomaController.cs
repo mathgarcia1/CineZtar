@@ -1,87 +1,93 @@
-using System;
-using System.Collections.Generic;
-using AutoMapper;
-using Cine.Models;
-using Microsoft.AspNetCore.Mvc;
-using Repositorio.Models;
-using Repositorio.Repositorios;
-
+/// <summary>
+/// Description of the class or file.
+/// </summary>
+/// <author>mathgarcia1</author>
+/// <created>2023-05-31 13:45:39</created>
+/// <lastModified>2023-05-31 13:45:39</lastModified>
+/// <copyright>
+/// Copyright (c) 2023 mathgarcia1
+/// </copyright>
 namespace Cine.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using Cine.Models;
+    using Microsoft.AspNetCore.Mvc;
+
     public class IdiomaController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
-        public IActionResult cadastro(int? mostraMensagem) {
+        public IActionResult cadastro(int? mostraMensagem)
+        {
             if (mostraMensagem.HasValue)
             {
-                ViewBag.mensagem = "Idioma salvo com sucesso!";
-                ViewBag.classe = "alert alert-success";
+                this.ViewBag.mensagem = "Idioma salvo com sucesso!";
+                this.ViewBag.classe = "alert alert-success";
             }
-            return View(new IdiomaModel());
+
+            return this.View(new IdiomaModel());
         }
+
         [HttpPost]
-        public IActionResult salvar(IdiomaModel model) {
-            if (ModelState.IsValid)
+        public IActionResult salvar(IdiomaModel model)
+        {
+            if (this.ModelState.IsValid)
             {
                 try
                 {
                     IdiomaModel idioma = new IdiomaModel();
-                    idioma.salvar(model);
-                    return RedirectToAction("cadastro", new { mostraMensagem = 1 });
+                    idioma.Salvar(model);
+                    return this.RedirectToAction("cadastro", new { mostraMensagem = 1 });
                 }
                 catch (Exception ex)
                 {
-
-                    ViewBag.mensagem = "Erro ao salvar idioma! " + ex.Message + "/" + ex.InnerException;
-                    ViewBag.classe = "alert alert-danger";
-                    return View("cadastro", model);
+                    this.ViewBag.mensagem =
+                        "Erro ao salvar idioma! " + ex.Message + "/" + ex.InnerException;
+                    this.ViewBag.classe = "alert alert-danger";
+                    return this.View("cadastro", model);
                 }
             }
             else
             {
-                ViewBag.mensagem = "Erro ao salvar idioma! verifique os campos";
-                ViewBag.classe = "alert alert-danger";
-                return View("cadastro", model);
+                this.ViewBag.mensagem = "Erro ao salvar idioma! verifique os campos";
+                this.ViewBag.classe = "alert alert-danger";
+                return this.View("cadastro", model);
             }
-
-           
         }
-
 
         public IActionResult listar()
         {
-            IdiomaModel idioma = new IdiomaModel();
-            List<IdiomaModel> lista = idioma.listar();
-            return View(lista);
+            IdiomaModel idioma = new ();
+            List<IdiomaModel> lista = idioma.Listar();
+            return this.View(lista);
         }
 
-
-        public IActionResult prealterar(int id) {
-            IdiomaModel model = new IdiomaModel();
-            return View("cadastro", model.selecionar(id));
+        public IActionResult prealterar(int id)
+        {
+            IdiomaModel model = new ();
+            return this.View("cadastro", model.Selecionar(id));
         }
 
-        public IActionResult excluir(int id) {
-            IdiomaModel model = new IdiomaModel();
+        public IActionResult excluir(int id)
+        {
+            IdiomaModel model = new ();
             try
             {
-                
-                model.excluir(id);
-                ViewBag.mensagem = "Idioma excluído com sucesso!";
-                ViewBag.classe = "alert alert-success";
+                model.Excluir(id);
+                this.ViewBag.mensagem = "Idioma excluído com sucesso!";
+                this.ViewBag.classe = "alert alert-success";
             }
             catch (Exception ex)
             {
-
-                ViewBag.mensagem = "Não foi possível excluir idioma! " + ex.Message;
-                ViewBag.classe = "alert alert-danger";
+                this.ViewBag.mensagem = "Não foi possível excluir idioma! " + ex.Message;
+                this.ViewBag.classe = "alert alert-danger";
             }
 
-            return View("listar", model.listar());
+            return this.View("listar", model.Listar());
         }
     }
 }

@@ -1,82 +1,85 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using Cine.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Repositorio.Models;
-using Repositorio.Repositorios;
-
+/// <summary>
+/// Description of the class or file.
+/// </summary>
+/// <author>mathgarcia1</author>
+/// <created>2023-05-31 13:05:12</created>
+/// <lastModified>2023-05-31 13:05:12</lastModified>
+/// <copyright>
+/// Copyright (c) 2023 mathgarcia1
+/// </copyright>
 namespace Cine.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Cine.Models;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+
     public class CompraController : Controller
     {
         public IActionResult Index()
         {
-            List<CompraFilmeModel> lista = new List<CompraFilmeModel>();
-            //List<CompraFilmeModel> lista = new CompraFilmeModel().listar(1);
-            return View(lista);
+            List<CompraFilmeModel> lista = new ();
 
+            // List<CompraFilmeModel> lista = new CompraFilmeModel().listar(1);
+            return this.View(lista);
         }
 
         public IActionResult excluirFilme(int id, int IdFilme)
         {
-
-            var compraFilmeModel = new CompraFilmeModel().selecionar(id);
+            var compraFilmeModel = new CompraFilmeModel().Selecionar(id);
             try
             {
-                compraFilmeModel.removerFilme(id, IdFilme);
-                ViewBag.mensagem = "Filme excluído com sucesso!";
-                ViewBag.classe = "alert alert-success";
+                compraFilmeModel.RemoverFilme(id, IdFilme);
+                this.ViewBag.mensagem = "Filme excluído com sucesso!";
+                this.ViewBag.classe = "alert alert-success";
             }
             catch (Exception ex)
             {
-                ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
-                ViewBag.classe = "alert alert-danger";
+                this.ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
+                this.ViewBag.classe = "alert alert-danger";
             }
+
             // try
             // {
             //     compraFilmeModel.IdFilme = null;
             //     compraFilmeModel.Quantidade = 0;
             //     compraFilmeModel.Valor = 0;
-
-            //     ViewBag.mensagem = "Filme excluído com sucesso!";
-            //     ViewBag.classe = "alert alert-success";
+            //     this.ViewBag.mensagem = "Filme excluído com sucesso!";
+            //     this.ViewBag.classe = "alert alert-success";
             // }
             // catch (Exception ex)
             // {
-            //     ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
-            //     ViewBag.classe = "alert alert-danger";
+            //     this.ViewBag.mensagem = "Ops... Não foi possível excluir o filme! " + ex.Message;
+            //     this.ViewBag.classe = "alert alert-danger";
             // }
             // compraFilmeModel.IdFilme = null;
             // compraFilmeModel.Quantidade = 0;
             // compraFilmeModel.Valor = 0;
 
-            // ViewBag.mensagem = "Filme excluído com sucesso!";
-            // ViewBag.classe = "alert alert-success";
-            var lista = compraFilmeModel.listar(HttpContext.Session.GetInt32("IdCompra").Value);
-            return View("Index", lista);
+            // this.ViewBag.mensagem = "Filme excluído com sucesso!";
+            // this.ViewBag.classe = "alert alert-success";
+            var lista = compraFilmeModel.Listar(this.HttpContext.Session.GetInt32("IdCompra").Value);
+            return this.View("Index", lista);
         }
-
 
         public IActionResult Finalizar()
         {
-            int IdCompra = HttpContext.Session.GetInt32("IdCompra").Value;
-            CompraModel compras = new CompraModel().selecionar(IdCompra);
+            int IdCompra = this.HttpContext.Session.GetInt32("IdCompra").Value;
+            CompraModel compras = new CompraModel().Selecionar(IdCompra);
             compras.IdStatus = 3;
-            var filmes = (new CompraFilmeModel()).listar(IdCompra);
+            var filmes = new CompraFilmeModel().Listar(IdCompra);
             decimal total = 0;
             foreach (var item in filmes)
             {
                 total = (decimal)(total + item.Valor);
             }
+
             compras.Valor = total;
-            //compras.idcliente = HttpContext.Session.GetInt32("idCliente").Value;
-
-
-            //gerar o pagamento
-            /*   ClienteModel cliente = new ClienteModel().selecionar(HttpContext.Session.GetInt32("idCliente").Value);
+            /*compras.idcliente = this.HttpContext.Session.GetInt32("idCliente").Value;
+            gerar o pagamento
+               ClienteModel cliente = new ClienteModel().selecionar(this.HttpContext.Session.GetInt32("idCliente").Value);
                Task<RetornoMercadoPago> retorno = new ComprasModel().gerarPagamentoMercadoPago(new MercadoPagoModel()
                {
                    email = cliente.email,
@@ -90,24 +93,24 @@ namespace Cine.Controllers
                    numero = cliente.numero,
                    telefone = cliente.telefone,
                    valor = total
-               });*/
-            //como não tenho cliente aqui vou fazer fixo para testar.
-            Task<RetornoMercadoPago> retorno = new CompraModel().gerarPagamentoMercadoPago(
-               new MercadoPagoModel()
-               {
-                   email = "meuamigovet@gmail.com",
-                   cidade = "Presidente Prudente",
-                   cep = "19025563",
-                   estado = "SP",
-                   idPagamento = IdCompra,
-                   logradouro = "Avenida Brasil",
-                   nome = "Cliente teste",
-                   nomePlano = "Venda Ingresso Toledo",
-                   numero = "20",
-                   telefone = "1897865695",
-                   valor = total
                });
-            if (retorno.Result.status == "SUCESSO")
+            como não tenho cliente aqui vou fazer fixo para testar.*/
+            Task<RetornoMercadoPago> retorno = new CompraModel().gerarPagamentoMercadoPago(
+                new MercadoPagoModel()
+                {
+                    email = "meuamigovet@gmail.com",
+                    cidade = "Presidente Prudente",
+                    cep = "19025563",
+                    estado = "SP",
+                    idPagamento = IdCompra,
+                    logradouro = "Avenida Brasil",
+                    nome = "Cliente teste",
+                    nomePlano = "Venda Ingresso Toledo",
+                    numero = "20",
+                    telefone = "1897865695",
+                    valor = total,
+                });
+            if (retorno.Result.Status == "SUCESSO")
             {
                 compras.IdPreferencia = retorno.Result.IdPreferencia;
                 compras.Url = retorno.Result.Url;
@@ -118,87 +121,95 @@ namespace Cine.Controllers
                 compras.Url = null;
             }
 
-            new CompraModel().salvar(compras);
+            new CompraModel().Salvar(compras);
             if (!string.IsNullOrEmpty(compras.Url))
             {
-                return Redirect(retorno.Result.Url);
+                return this.Redirect(retorno.Result.Url);
             }
             else
             {
-                return RedirectToAction("Falha", "Compra");
+                return this.RedirectToAction("Falha", "Compra");
             }
         }
 
         public virtual JsonResult alterarQtde(int id, int qtde)
         {
-            CompraFilmeModel compraFilmeModel = (new CompraFilmeModel()).selecionar(id);
+            CompraFilmeModel compraFilmeModel = new CompraFilmeModel().Selecionar(id);
             compraFilmeModel.Quantidade = qtde;
-            decimal valorUnitario = (decimal)new FilmeModel().selecionar((int)compraFilmeModel.IdFilme).Valor;
+            decimal valorUnitario = (decimal)
+                new FilmeModel().Selecionar((int)compraFilmeModel.IdFilme).Valor;
             compraFilmeModel.Valor = qtde * valorUnitario;
-            (new CompraFilmeModel()).salvar(compraFilmeModel);
+            new CompraFilmeModel().salvar(compraFilmeModel);
             return new JsonResult(compraFilmeModel);
         }
 
         public IActionResult Finalizacao()
         {
-            return View();
+            return this.View();
         }
+
         public IActionResult Falha()
         {
-            return View();
+            return this.View();
         }
 
         [HttpGet]
-        public IActionResult retornoMercadoPago(string collection_id, string collection_status, string payment_id, string status, string external_reference, string payment_type, string merchant_order_id,
-        string preference_id, string site_id, string processing_mode, string merchant_account_id)
+        public IActionResult retornoMercadoPago(
+            string collection_id,
+            string collection_status,
+            string payment_id,
+            string status,
+            string external_reference,
+            string payment_type,
+            string merchant_order_id,
+            string preference_id,
+            string site_id,
+            string processing_mode,
+            string merchant_account_id)
         {
-            CompraModel compras = new CompraModel().selecionarIdPreferencia(preference_id);
+            CompraModel compras = new CompraModel().SelecionarIdPreferencia(preference_id);
             compras.IdStatus = 2;
-            new CompraModel().salvar(compras);
+            new CompraModel().Salvar(compras);
 
             if (status == "approved")
             {
-                return RedirectToAction("Finalizacao", "Compra");
+                return this.RedirectToAction("Finalizacao", "Compra");
             }
             else
             {
-                return View();
+                return this.View();
             }
-
         }
-
 
         public IActionResult comprarFilme(int id)
         {
-            var filme = (new FilmeModel()).selecionar(id);
+            var filme = new FilmeModel().Selecionar(id);
             var valor = filme.Valor;
 
-            if (HttpContext.Session.GetInt32("IdCompra") == null)
+            if (this.HttpContext.Session.GetInt32("IdCompra") == null)
             {
                 var compras = new CompraModel()
                 {
                     Data = DateTime.Now,
                     IdStatus = 1,
-                    Valor = valor
+                    Valor = valor,
                 };
 
-                (new CompraModel()).salvar(compras);
-                HttpContext.Session.SetInt32("IdCompra", compras.IdCompra);
-
+                new CompraModel().Salvar(compras);
+                this.HttpContext.Session.SetInt32("IdCompra", compras.IdCompra);
             }
+
             var compraFilmeModel = new CompraFilmeModel()
             {
-                IdCompra = HttpContext.Session.GetInt32("IdCompra").Value,
+                IdCompra = this.HttpContext.Session.GetInt32("IdCompra").Value,
                 IdFilme = id,
                 Quantidade = 1,
-                Valor = valor
+                Valor = valor,
             };
-            (new CompraFilmeModel()).salvar(compraFilmeModel);
+            new CompraFilmeModel().salvar(compraFilmeModel);
 
-            var lista = (new CompraFilmeModel()).listar(
-                HttpContext.Session.GetInt32("IdCompra").Value);
-
-            return View("Index", lista);
+            var lista = new CompraFilmeModel().Listar(this.HttpContext.Session.GetInt32("IdCompra").Value);
+            return this.View("Index", lista);
         }
     }
 }

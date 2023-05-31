@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5j6gn963J/Jo2weMNJtoxt1bUiwxRzNvbkcSku43ywRmgIYpkWpGc98Vfs87cmPrXqyhbSYd3Pb5ntth/i8VUw==",
+  "dgSpecHash": "lrrfvBdAj9jTN5B1LBdXoyUKUI9bahABoxDLlJXfeCv4pRjufdZCJ1y1mTsblOvtcTM1Hf/S/ffCTtGNPUY7MQ==",
   "success": true,
   "projectFilePath": "D:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
   "expectedPackageFiles": [
@@ -77,6 +77,7 @@
     "C:\\Users\\Matheus\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Matheus\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

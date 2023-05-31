@@ -1,133 +1,110 @@
-using AutoMapper;
-using Cine.Models;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Repositorio.Models;
-using Repositorio.Repositorios;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
+/// <summary>
+/// Description of the class or file.
+/// </summary>
+/// <author>mathgarcia1</author>
+/// <created>2023-05-31 13:25:22</created>
+/// <lastModified>2023-05-31 13:25:22</lastModified>
+/// <copyright>
+/// Copyright (c) 2023 mathgarcia1
+/// </copyright>
 namespace Cine.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Cine.Models;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public class FilmeController : Controller
     {
         private readonly IWebHostEnvironment webHostEnvironment;
+
         public FilmeController(IWebHostEnvironment hostEnvironment)
         {
-            webHostEnvironment = hostEnvironment;
+            this.webHostEnvironment = hostEnvironment;
         }
-
 
         public IActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
-        public IActionResult cadastro() {
-            List<GeneroModel> lista = (new GeneroModel()).listar();
-            ViewBag.listageneros = lista.Select(c=>new SelectListItem() { 
-               Value = c.IdGenero.ToString(), Text = c.Descricao
-            });
-            List<IdiomaModel> listaidioma = (new IdiomaModel()).listar();
-            ViewBag.listaidiomas = listaidioma.Select(c=>new SelectListItem() { 
-               Value = c.IdIdioma.ToString(), Text = c.Nome
-            });
-            return View(new FilmeModel());
+        public IActionResult cadastro()
+        {
+            List<GeneroModel> lista = new GeneroModel().Listar();
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Nome });
+            List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
+            this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
+            return this.View(new FilmeModel());
         }
-
-
-       
 
         [HttpPost]
         public IActionResult salvar(FilmeModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-
                 try
                 {
-                    FilmeModel filmemodel = new FilmeModel();
-                    filmemodel.salvar(model, webHostEnvironment);
-                    ViewBag.mensagem = "Filme salvo com sucesso!";
-                    ViewBag.classe = "alert alert-success";
+                    FilmeModel filmemodel = new ();
+                    filmemodel.Salvar(model, this.webHostEnvironment);
+                    this.ViewBag.mensagem = "Filme salvo com sucesso!";
+                    this.ViewBag.classe = "alert alert-success";
                 }
                 catch (Exception ex)
                 {
-
-                    ViewBag.mensagem = "Erro ao salvar filme!" + ex.Message + "/" + ex.InnerException;
-                    ViewBag.classe = "alert alert-danger";
+                    this.ViewBag.mensagem =
+                        "Erro ao salvar filme!" + ex.Message + "/" + ex.InnerException;
+                    this.ViewBag.classe = "alert alert-danger";
                 }
             }
             else
             {
-                ViewBag.mensagem = "Erro ao salvar filme! verifique os campos";
-                ViewBag.classe = "alert alert-danger";
-
+                this.ViewBag.mensagem = "Erro ao salvar filme! verifique os campos";
+                this.ViewBag.classe = "alert alert-danger";
             }
 
-            List<GeneroModel> lista = (new GeneroModel()).listar();
-            ViewBag.listageneros = lista.Select(c => new SelectListItem()
-            {
-                Value = c.IdGenero.ToString(),
-                Text = c.Descricao
-            });
-            List<IdiomaModel> listaidioma = (new IdiomaModel()).listar();
-            ViewBag.listaidiomas = listaidioma.Select(c=>new SelectListItem() { 
-                Value = c.IdIdioma.ToString(),
-                Text = c.Nome
-            });
-            return View("cadastro", model);
+            List<GeneroModel> lista = new GeneroModel().Listar();
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Descricao });
+            List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
+            this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
+            return this.View("cadastro", model);
         }
-
 
         public IActionResult listar()
         {
-            FilmeModel filmemodel = new FilmeModel();
-            List<FilmeModel> lista = filmemodel.listar();
-            return View(lista);
+            FilmeModel filmemodel = new ();
+            List<FilmeModel> lista = filmemodel.Listar();
+            return this.View(lista);
         }
-
 
         public IActionResult prealterar(int id)
         {
-            FilmeModel model = new FilmeModel();
-            List<GeneroModel> lista = (new GeneroModel()).listar();
-            ViewBag.listageneros = lista.Select(c => new SelectListItem()
-            {
-                Value = c.IdGenero.ToString(),
-                Text = c.Descricao
-            });
-            List<IdiomaModel> listaidioma = (new IdiomaModel()).listar();
-            ViewBag.listaidiomas = listaidioma.Select(c=>new SelectListItem() { 
-                Value = c.IdIdioma.ToString(),
-                Text = c.Nome
-            });
-            return View("cadastro", model.selecionar(id));
+            FilmeModel model = new ();
+            List<GeneroModel> lista = new GeneroModel().Listar();
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Descricao });
+            List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
+            this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
+            return this.View("cadastro", model.Selecionar(id));
         }
 
         public IActionResult excluir(int id)
         {
-            FilmeModel model = new FilmeModel();
+            FilmeModel model = new ();
             try
             {
-
-                model.excluir(id);
-                ViewBag.mensagem = "Filme excluído com sucesso!";
-                ViewBag.classe = "alert alert-success";
+                model.Excluir(id);
+                this.ViewBag.mensagem = "Filme excluído com sucesso!";
+                this.ViewBag.classe = "alert alert-success";
             }
             catch (Exception ex)
             {
-
-                ViewBag.mensagem = "Não foi possível excluir filme!" + ex.Message;
-                ViewBag.classe = "alert alert-danger";
+                this.ViewBag.mensagem = "Não foi possível excluir filme!" + ex.Message;
+                this.ViewBag.classe = "alert alert-danger";
             }
 
-            return View("listar", model.listar());
+            return this.View("listar", model.Listar());
         }
-
     }
 }
