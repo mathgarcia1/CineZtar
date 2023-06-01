@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Repositorios
 {
-    public class UsuarioRepositorio : BaseRepository<Usuario>
+    public class UsuarioRepositorio : BaseRepositorio<Usuario>
     {
-        private readonly DbContext _context;
+        public UsuarioRepositorio(DB_Ingressos2Context contexto) : base(contexto)
+        {
+        }
 
-
-        
-        
+        // public Usuario RecuperarPorId(int IdUsuario)
+        // {
+        //     return _contexto.Usuarios.FirstOrDefault(u => u.IdUsuario == IdUsuario);
+        // }
     }
 }

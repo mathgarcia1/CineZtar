@@ -1,20 +1,11 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Repositorio.Models;
-using Repositorio.Repositorios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Cine.Models;
-
 namespace Cine
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -27,61 +18,26 @@ namespace Cine
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddScoped<IBaseRepository<TipoUsuario>, TipoUsuarioRepositorio>();
-            services.AddScoped<IBaseRepository<TipoIngresso>, TipoIngressoRepositorio>();
-            services.AddScoped<IBaseRepository<Genero>, GeneroRepositorio>();
-            services.AddScoped<IBaseRepository<Ingresso>, IngressoRepositorio>();
-            services.AddScoped<IBaseRepository<Usuario>, UsuarioRepositorio>();
-            services.AddScoped<IBaseRepository<Cinema>, CinemaRepositorio>();
-            services.AddScoped<IBaseRepository<Filme>, FilmeRepositorio>();
-            services.AddScoped<IBaseRepository<Idioma>, IdiomaRepositorio>();
-            services.AddScoped<IBaseRepository<Sala>, SalaRepositorio>();
-            services.AddAutoMapper(typeof(Startup));
-
-
-            // Configura��o de mapeamento
-            MapperConfiguration mapperConfig = new MapperConfiguration(cfg =>
+            services.AddCors(options =>
             {
-                cfg.CreateMap<TipoUsuario, TipoUsuarioModel>();
-                cfg.CreateMap<TipoUsuarioModel, TipoUsuario>();
-
-                cfg.CreateMap<Genero, GeneroModel>();
-                cfg.CreateMap<GeneroModel, Genero>();
-
-                cfg.CreateMap<TipoIngresso, TipoIngressoModel>();
-                cfg.CreateMap<TipoIngressoModel, TipoIngresso>();
-
-                cfg.CreateMap<Ingresso, IngressoModel>();
-                cfg.CreateMap<IngressoModel, Ingresso>();
-
-                cfg.CreateMap<Usuario, UsuarioModel>();
-                cfg.CreateMap<UsuarioModel, Usuario>();
-
-                cfg.CreateMap<Cinema, CinemaModel>();
-                cfg.CreateMap<CinemaModel, Cinema>();
-
-                cfg.CreateMap<Filme, FilmeModel>();
-                cfg.CreateMap<FilmeModel, Filme>();
-
-                cfg.CreateMap<Idioma, IdiomaModel>();
-                cfg.CreateMap<IdiomaModel, Idioma>();
-                
-                cfg.CreateMap<Sala, SalaModel>();
-                cfg.CreateMap<SalaModel, Sala>();
-
-
+                options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                options.AddPolicy(
+                    "AllowLocalhost5001",
+                    builder =>
+                    {
+                        builder
+                            .WithOrigins("https://localhost:5001")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
             });
-
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
-
+            services.AddHttpContextAccessor();
 
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
             services.AddSession();
 
-            services.AddHttpContextAccessor();
+            // services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,9 +50,12 @@ namespace Cine
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -108,8 +67,12 @@ namespace Cine
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "excluirFilme",
+                    pattern: "Compra/excluirFilme/{id}/{IdFilme}",
+                    defaults: new { controller = "Compra", action = "excluirFilme" });
+                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Usuario}/{action=Login}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

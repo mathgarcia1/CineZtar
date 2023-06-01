@@ -1,0 +1,31 @@
+@model FilmeModel
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div class="col-md-8 mx-auto">
+    <div class="card flex-md-row mb-4 shadow-sm h-md-250 tabela">
+        <div class="card-body d-flex flex-column align-items-start">
+            <div class="text-center">
+                <h1 class="display-2 mb-4 fst-italic texto-colorido" >@Model.Nome</h1>
+            </div>
+            <h3 class="mb-0">
+                <a class="text-light" style="font-size: 1.5rem;" id="abreviado">@Model.Descricao</a>
+            </h3>
+            <div class="mb-1 text-light display-7"><span class="texto-colorido">R$ </span>@Model.Valor</div>
+            <p class="mb-1 text-light display-7 "><span class="texto-colorido">Duração:</span> @Model.Duracao Minutos</p>
+            <a href="~/Compra/comprarFilme/@Model.IdFilme" class="btnlink">COMPRAR</a>
+        </div>
+        <img class="card-img-right flex-auto d-none d-lg-block capa-filme" alt="Capa do Filme"
+            src="~/Imagens/@Model.Imagem" />
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var textoOriginal = document.getElementById("abreviado").textContent;
+        var textoAbreviado = textoOriginal.substring(0, 31) + (textoOriginal.length > 31 ? "..." : "");
+        document.getElementById("abreviado").textContent = textoAbreviado;
+    });
+</script>
+
+

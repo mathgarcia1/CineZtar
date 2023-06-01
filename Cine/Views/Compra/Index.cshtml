@@ -1,0 +1,152 @@
+﻿@model IEnumerable<CompraFilmeModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="tabela">
+<h1>Minha Compra</h1>
+<div class="col-12">
+    <table class="table table-dark table-striped" >
+        <thead>
+            <tr>
+                <th scope="col">Compra</th>
+                <th scope="col">Filme</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Remover</th>
+                <th scope="col">Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr class="linhas">
+                <td class="codigo">@item.IdCompra</td>
+                <td>@item.IdFilme</td>
+                <td>@item.Filme.Descricao</td>
+                <td>
+                    <select class="qtde">
+                        @if (item.Quantidade == 1)
+                        {
+                            <option value="1" selected>1</option>
+                        }
+                        else
+                        {
+                            <option value="1">1</option>
+                        }
+
+                        @if (item.Quantidade == 2)
+                        {
+                            <option value="2" selected>2</option>
+                        }
+                        else
+                        {
+                            <option value="2">2</option>
+                        }
+
+                        @if (item.Quantidade == 3)
+                        {
+                            <option value="3" selected>3</option>
+                        }
+                        else
+                        {
+                            <option value="3">3</option>
+                        }
+
+                    </select>
+
+                </td>
+                <td>
+                    <a href="~/Compra/excluirFilme/@item.IdCompraFilme/@item.IdFilme" class="btnlink">Remover</a>
+                </td>
+                <td class="tdvalor">R$ @item.Valor</td>
+                <td><input type="hidden" class="total" value="@item.Valor"/></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+</div>
+</br>
+</br>
+<div class="row justify-content-end">
+    <div class="card tabela" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="text-light display-6">TOTAL:</h5>
+            <p class="texto-colorido display-6" id="totalGeral">R$ 00,00</p>
+            <a href="~/Compra/Finalizar" class="btnlink">FINALIZAR</a>
+        </div>
+    </div>
+</div>
+
+<div class="form-group mb-4 mt-3">
+    <a href="~/Home/Index" class="btnlink ">CONTINUAR COMPRANDO</a>
+</div>
+<div class="row">
+    <span class="@ViewBag.classe">@ViewBag.mensagem</span>
+</div>
+
+@section Scripts{ 
+    <script>
+
+        $(document).ready(function () {
+
+            calculaTotal();
+
+            $(".qtde").change(function () {
+                //$(this) => quem acionou o evento
+                var qtdeNova = $(this).val();
+                //parent()=>retorna para elemento pai
+                var id =
+                    $(this).parent().parent().find(".codigo").text();
+                //console.log("qtde = " + qtdeNova);
+                //console.log("id = " + id);
+                alterarQtde(id, qtdeNova);
+            });
+
+        });
+
+
+
+        function alterarQtde(id, qtde) {
+
+            $.ajax({
+                type: "GET",
+                url: "/Compras/alterarQtde?id=" + id +"&qtde=" + qtde,
+                contentType: "application/json; charset=utf-8",
+                data: "{}",
+                dataType: "json",
+                success: function (jsonResult) {
+                    console.log(jsonResult);
+                    //percorrer todas as linhas, procurando pelo ID
+                    $(".linhas").each(function (index, item) {
+                        var codigotab = parseInt( $(item).find(".codigo").text());
+                        if (codigotab == jsonResult.id) {
+
+                            $(item).find(".total").val(jsonResult.valor);
+                            $(item).find(".tdvalor").text("R$ " + jsonResult.valor);
+                            calculaTotal();
+                        }
+                    });
+                },
+                failure: function (response) {
+                    alert("Erro ao carregar os dados: " + response);
+                }
+}           );
+        }
+
+
+        function calculaTotal() {
+            var total = 0;
+            $('.total').each(function (index, item) {
+                total+= parseFloat($(item).val());//input com classe .total
+            });
+            //parseFloat convert string em float
+            //tag p que tem o total geral
+            $("#totalGeral").text("R$ " + total);
+
+        }
+
+    </script>
+
+}

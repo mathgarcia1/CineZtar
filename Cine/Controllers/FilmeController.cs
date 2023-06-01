@@ -1,108 +1,110 @@
-using AutoMapper;
-using Cine.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Repositorio.Models;
-using Repositorio.Repositorios;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
+/// <summary>
+/// Description of the class or file.
+/// </summary>
+/// <author>mathgarcia1</author>
+/// <created>2023-05-31 13:25:22</created>
+/// <lastModified>2023-05-31 13:25:22</lastModified>
+/// <copyright>
+/// Copyright (c) 2023 mathgarcia1
+/// </copyright>
 namespace Cine.Controllers
 {
-    public class FilmeController : BaseController<Filme, FilmeModel>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Cine.Models;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
+    public class FilmeController : Controller
     {
-        private readonly IBaseRepository<Idioma> _idiomaRepository;
-        public FilmeController(IBaseRepository<Filme> repository, IBaseRepository<Idioma> idiomaRepository, IMapper mapper) : base(repository, mapper)
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public FilmeController(IWebHostEnvironment hostEnvironment)
         {
-            _idiomaRepository = idiomaRepository;
+            this.webHostEnvironment = hostEnvironment;
         }
 
-        protected override int GetId(Filme entity)
+        public IActionResult Index()
         {
-            return entity.IdFilme;
+            return this.View();
         }
 
-        public override IActionResult Index(int? id)
+        public IActionResult cadastro()
         {
-            var model = new FilmeModel();
+            List<GeneroModel> lista = new GeneroModel().Listar();
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Nome });
+            List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
+            this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
+            return this.View(new FilmeModel());
+        }
 
-            var idiomasFilme = _idiomaRepository.getAll().
-                Select(idioma => new SelectListItem
-                {
-                    Value = idioma.IdIdioma.ToString(),
-                    Text = idioma.Nome
-                }).ToList();
-
-            if (id.HasValue)
+        [HttpPost]
+        public IActionResult salvar(FilmeModel model)
+        {
+            if (this.ModelState.IsValid)
             {
-                var entity = _repository.get(id.Value);
-                model = _mapper.Map<FilmeModel>(entity);
-
-                if (entity.Imagem != null && entity.Imagem.Length > 0)
+                try
                 {
-                    model.Imagem = entity.Imagem;
+                    FilmeModel filmemodel = new ();
+                    filmemodel.Salvar(model, this.webHostEnvironment);
+                    this.ViewBag.mensagem = "Filme salvo com sucesso!";
+                    this.ViewBag.classe = "alert alert-success";
+                }
+                catch (Exception ex)
+                {
+                    this.ViewBag.mensagem =
+                        "Erro ao salvar filme!" + ex.Message + "/" + ex.InnerException;
+                    this.ViewBag.classe = "alert alert-danger";
                 }
             }
-            model.IdiomasFilme = idiomasFilme;
-            return View(model);
+            else
+            {
+                this.ViewBag.mensagem = "Erro ao salvar filme! verifique os campos";
+                this.ViewBag.classe = "alert alert-danger";
+            }
+
+            List<GeneroModel> lista = new GeneroModel().Listar();
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Descricao });
+            List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
+            this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
+            return this.View("cadastro", model);
         }
 
-        public override IActionResult Salvar(FilmeModel model)
+        public IActionResult listar()
         {
+            FilmeModel filmemodel = new ();
+            List<FilmeModel> lista = filmemodel.Listar();
+            return this.View(lista);
+        }
+
+        public IActionResult prealterar(int id)
+        {
+            FilmeModel model = new ();
+            List<GeneroModel> lista = new GeneroModel().Listar();
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Descricao });
+            List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
+            this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
+            return this.View("cadastro", model.Selecionar(id));
+        }
+
+        public IActionResult excluir(int id)
+        {
+            FilmeModel model = new ();
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var filme = _mapper.Map<Filme>(model);
-                    if (model.ImagemUpload != null && model.ImagemUpload.Length > 0)
-                    {
-                        using (var ms = new MemoryStream())
-                        {
-                            model.ImagemUpload.CopyTo(ms);
-                            filme.Imagem = ms.ToArray();
-                        }
-                    }
-                    filme.IdIdioma = model.IdIdioma;
-
-                    if (GetId(filme) == 0)
-                    {
-                        _repository.add(filme);
-
-                    }
-                    else
-                    {
-                        _repository.edit(filme);
-                    }
-                    ViewBag.Dados = "Salvo com sucesso!";
-                }
-                else
-                {
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
-                    ViewBag.Dados = "Erro ao salvar. Verifique os campos e tente novamente." + string.Join("<br>", errors);
-                }
+                model.Excluir(id);
+                this.ViewBag.mensagem = "Filme excluído com sucesso!";
+                this.ViewBag.classe = "alert alert-success";
             }
             catch (Exception ex)
             {
-
-                ViewBag.Dados = "Ocorreu um erro ao salvar!" + ex.Message + " " + ex.InnerException;
-
-            }
-            return RedirectToAction("Index");
-        }
-        public IActionResult Imagem(int id)
-        {
-            var filme = _repository.get(id);
-
-            if (filme != null && filme.Imagem != null)
-            {
-                return File(filme.Imagem, "image/jpeg");
+                this.ViewBag.mensagem = "Não foi possível excluir filme!" + ex.Message;
+                this.ViewBag.classe = "alert alert-danger";
             }
 
-            return NotFound();
+            return this.View("listar", model.Listar());
         }
-
     }
 }

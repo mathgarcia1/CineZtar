@@ -1,37 +1,30 @@
-﻿using Cine.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+/// Description of the class or file.
+/// </summary>
+/// <author>mathgarcia1</author>
+/// <created>2023-05-31 13:43:37</created>
+/// <lastModified>2023-05-31 13:43:37</lastModified>
+/// <copyright>
+/// Copyright (c) 2023 mathgarcia1
+/// </copyright>
 namespace Cine.Controllers
 {
+    using Cine.Models;
+    using Microsoft.AspNetCore.Mvc;
+
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+            FilmeModel model = new ();
+            return this.View(model.Listar());
         }
 
-        public IActionResult Privacy()
+        public IActionResult detalhes(int id)
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            FilmeModel model = new ();
+            FilmeModel filme = model.Selecionar(id);
+            return this.View(filme);
         }
     }
 }

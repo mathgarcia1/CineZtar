@@ -1,11 +1,33 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor _httpContext
-
+@model IEnumerable<FilmeModel>
 @{
     ViewData["Title"] = "Home Page";
     var userName = _httpContext.HttpContext.Session.GetString("Nome");
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bem-vindo @userName</h1>
-    </div>
+    <h1 class="display-4 mb-4 text-light">Bem-vindo(a) <span class="texto-colorido">@userName</span></h1>
+</div>
+<div class="row mb-2">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 shadow-sm h-md-250 tabela text-light">
+                <div class="card-body d-flex flex-column align-items-start">
+
+                    <h3 class="mb-0">
+                        <a class="fw-bolder display-6">@item.Nome</a>
+                    </h3>
+                    <div class="mb-1 ">R$ @item.Valor</div>
+                    <p class="card-text mb-auto">Este é um card maior com suporte à texto, em baixo, como uma introdução
+                        mais natural ao conteúdo adicional.</p>
+
+                    <a href="~/Home/detalhes/@item.IdFilme" class="btnlink">COMPRAR</a>
+                </div>
+                <img class="card-img-right flex-auto d-none d-lg-block capa-filme" alt="Capa do Filme" src="~/Imagens/@item.Imagem" />
+            </div>
+        </div>
+    }
+
+</div>
