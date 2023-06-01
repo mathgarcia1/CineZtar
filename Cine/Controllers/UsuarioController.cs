@@ -44,14 +44,14 @@ namespace Cine.Controllers
         }
 
         [HttpPost]
-        public IActionResult logar(String Email, String Senha)
+        public IActionResult logar(string Email, string Senha)
         {
             UsuarioModel model = new UsuarioModel().ValidarLogin(Email, Senha);
             if (model == null)
             {
                 this.ViewBag.mensagem = "Dados inválidos";
                 this.ViewBag.classe = "alert alert-danger";
-                return View("login");
+                return this.View("login");
             }
             else
             {

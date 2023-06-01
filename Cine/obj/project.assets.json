@@ -9381,11 +9381,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
+      "projectUniqueName": "d:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
       "projectName": "Cine",
-      "projectPath": "D:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
+      "projectPath": "d:\\Documents\\GitHub\\CineZtar\\Cine\\Cine.csproj",
       "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\GitHub\\CineZtar\\Cine\\obj\\",
+      "outputPath": "d:\\Documents\\GitHub\\CineZtar\\Cine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Matheus\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -9400,8 +9400,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
-              "projectPath": "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj"
+            "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj": {
+              "projectPath": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj"
             }
           }
         }

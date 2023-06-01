@@ -39,8 +39,8 @@ namespace Cine.Models
         [Display(Name = "Tipo de Usuario", Prompt = "Selecione Tipo de Usuario")]
         public int IdTipousuario { get; set; }
 
-        //public List<SelectListItem> TiposUsuario { get; set; }
-        public UsuarioModel ValidarLogin(String email, String senha)
+        // public List<SelectListItem> TiposUsuario { get; set; }
+        public UsuarioModel ValidarLogin(string email, string senha)
         {
             UsuarioModel model = null;
             using (DB_Ingressos2Context contexto = new ())

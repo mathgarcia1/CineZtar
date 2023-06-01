@@ -139,7 +139,7 @@ namespace Cine.Controllers
             decimal valorUnitario = (decimal)
                 new FilmeModel().Selecionar((int)compraFilmeModel.IdFilme).Valor;
             compraFilmeModel.Valor = qtde * valorUnitario;
-            new CompraFilmeModel().salvar(compraFilmeModel);
+            new CompraFilmeModel().Salvar(compraFilmeModel);
             return new JsonResult(compraFilmeModel);
         }
 
@@ -206,7 +206,7 @@ namespace Cine.Controllers
                 Quantidade = 1,
                 Valor = valor,
             };
-            new CompraFilmeModel().salvar(compraFilmeModel);
+            new CompraFilmeModel().Salvar(compraFilmeModel);
 
             var lista = new CompraFilmeModel().Listar(this.HttpContext.Session.GetInt32("IdCompra").Value);
             return this.View("Index", lista);

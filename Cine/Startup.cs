@@ -20,10 +20,7 @@ namespace Cine
         {
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
+                options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
                 options.AddPolicy(
                     "AllowLocalhost5001",
                     builder =>
@@ -32,8 +29,7 @@ namespace Cine
                             .WithOrigins("https://localhost:5001")
                             .AllowAnyMethod()
                             .AllowAnyHeader();
-                    }
-                );
+                    });
             });
             services.AddHttpContextAccessor();
 
@@ -41,7 +37,7 @@ namespace Cine
             services.AddDistributedMemoryCache();
             services.AddSession();
 
-            //services.AddHttpContextAccessor();
+            // services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,9 +50,11 @@ namespace Cine
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseCors();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -71,12 +69,10 @@ namespace Cine
                 endpoints.MapControllerRoute(
                     name: "excluirFilme",
                     pattern: "Compra/excluirFilme/{id}/{IdFilme}",
-                    defaults: new { controller = "Compra", action = "excluirFilme" }
-                );
+                    defaults: new { controller = "Compra", action = "excluirFilme" });
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
-                );
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
