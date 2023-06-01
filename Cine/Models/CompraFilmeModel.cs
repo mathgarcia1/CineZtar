@@ -51,7 +51,7 @@ namespace Cine.Models
             contexto.SaveChanges();
         }
 
-        public CompraFilmeModel salvar(CompraFilmeModel model)
+        public CompraFilmeModel Salvar(CompraFilmeModel model)
         {
             var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
             CompraFilme compraFilme = mapper.Map<CompraFilme>(model);
@@ -81,11 +81,11 @@ namespace Cine.Models
         //     var mapper = new Mapper(AutoMapperConfig.RegisterMappings());
         //     CompraFilme compraFilme = mapper.Map<CompraFilme>(model);
 
-        //     using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
+        // using (DB_Ingressos2Context contexto = new DB_Ingressos2Context())
         //     {
         //         CompraFilmeRepositorio repositorio = new CompraFilmeRepositorio(contexto);
 
-        //         if (model.IdCompraFilme == 0)
+        // if (model.IdCompraFilme == 0)
         //             repositorio.Inserir(compraFilme);
         //         else
         //         {
@@ -104,15 +104,12 @@ namespace Cine.Models
         //             }
         //         }
 
-        //         contexto.SaveChanges();
+        // contexto.SaveChanges();
         //     }
 
-        //     model.IdCompraFilme = compraFilme.IdCompraFilme;
+        // model.IdCompraFilme = compraFilme.IdCompraFilme;
         //     return model;
         // }
-
-
-
         public List<CompraFilmeModel> Listar(int idcompras)
         {
             List<CompraFilmeModel> listamodel = null;

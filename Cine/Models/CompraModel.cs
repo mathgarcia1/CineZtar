@@ -123,7 +123,6 @@ namespace Cine.Models
 
                 // ...
 
-
                 // ...
                 var item = new PreferenceItemRequest
                 {
@@ -135,9 +134,8 @@ namespace Cine.Models
                     CurrencyId = "BRL",
                     UnitPrice = model.valor,
                 };
+
                 // ...
-
-
                 var request = new PreferenceRequest
                 {
                     // ...

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pyTKZE/uAiV2tETFaRfBLJJA0vf5o1OmSjlTYZ2n273voKFC6NpWkFT2yCPyDBGKogHwYu/FQ24uGD+YLV9g7w==",
+  "dgSpecHash": "6+IRtTf/0ahT8WsZc36xL2PFaVFLebUyv2L+PJfqhRxomMCDObBCJxo0Bm+6lpFlMRyvioDHIDggBa/MRcfKZg==",
   "success": true,
-  "projectFilePath": "D:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
+  "projectFilePath": "d:\\Documents\\GitHub\\CineZtar\\Repositorio\\Repositorio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matheus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Matheus\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

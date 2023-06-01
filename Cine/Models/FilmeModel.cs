@@ -55,8 +55,7 @@ namespace Cine.Models
         [Display(Name = "Gênero", Prompt = "Selecione um Gênero")]
         public int? IdGenero { get; set; }
 
-        //public List<SelectListItem> IdiomasFilme;
-
+        // public List<SelectListItem> IdiomasFilme;
         [Display(Name = "Imagem")]
         public IFormFile ImagemUpload { get; set; }
 
