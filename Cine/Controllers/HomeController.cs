@@ -1,12 +1,12 @@
-﻿/// <summary>
+﻿// <copyright file="HomeController.cs" company="CineZtarCompany">
+// Copyright (c) CineZtarCompany. All rights reserved.
+// </copyright>
+/// <summary>
 /// Description of the class or file.
 /// </summary>
 /// <author>mathgarcia1</author>
 /// <created>2023-05-31 13:43:37</created>
 /// <lastModified>2023-05-31 13:43:37</lastModified>
-/// <copyright>
-/// Copyright (c) 2023 mathgarcia1
-/// </copyright>
 namespace Cine.Controllers
 {
     using Cine.Models;

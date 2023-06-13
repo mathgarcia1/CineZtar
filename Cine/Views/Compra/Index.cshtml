@@ -109,40 +109,42 @@
 
 
         function alterarQtde(id, qtde) {
+    $.ajax({
+        type: "GET",
+        url: "/Compras/alterarQtde",
+        data: { id: id, qtde: qtde },
+        dataType: "json",
+        success: function (jsonResult) {
+            console.log(jsonResult);
+            // Encontrar o elemento da linha correspondente ao ID
+            var linha = $(".linhas").filter(function () {
+                return parseInt($(this).find(".codigo").text()) === jsonResult.id;
+            });
 
-            $.ajax({
-                type: "GET",
-                url: "/Compras/alterarQtde?id=" + id +"&qtde=" + qtde,
-                contentType: "application/json; charset=utf-8",
-                data: "{}",
-                dataType: "json",
-                success: function (jsonResult) {
-                    console.log(jsonResult);
-                    //percorrer todas as linhas, procurando pelo ID
-                    $(".linhas").each(function (index, item) {
-                        var codigotab = parseInt( $(item).find(".codigo").text());
-                        if (codigotab == jsonResult.id) {
-
-                            $(item).find(".total").val(jsonResult.valor);
-                            $(item).find(".tdvalor").text("R$ " + jsonResult.valor);
-                            calculaTotal();
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert("Erro ao carregar os dados: " + response);
-                }
-}           );
+            // Atualizar o valor e o total da linha
+            linha.find(".total").val(jsonResult.valor);
+            linha.find(".tdvalor").text("R$ " + jsonResult.valor);
+            
+            calculaTotal();
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+            alert("Erro ao carregar os dados: " + error);
         }
+    });
+}
+
 
 
         function calculaTotal() {
             var total = 0;
             $('.total').each(function (index, item) {
-                total+= parseFloat($(item).val());//input com classe .total
+                total += parseFloat($(item).val());//input com classe .total
+                console.log(total);
             });
             //parseFloat convert string em float
             //tag p que tem o total geral
+            total = total.toFixed(2);
             $("#totalGeral").text("R$ " + total);
 
         }

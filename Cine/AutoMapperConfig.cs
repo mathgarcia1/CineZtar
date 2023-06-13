@@ -1,12 +1,12 @@
+// <copyright file="AutoMapperConfig.cs" company="CineZtarCompany">
+// Copyright (c) CineZtarCompany. All rights reserved.
+// </copyright>
 /// <summary>
 /// Description of the class or file.
 /// </summary>
 /// <author>mathgarcia1</author>
 /// <created>2023-05-31 13:00:34</created>
 /// <lastModified>2023-05-31 13:00:34</lastModified>
-/// <copyright>
-/// Copyright (c) 2023 mathgarcia1
-/// </copyright>
 namespace Cine
 {
     using AutoMapper;

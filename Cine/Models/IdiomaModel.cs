@@ -1,12 +1,12 @@
+// <copyright file="IdiomaModel.cs" company="CineZtarCompany">
+// Copyright (c) CineZtarCompany. All rights reserved.
+// </copyright>
 /// <summary>
 /// Description of the class or file.
 /// </summary>
 /// <author>mathgarcia1</author>
 /// <created>2023-05-31 14:01:35</created>
 /// <lastModified>2023-05-31 14:01:35</lastModified>
-/// <copyright>
-/// Copyright (c) 2023 mathgarcia1
-/// </copyright>
 namespace Cine.Models
 {
     using System.Collections.Generic;

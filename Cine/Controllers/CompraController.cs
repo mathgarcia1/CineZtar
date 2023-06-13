@@ -1,12 +1,12 @@
+// <copyright file="CompraController.cs" company="CineZtarCompany">
+// Copyright (c) CineZtarCompany. All rights reserved.
+// </copyright>
 /// <summary>
 /// Description of the class or file.
 /// </summary>
 /// <author>mathgarcia1</author>
 /// <created>2023-05-31 13:05:12</created>
 /// <lastModified>2023-05-31 13:05:12</lastModified>
-/// <copyright>
-/// Copyright (c) 2023 mathgarcia1
-/// </copyright>
 namespace Cine.Controllers
 {
     using System;
@@ -136,8 +136,7 @@ namespace Cine.Controllers
         {
             CompraFilmeModel compraFilmeModel = new CompraFilmeModel().Selecionar(id);
             compraFilmeModel.Quantidade = qtde;
-            decimal valorUnitario = (decimal)
-                new FilmeModel().Selecionar((int)compraFilmeModel.IdFilme).Valor;
+            decimal valorUnitario = (decimal)new FilmeModel().Selecionar((int)compraFilmeModel.IdFilme).Valor;
             compraFilmeModel.Valor = qtde * valorUnitario;
             new CompraFilmeModel().Salvar(compraFilmeModel);
             return new JsonResult(compraFilmeModel);

@@ -1,12 +1,12 @@
-﻿/// <summary>
+﻿// <copyright file="TipoUsuarioModel.cs" company="CineZtarCompany">
+// Copyright (c) CineZtarCompany. All rights reserved.
+// </copyright>
+/// <summary>
 /// Description of the class or file.
 /// </summary>
 /// <author>mathgarcia1</author>
 /// <created>2023-05-31 14:03:46</created>
 /// <lastModified>2023-05-31 14:03:46</lastModified>
-/// <copyright>
-/// Copyright (c) 2023 mathgarcia1
-/// </copyright>
 namespace Cine.Models
 {
     using System.Collections.Generic;
