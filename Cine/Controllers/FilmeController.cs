@@ -66,7 +66,7 @@ namespace Cine.Controllers
             }
 
             List<GeneroModel> lista = new GeneroModel().Listar();
-            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Descricao });
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Nome });
             List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
             this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
             return this.View("cadastro", model);
@@ -83,7 +83,7 @@ namespace Cine.Controllers
         {
             FilmeModel model = new ();
             List<GeneroModel> lista = new GeneroModel().Listar();
-            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Descricao });
+            this.ViewBag.listageneros = lista.Select(c => new SelectListItem() { Value = c.IdGenero.ToString(), Text = c.Nome });
             List<IdiomaModel> listaidioma = new IdiomaModel().Listar();
             this.ViewBag.listaidiomas = listaidioma.Select(c => new SelectListItem() { Value = c.IdIdioma.ToString(), Text = c.Nome });
             return this.View("cadastro", model.Selecionar(id));
