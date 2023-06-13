@@ -85,8 +85,7 @@ namespace Cine.Controllers
                 }
                 catch (Exception ex)
                 {
-                    this.ViewBag.mensagem =
-                        "Erro ao cadastrar usuário! " + ex.Message + "/" + ex.InnerException;
+                    this.ViewBag.mensagem = "Erro ao cadastrar usuário! " + ex.Message + "/" + ex.InnerException;
                     this.ViewBag.classe = "alert alert-danger";
                 }
             }

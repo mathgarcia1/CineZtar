@@ -65,6 +65,11 @@ namespace Cine.Models
 
                 if (model.IdUsuario == 0)
                 {
+                    if (this.VerificarEmailExistente(model.Email))
+                    {
+                        throw new Exception("Email já cadastrado.");
+                    }
+
                     repositorio.Inserir(usuario);
                 }
                 else
@@ -114,6 +119,14 @@ namespace Cine.Models
             Usuario usuario = repositorio.Recuperar(c => c.IdUsuario == id);
             repositorio.Excluir(usuario);
             contexto.SaveChanges();
+        }
+
+        public bool VerificarEmailExistente(string email)
+        {
+            using DB_Ingressos2Context contexto = new ();
+            UsuarioRepositorio repositorio = new (contexto);
+            Usuario usuario = repositorio.Recuperar(u => u.Email == email);
+            return usuario != null;
         }
     }
 }
