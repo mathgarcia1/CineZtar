@@ -17,7 +17,7 @@ O projeto inclui cadastro de filmes, gêneros, idiomas, usuários e integração
 ## Como executar
 1. Clone este repositório e instale as dependências:
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/mathgarcia1/CineZtar
    cd CineZtar
    dotnet restore
    ```
