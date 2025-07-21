@@ -97,7 +97,7 @@ namespace Cine.Models
 
                 // Adicione as credenciais
                 MercadoPagoConfig.AccessToken =
-                    "TEST-5818482197201188-122717-7f6bef44575fde6b43ddb8c8ee872495-168845261";
+                    Environment.GetEnvironmentVariable("MP_ACCESS_TOKEN");
 
                 String[] split = model.nome.Split(' ');
 
